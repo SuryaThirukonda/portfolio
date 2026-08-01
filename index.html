@@ -1,0 +1,1279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Surya Thirukonda · Software Engineer</title>
+<meta name="description" content="Surya Thirukonda, computer science at Texas A&M. Founding engineer at Revio, CTO at Stook, data infrastructure at DeKalb Capital Management, and time-series forecasting research at Portland State.">
+<meta property="og:title" content="Surya Thirukonda · Software Engineer">
+<meta property="og:description" content="Founding engineer at Revio, CTO at Stook, data infrastructure at DeKalb Capital Management, and time-series forecasting research at Portland State.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23fafafa'/%3E%3Ctext x='16' y='23' text-anchor='middle' font-family='monospace' font-size='19' fill='%23111111'%3ES%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,450;0,500;0,600;1,450;1,500&family=IBM+Plex+Mono:wght@400;450;500&display=swap">
+<style>
+:root {
+  --bg: #fafafa;
+  --ink: #131313;
+  --mut: #4f4f4f;
+  --dim: #6f6f6f;
+  --line: #e7e7e7;
+  --line2: #efefef;
+  --edge: #d6d6d6;
+  --hover: rgba(0,0,0,.03);
+  --overlay: rgba(0,0,0,.16);
+  --glass-a: rgba(255,255,255,.62);
+  --glass-b: rgba(255,255,255,.36);
+  --glass-border: rgba(0,0,0,.1);
+  --glass-top: rgba(255,255,255,.65);
+  --glass-bottom: rgba(255,255,255,.18);
+  --glass-shadow: rgba(0,0,0,.22);
+  --glass-rule: rgba(0,0,0,.07);
+  --glass-btn: rgba(0,0,0,.12);
+  --sans: 'IBM Plex Sans', system-ui, sans-serif;
+  --mono: 'IBM Plex Mono', ui-monospace, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #101010;
+    --ink: #ececec;
+    --mut: #a6a6a6;
+    --dim: #8c8c8c;
+    --line: #232323;
+    --line2: #1c1c1c;
+    --edge: #333333;
+    --hover: rgba(255,255,255,.04);
+    --overlay: rgba(0,0,0,.45);
+    --glass-a: rgba(46,46,46,.55);
+    --glass-b: rgba(22,22,22,.48);
+    --glass-border: rgba(255,255,255,.12);
+    --glass-top: rgba(255,255,255,.14);
+    --glass-bottom: rgba(255,255,255,0);
+    --glass-shadow: rgba(0,0,0,.6);
+    --glass-rule: rgba(255,255,255,.09);
+    --glass-btn: rgba(255,255,255,.16);
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #101010;
+  --ink: #ececec;
+  --mut: #a6a6a6;
+  --dim: #8c8c8c;
+  --line: #232323;
+  --line2: #1c1c1c;
+  --edge: #333333;
+  --hover: rgba(255,255,255,.04);
+  --overlay: rgba(0,0,0,.45);
+  --glass-a: rgba(46,46,46,.55);
+  --glass-b: rgba(22,22,22,.48);
+  --glass-border: rgba(255,255,255,.12);
+  --glass-top: rgba(255,255,255,.14);
+  --glass-bottom: rgba(255,255,255,0);
+  --glass-shadow: rgba(0,0,0,.6);
+  --glass-rule: rgba(255,255,255,.09);
+  --glass-btn: rgba(255,255,255,.16);
+}
+html { scroll-behavior: smooth; background: var(--bg); }
+body {
+  margin: 0;
+  overflow-x: hidden;
+  background: transparent;
+  color: var(--ink);
+  font-family: var(--mono);
+}
+#bgField {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+a { color: var(--ink); }
+a:hover { color: var(--ink); }
+::selection { background: rgba(127,127,127,.28); }
+:focus { outline: none; }
+:focus-visible { outline: 1.5px solid var(--ink); outline-offset: 3px; }
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  margin: 0;
+}
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 50;
+  background: var(--ink);
+  color: var(--bg);
+  padding: 10px 16px;
+  font: 500 12px/1 var(--mono);
+  text-decoration: none;
+}
+.skip-link:focus-visible { left: 0; color: var(--bg); }
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: color-mix(in srgb, var(--bg) 92%, transparent);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+nav {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 14px 40px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  font: 400 11px/1 var(--mono);
+  letter-spacing: 0.1em;
+}
+nav .brand { color: var(--ink); text-decoration: none; }
+nav .spacer { flex: 1; }
+nav .navlink { color: var(--dim); text-decoration: none; transition: color .2s ease; }
+nav .navlink:hover { color: var(--ink); }
+nav button.navlink {
+  appearance: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+  letter-spacing: inherit;
+  padding: 0;
+}
+nav .resume {
+  color: var(--bg);
+  background: var(--ink);
+  text-decoration: none;
+  padding: 8px 13px;
+  transition: opacity .2s ease;
+}
+nav .resume:hover { opacity: .82; color: var(--bg); }
+
+.hero {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 64px 40px 88px;
+  text-align: center;
+}
+#ascStage {
+  position: relative;
+  width: 100%;
+  height: 360px;
+  margin: 0 0 34px;
+}
+#ascName { display: block; width: 100%; height: 100%; }
+.hero h2 {
+  font-family: var(--sans);
+  font-weight: 450;
+  font-size: 44px;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  margin: 0 auto 20px;
+  padding-bottom: 4px;
+  max-width: 22ch;
+}
+.hero h2 em { font-style: italic; font-weight: 500; }
+.hero .lede {
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--mut);
+  margin: 0 auto 32px;
+  max-width: 62ch;
+}
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  justify-content: center;
+  font: 400 11px/1 var(--mono);
+  letter-spacing: 0.08em;
+}
+.chips a {
+  color: var(--ink);
+  border: 1px solid var(--edge);
+  text-decoration: none;
+  padding: 12px 16px;
+  transition: border-color .2s ease;
+  background: color-mix(in srgb, var(--bg) 70%, transparent);
+}
+.chips a:hover { border-color: var(--ink); }
+
+.ledger { max-width: 1000px; margin: 0 auto; padding: 0 40px; }
+.ledger + .ledger { padding-top: 64px; }
+.page-end { padding-bottom: 88px; }
+.ledger-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  font: 400 11px/1 var(--mono);
+  letter-spacing: 0.16em;
+  color: var(--dim);
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--line);
+}
+.ledger-head .orn {
+  color: var(--edge);
+  letter-spacing: 0.2em;
+  user-select: none;
+}
+.row {
+  display: grid;
+  grid-template-columns: 96px 1fr 190px;
+  gap: 26px;
+  align-items: baseline;
+  padding: 24px 10px;
+  border-bottom: 1px solid var(--line2);
+}
+.row:last-child { border-bottom: 1px solid var(--line); }
+a.row {
+  text-decoration: none;
+  color: inherit;
+  transition: background .25s ease;
+}
+a.row:hover { background: var(--hover); }
+.row-tag {
+  font: 500 11px/1 var(--mono);
+  letter-spacing: 0.08em;
+  color: var(--dim);
+}
+.row-tag.win { color: var(--ink); }
+.row-title {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 18px;
+  letter-spacing: -0.01em;
+  display: block;
+  margin-bottom: 7px;
+}
+.row-desc {
+  font-family: var(--sans);
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--mut);
+}
+.row-meta {
+  font: 400 10px/1.8 var(--mono);
+  letter-spacing: 0.08em;
+  color: var(--dim);
+  text-align: right;
+}
+
+.mini-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0 44px;
+}
+.mini {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: baseline;
+  padding: 16px 4px;
+  border-bottom: 1px solid var(--line2);
+}
+.mini span:first-child { font-family: var(--sans); font-size: 14px; }
+.mini a, .mini .mini-tag {
+  font: 400 10px/1 var(--mono);
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+.mini .mini-tag { color: var(--dim); }
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 200px minmax(0, 1fr);
+  gap: 52px;
+  align-items: start;
+  padding-top: 38px;
+}
+.portrait {
+  position: relative;
+  border: 1px solid var(--edge);
+}
+.portrait img {
+  width: 100%;
+  display: block;
+  filter: grayscale(1) contrast(1.04);
+}
+.portrait canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity .25s ease;
+  background: var(--bg);
+}
+.portrait:hover canvas, .portrait.ascii canvas { opacity: 1; }
+.portrait .hint {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -22px;
+  font: 400 9px/1 var(--mono);
+  letter-spacing: 0.14em;
+  color: var(--edge);
+  text-align: center;
+  user-select: none;
+}
+.about-grid h2 {
+  font-family: var(--sans);
+  font-weight: 450;
+  font-size: 26px;
+  line-height: 1.35;
+  letter-spacing: -0.015em;
+  margin: 0 0 20px;
+  max-width: 34ch;
+}
+.about-grid h2 em { font-style: italic; font-weight: 500; }
+.about-grid p {
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--mut);
+  margin: 0 0 18px;
+  max-width: 66ch;
+}
+.about-grid p:last-of-type { margin-bottom: 28px; }
+.creds {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  font: 400 10px/1 var(--mono);
+  letter-spacing: 0.08em;
+  color: var(--dim);
+}
+.creds span { border: 1px solid var(--line); padding: 9px 12px; background: color-mix(in srgb, var(--bg) 70%, transparent); }
+
+footer { border-top: 1px solid var(--line); margin-top: 88px; background: var(--bg); }
+footer .inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 28px 40px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: center;
+  justify-content: space-between;
+  font: 400 10px/1 var(--mono);
+  letter-spacing: 0.1em;
+  color: var(--dim);
+}
+footer a { text-decoration: none; color: var(--dim); }
+footer a:hover { color: var(--ink); }
+
+/* Terminal: the page surface is flat and sharp; overlays are glass and rounded.
+   Web glassmorphism approximation, not Apple's Liquid Glass. */
+.term-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 12vh 20px 20px;
+  background: var(--overlay);
+  opacity: 0;
+  transition: opacity .18s ease;
+}
+.term-overlay.open { opacity: 1; }
+.term-panel {
+  width: 100%;
+  max-width: 640px;
+  border-radius: 12px;
+  border: 1px solid var(--glass-border);
+  background: linear-gradient(135deg, var(--glass-a), var(--glass-b));
+  backdrop-filter: blur(28px) saturate(160%);
+  -webkit-backdrop-filter: blur(28px) saturate(160%);
+  box-shadow: inset 0 1px 0 var(--glass-top), inset 0 -1px 0 var(--glass-bottom), 0 24px 80px var(--glass-shadow);
+  transform: translateY(10px) scale(.985);
+  transition: transform .18s cubic-bezier(.16,1,.3,1);
+  overflow: hidden;
+}
+.term-overlay.open .term-panel { transform: none; }
+.term-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  font: 400 10px/1 var(--mono);
+  letter-spacing: 0.1em;
+  color: var(--dim);
+  border-bottom: 1px solid var(--glass-rule);
+}
+.term-bar button {
+  appearance: none;
+  background: none;
+  border: 1px solid var(--glass-btn);
+  cursor: pointer;
+  font: 400 9px/1 var(--mono);
+  letter-spacing: 0.1em;
+  color: var(--dim);
+  padding: 5px 8px;
+  border-radius: 6px;
+}
+.term-bar button:hover { color: var(--ink); border-color: var(--ink); }
+.term-out {
+  padding: 14px 16px 2px;
+  max-height: 44vh;
+  overflow-y: auto;
+  font: 400 12px/1.9 var(--mono);
+  color: var(--mut);
+}
+.term-out div { white-space: pre-wrap; }
+.term-out .t-ink { color: var(--ink); }
+.term-out .t-cmd { color: var(--ink); font-weight: 500; }
+.term-out .t-art { color: var(--dim); line-height: 1.25; font-size: 10px; }
+.term-out a { color: var(--ink); }
+.term-line {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px 14px;
+}
+.term-prompt { font: 500 12px/1 var(--mono); color: var(--dim); }
+#termIn {
+  flex: 1;
+  background: none;
+  border: none;
+  outline: none;
+  font: 400 12px/1.4 var(--mono);
+  color: var(--ink);
+  caret-color: var(--ink);
+}
+@supports not (backdrop-filter: blur(1px)) {
+  .term-panel { background: var(--bg); }
+}
+@media (prefers-reduced-transparency: reduce) {
+  .term-panel { background: var(--bg); backdrop-filter: none; -webkit-backdrop-filter: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .term-overlay, .term-panel { transition: none; }
+}
+
+@media (max-width: 760px) {
+  nav { padding: 14px 20px; gap: 16px; }
+  .hero { padding: 40px 20px 64px; }
+  #ascStage { height: 240px; margin-bottom: 26px; }
+  .hero h2 { font-size: 32px; }
+  .ledger { padding-left: 20px; padding-right: 20px; }
+  .ledger + .ledger { padding-top: 48px; }
+  .page-end { padding-bottom: 64px; }
+  .row {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    padding: 20px 4px;
+  }
+  .row-meta { text-align: left; }
+  .mini-grid { grid-template-columns: 1fr; gap: 0; }
+  .about-grid { grid-template-columns: 1fr; gap: 34px; padding-top: 28px; }
+  .portrait { max-width: 220px; }
+  footer { margin-top: 64px; }
+  footer .inner { padding: 24px 20px; }
+}
+@media (max-width: 560px) {
+  nav a.navlink { display: none; }
+}
+</style>
+</head>
+<body>
+<canvas id="bgField" aria-hidden="true"></canvas>
+<a class="skip-link" href="#about">Skip to content</a>
+
+<header>
+<nav aria-label="Site">
+<a class="brand" href="#top">SURYA THIRUKONDA</a>
+<span class="spacer"></span>
+<a class="navlink" href="#about">ABOUT</a>
+<a class="navlink" href="#experience">WORK</a>
+<button class="navlink" id="termOpen" type="button" aria-haspopup="dialog">TERMINAL</button>
+<button class="navlink" id="themeBtn" type="button" aria-label="Cycle color theme">AUTO</button>
+<a class="resume" href="assets/Surya_Thirukonda_Resume.pdf" target="_blank" rel="noreferrer">RÉSUMÉ ↓</a>
+</nav>
+</header>
+
+<section id="top" class="hero">
+<div id="ascStage">
+<h1 class="sr-only">Surya Thirukonda</h1>
+<canvas id="ascName" role="img" aria-label="Surya, rendered as rotating three-dimensional ASCII art"></canvas>
+</div>
+<h2>I like to <em>ship</em> things.</h2>
+<p class="lede">Computer science at Texas A&amp;M, class of 2028. Right now: founding engineer at Revio, CTO at Stook, data infrastructure at DeKalb Capital Management, and forecasting research as an REU at Portland State.</p>
+<div class="chips">
+<a href="mailto:Surya.Thirukonda@tamu.edu">EMAIL</a>
+<a href="tel:+12818321205">281-832-1205</a>
+<a href="https://github.com/SuryaThirukonda" target="_blank" rel="noreferrer">GITHUB ↗</a>
+<a href="https://linkedin.com/in/surya-thirukonda" target="_blank" rel="noreferrer">LINKEDIN ↗</a>
+</div>
+</section>
+
+<section id="about" class="ledger">
+<div class="ledger-head">ABOUT <span class="orn" aria-hidden="true">.:=:.</span></div>
+<div class="about-grid">
+<div class="portrait" id="portrait">
+<img src="assets/headshot.jpg" alt="Surya Thirukonda">
+<canvas id="portraitAscii" aria-hidden="true"></canvas>
+<span class="hint" aria-hidden="true">HOVER</span>
+</div>
+<div>
+<h2>Most of what I've built started as somebody's <em>real problem</em>.</h2>
+<p>A restaurant's floor. A journal's submission spec. A wheat farmer's harvest window. A dog's heart rate. I like the parts of a system other people skip: schema design, ingestion throughput, and the difference between a model that scores well and a model you can defend to a stakeholder.</p>
+<p>When a project wins something I try not to let it end there. WaiterDock is the clearest case: we won the sponsor's challenge at TAMUhack, and instead of posting about it I asked whether they'd like it running in their restaurant. They did.</p>
+<div class="creds">
+<span>B.S. COMPUTER SCIENCE, TEXAS A&amp;M, 2028</span>
+<span>GPA 4.0</span>
+<span>AWS CERTIFIED CLOUD PRACTITIONER</span>
+<span>USACO SILVER</span>
+<span>YC STARTUP SCHOOL 2026 ATTENDEE</span>
+<span>COLLEGE STATION, TEXAS</span>
+</div>
+</div>
+</div>
+</section>
+
+<section id="experience" class="ledger">
+<div class="ledger-head">EXPERIENCE <span class="orn" aria-hidden="true">:=+=:</span></div>
+
+<a class="row" href="https://www.ashvish.com" target="_blank" rel="noreferrer">
+<span class="row-tag">FOUNDING ENG.</span>
+<span>
+<span class="row-title">Revio: a manuscript engine that never rewrites the author</span>
+<span class="row-desc">In-place DOCX edits preserve images, tables, footnotes and styles, and a constrained agent can only propose fixes it can prove safe. 40+ journal profiles, 200+ conversions, 99%+ uptime in live beta.</span>
+</span>
+<span class="row-meta">SINCE FEB 2026<br>ASHVISH.COM ↗</span>
+</a>
+
+<div class="row">
+<span class="row-tag">CTO</span>
+<span>
+<span class="row-title">Stook: deterministic crop-marketing signals, explained by AI</span>
+<span class="row-desc">Interviews with wheat farmers invalidated our original thesis, so we rebuilt the backtest around harvest parity and pivoted to white-labeling for grain elevators and cooperatives.</span>
+</span>
+<span class="row-meta">SINCE APR 2026<br>AI VENTURE VELOCITY, STAGE 1</span>
+</div>
+
+<a class="row" href="https://github.com/Dekalb-Capital-Management-LLC/dekalb-database-tradetracker" target="_blank" rel="noreferrer">
+<span class="row-tag">INTERNSHIP</span>
+<span>
+<span class="row-title">DeKalb Capital Management: quantitative systems</span>
+<span class="row-desc">Portfolio analytics and stock screening on a Dockerized FastAPI dashboard: yfinance and Interactive Brokers sync across 100+ tracked equities, made idempotent and retry-safe, on QuestDB storage.</span>
+</span>
+<span class="row-meta">SINCE JUN 2026<br>REPOSITORY ↗</span>
+</a>
+
+<div class="row">
+<span class="row-tag">CONTRACT</span>
+<span>
+<span class="row-title">Mai Shan Yun: four months, shipped to the restaurant</span>
+<span class="row-desc">I turned the hackathon prize into a contract: Stripe payments, RBAC, order-state APIs and WebSocket sync, then clock-in tracking, task assignment and automated payroll.</span>
+</span>
+<span class="row-meta">FEB-JUN 2026<br>REACT, EXPRESS, STRIPE</span>
+</div>
+
+<a class="row" href="https://github.com/EthanJG2814-Creator/VEST-Project" target="_blank" rel="noreferrer">
+<span class="row-tag">HARDWARE</span>
+<span>
+<span class="row-title">VEST: telemetry for a canine health monitor</span>
+<span class="row-desc">REST APIs and cloud pipelines carrying 12 samples a second across four biometric streams, from an ESP32 through Supabase to a React Native interface.</span>
+</span>
+<span class="row-meta">JAN-MAY 2026<br>TURTLE ROBOTICS ↗</span>
+</a>
+</section>
+
+<section id="research" class="ledger">
+<div class="ledger-head">RESEARCH <span class="orn" aria-hidden="true">.:~:.</span></div>
+
+<div class="row">
+<span class="row-tag">REU</span>
+<span>
+<span class="row-title">Portland State: regime-aware time-series forecasting</span>
+<span class="row-desc">Does regime-aware modeling improve short-horizon Treasury forecasts? Leakage-safe walk-forward benchmarking of 7 models over 250+ rolling origins, with filtered-state HMM/HSMM features. Manuscript in progress.</span>
+</span>
+<span class="row-meta">SINCE JUN 2026</span>
+</div>
+
+<a class="row" href="https://github.com/SuryaThirukonda/Ratesignal" target="_blank" rel="noreferrer">
+<span class="row-tag">PLATFORM</span>
+<span>
+<span class="row-title">RateSignal: Treasury forecasting, end to end</span>
+<span class="row-desc">1,000+ forecast records across 11 maturities, 7 models and three horizons, generated and served from a full-stack platform behind authenticated REST APIs and an interactive dashboard.</span>
+</span>
+<span class="row-meta">JUN-JUL 2026<br>REPOSITORY ↗</span>
+</a>
+
+<a class="row" href="https://github.com/SuryaThirukonda/gaussian-hsmm" target="_blank" rel="noreferrer">
+<span class="row-tag">OPEN SOURCE</span>
+<span>
+<span class="row-title">gaussian-hsmm: a hidden semi-Markov model, packaged</span>
+<span class="row-desc">A scikit-learn-style Gaussian HSMM with explicit shifted-Poisson state durations, typed and MIT-licensed on PyPI, for regime segmentation an HMM can't express.</span>
+</span>
+<span class="row-meta">2026<br>PYPI + REPOSITORY ↗</span>
+</a>
+</section>
+
+<section id="competitions" class="ledger">
+<div class="ledger-head">HACKATHONS &amp; COMPETITIONS <span class="orn" aria-hidden="true">:=#=:</span></div>
+
+<a class="row" href="https://devpost.com/software/waiterdock" target="_blank" rel="noreferrer">
+<span class="row-tag win">WINNER</span>
+<span>
+<span class="row-title">Mai Shan Yun Challenge · TAMUhack</span>
+<span class="row-desc">WaiterDock, a real-time restaurant operations platform built in about 24 hours on the sponsor's real menu. The win over 40+ teams became a four-month paid contract.</span>
+</span>
+<span class="row-meta">JAN 2026<br>DEVPOST ↗</span>
+</a>
+
+<a class="row" href="https://github.com/ajari17/SouthwestAirlinesBaggageRevenuePredictionTeam4UPDATED" target="_blank" rel="noreferrer">
+<span class="row-tag win">1ST PLACE</span>
+<span>
+<span class="row-title">Aggie Data Science Club x Southwest Airlines</span>
+<span class="row-desc">A SARIMAX baggage-revenue forecast 24 months out, under 12% MAPE, presented to Southwest Airlines stakeholders through a Streamlit dashboard.</span>
+</span>
+<span class="row-meta">OCT-DEC 2025<br>REPOSITORY ↗</span>
+</a>
+
+<a class="row" href="https://devpost.com/software/physio-csim7w" target="_blank" rel="noreferrer">
+<span class="row-tag win">2ND OVERALL</span>
+<span>
+<span class="row-title">HackHCC 2026 · out of 40+ teams</span>
+<span class="row-desc">Physio, our voice-first rehab agent. My part: the MediaPipe pose and motion-analysis pipeline, and one exercise built end to end through ElevenLabs voice coaching.</span>
+</span>
+<span class="row-meta">MAY 2026<br>DEVPOST ↗</span>
+</a>
+
+<div class="row">
+<span class="row-tag win">2ND OVERALL</span>
+<span>
+<span class="row-title">TAMU Datathon · Spring 2026</span>
+<span class="row-desc">Cleared nearly all of the CTF-style data challenges inside the competition window.</span>
+</span>
+<span class="row-meta">SPRING 2026</span>
+</div>
+</section>
+
+<section id="projects" class="ledger page-end">
+<div class="ledger-head">ALSO BUILT <span class="orn" aria-hidden="true">.:::.</span></div>
+<div class="mini-grid">
+<div class="mini"><span>Lineage: pipeline integrity for inline inspection data</span><a href="https://devpost.com/software/lineage-tfiopy" target="_blank" rel="noreferrer">DEVPOST ↗</a></div>
+<div class="mini"><span>SentinelAI Lite: a local prompt privacy firewall</span><span class="mini-tag">ELECTRON</span></div>
+<div class="mini"><span>Shadow: reference-based technique coaching</span><span class="mini-tag">OPENCV</span></div>
+<div class="mini"><span>AmblyoScan: an 11-step browser eye-screening flow</span><span class="mini-tag">MEDIAPIPE</span></div>
+<div class="mini"><span>PartRank: PC builds ranked on price to performance</span><a href="https://github.com/SuryaThirukonda/PartRank" target="_blank" rel="noreferrer">GITHUB ↗</a></div>
+<div class="mini"><span>Aggie Course Insights: grade distributions for A&amp;M</span><a href="https://github.com/SuryaThirukonda/Aggie-Course-Insights" target="_blank" rel="noreferrer">GITHUB ↗</a></div>
+</div>
+</section>
+
+<footer>
+<div class="inner">
+<span>© 2026 SURYA THIRUKONDA</span>
+<a id="ghTicker" href="https://github.com/SuryaThirukonda" target="_blank" rel="noreferrer" hidden></a>
+<a href="mailto:Surya.Thirukonda@tamu.edu">SURYA.THIRUKONDA@TAMU.EDU</a>
+</div>
+</footer>
+
+<div id="term" class="term-overlay" hidden role="dialog" aria-modal="true" aria-label="Terminal">
+<div class="term-panel">
+<div class="term-bar">
+<span>SURYA@PORTFOLIO</span>
+<button id="termClose" type="button" aria-label="Close terminal">ESC</button>
+</div>
+<div id="termOut" class="term-out" aria-live="polite"></div>
+<div class="term-line">
+<span class="term-prompt" aria-hidden="true">$</span>
+<input id="termIn" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Terminal input">
+</div>
+</div>
+</div>
+
+<script>
+/* Theme: AUTO follows the system; LIGHT and DARK pin it. Persisted locally. */
+(() => {
+'use strict';
+const KEY = 'surya-theme';
+const btn = document.getElementById('themeBtn');
+const apply = (mode) => {
+  if (mode === 'light' || mode === 'dark') document.documentElement.dataset.theme = mode;
+  else delete document.documentElement.dataset.theme;
+  btn.textContent = (mode || 'auto').toUpperCase();
+  document.dispatchEvent(new CustomEvent('theme-change'));
+};
+let mode = localStorage.getItem(KEY) || '';
+apply(mode);
+btn.addEventListener('click', () => {
+  mode = mode === '' ? 'light' : mode === 'light' ? 'dark' : '';
+  if (mode) localStorage.setItem(KEY, mode); else localStorage.removeItem(KEY);
+  apply(mode);
+});
+window.suryaIsDark = () => {
+  const t = document.documentElement.dataset.theme;
+  if (t === 'dark') return true;
+  if (t === 'light') return false;
+  return window.matchMedia('(prefers-color-scheme: dark)').matches;
+};
+})();
+</script>
+<script>
+/* 5x7 glyphs for S U R Y A, extruded and rotated as a character-rendered 3D solid. */
+(() => {
+'use strict';
+
+const GLYPHS = {
+  S: ['01110','10001','10000','01110','00001','10001','01110'],
+  U: ['10001','10001','10001','10001','10001','10001','01110'],
+  R: ['11110','10001','10001','11110','10100','10010','10001'],
+  Y: ['10001','10001','01010','00100','00100','00100','00100'],
+  A: ['01110','10001','10001','11111','10001','10001','10001']
+};
+const WORD = 'SURYA';
+const SHADE = ' .:-=+*#%@';
+const RAMP_LIGHT = ['#fafafa','#e0e0e0','#cfcfcf','#bdbdbd','#a8a8a8','#8f8f8f','#6f6f6f','#4a4a4a','#2a2a2a','#111111'];
+const RAMP_DARK = ['#101010','#2b2b2b','#3d3d3d','#4f4f4f','#646464','#7b7b7b','#939393','#adadad','#c9c9c9','#ececec'];
+const DIST = 38, DEPTH = 1.6, STEP = 1 / 6;
+const SPAN = WORD.length * 6 - 1;
+const CX = (SPAN - 1) / 2;
+const LIGHT = [-0.40, -0.50, -0.77];
+const FONT_PX = 9, CELL_RATIO = 1.735, FILL = 0.72;
+const BASE_TILT = 0.13, MAX_YAW = 0.62, MAX_PITCH = 0.42;
+const IDLE_YAW = 0.50, REACH_YAW = 0.56, REACH_PITCH = 0.44;
+
+let RAMP = window.suryaIsDark() ? RAMP_DARK : RAMP_LIGHT;
+
+window.suryaAscii = { GLYPHS, WORD, SHADE, RAMP_LIGHT, RAMP_DARK };
+
+/* Is the glyph plane lit at (u, v)? u runs across the word in glyph columns, v down 0..6. */
+function lit(u, v) {
+  const gi = Math.floor(u / 6);
+  const gc = u - gi * 6;
+  if (gi < 0 || gi >= WORD.length || gc > 4.999) return false;
+  const r = Math.floor(v);
+  if (r < 0 || r > 6) return false;
+  return GLYPHS[WORD[gi]][r][Math.floor(gc)] === '1';
+}
+
+/* Build the solid once: two caps plus the extrusion walls along the glyph
+   silhouette. Interior volume is never visible, so only these are sampled. */
+function buildSurface() {
+  const caps = [], walls = [];
+  for (let u = 0; u < SPAN; u += STEP) {
+    for (let v = 0; v < 7; v += STEP) {
+      if (!lit(u, v)) continue;
+      const x = u - CX, y = v - 3;
+      caps.push(x, y);
+      const l = !lit(u - STEP, v), r = !lit(u + STEP, v);
+      const t = !lit(u, v - STEP), b = !lit(u, v + STEP);
+      if (!(l || r || t || b)) continue;
+      let nx = (r ? 1 : 0) - (l ? 1 : 0);
+      let ny = (b ? 1 : 0) - (t ? 1 : 0);
+      const m = Math.hypot(nx, ny) || 1;
+      nx /= m; ny /= m;
+      for (let z = 0; z <= DEPTH; z += 0.12) walls.push(x, y, z, nx, ny);
+    }
+  }
+  return { caps: Float32Array.from(caps), walls: Float32Array.from(walls) };
+}
+
+const state = {};
+
+function measure(stage, cv) {
+  const w = stage.clientWidth || 900;
+  const hh = stage.clientHeight || 360;
+  const dpr = Math.min(2, window.devicePixelRatio || 1);
+  cv.width = Math.round(w * dpr);
+  cv.height = Math.round(hh * dpr);
+  const ctx = cv.getContext('2d');
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  ctx.font = FONT_PX + 'px "IBM Plex Mono", ui-monospace, monospace';
+  ctx.textBaseline = 'top';
+  state.ctx = ctx;
+  /* Derive the cell from the font actually in use, so runs sit on the grid
+     instead of drifting against a guessed advance width. */
+  const cw = ctx.measureText('M').width || 5.42;
+  const ch = cw * CELL_RATIO;
+  state.cw = cw; state.ch = ch;
+  state.w = w; state.h = hh;
+  state.cols = Math.max(40, Math.floor(w / cw));
+  state.rows = Math.max(20, Math.floor(hh / ch));
+  state.ox = (w - state.cols * cw) / 2;
+  state.oy = (hh - state.rows * ch) / 2;
+  state.SX = (state.cols * FILL / SPAN) * DIST;
+  state.SY = state.SX * (cw / ch);
+  state.zbuf = new Float32Array(state.cols * state.rows);
+  state.sbuf = new Uint8Array(state.cols * state.rows);
+}
+
+function renderFrame(surface, yaw, pitch) {
+  const { caps, walls } = surface;
+  const LX = LIGHT[0], LY = LIGHT[1], LZ = LIGHT[2];
+  const cols = state.cols, rows = state.rows, SX = state.SX, SY = state.SY;
+  const zbuf = state.zbuf, sbuf = state.sbuf;
+  zbuf.fill(1e9); sbuf.fill(0);
+  const ca = Math.cos(yaw), sa = Math.sin(yaw);
+  const ct = Math.cos(pitch), st = Math.sin(pitch);
+  const hx = cols / 2, hy = rows / 2;
+
+  const put = (x, y, z, nx, ny, nz) => {
+    const rx = x * ca + z * sa;
+    const rz0 = z * ca - x * sa;
+    const ry = y * ct - rz0 * st;
+    const rz = y * st + rz0 * ct;
+    const depth = rz + DIST;
+    const k = 1 / depth;
+    const px = (hx + rx * k * SX) | 0;
+    const py = (hy + ry * k * SY) | 0;
+    if (px < 0 || px >= cols || py < 0 || py >= rows) return;
+    const o = py * cols + px;
+    if (depth >= zbuf[o]) return;
+    zbuf[o] = depth;
+    const mx = nx * ca + nz * sa;
+    const mz0 = nz * ca - nx * sa;
+    const my = ny * ct - mz0 * st;
+    const mz = ny * st + mz0 * ct;
+    let d = mx * LX + my * LY + mz * LZ;
+    if (d < 0) d = 0;
+    sbuf[o] = 1 + Math.min(8, Math.round((0.16 + 0.84 * d) * 8));
+  };
+
+  for (let i = 0; i < caps.length; i += 2) {
+    put(caps[i], caps[i + 1], 0, 0, 0, -1);
+    put(caps[i], caps[i + 1], DEPTH, 0, 0, 1);
+  }
+  for (let i = 0; i < walls.length; i += 5) {
+    put(walls[i], walls[i + 1], walls[i + 2], walls[i + 3], walls[i + 4], 0);
+  }
+
+  /* Paint: one fillStyle change per run of equal shade, not per cell.
+     Each character is placed on its own cell so runs cannot drift. */
+  const ctx = state.ctx;
+  const cw = state.cw, ch = state.ch;
+  ctx.clearRect(0, 0, state.w, state.h);
+  for (let y = 0; y < rows; y++) {
+    const ty = state.oy + y * ch;
+    let g0 = 0, startX = 0;
+    for (let x = 0; x <= cols; x++) {
+      const g = x < cols ? sbuf[y * cols + x] : -1;
+      if (g === g0) continue;
+      if (g0 > 0) {
+        ctx.fillStyle = RAMP[g0];
+        const glyph = SHADE[g0];
+        for (let i = startX; i < x; i++) ctx.fillText(glyph, state.ox + i * cw, ty);
+      }
+      g0 = g; startX = x;
+    }
+  }
+}
+
+function boot() {
+  const cv = document.getElementById('ascName');
+  const stage = document.getElementById('ascStage');
+  if (!cv || !stage || !stage.clientWidth) return false;
+
+  const surface = buildSurface();
+  measure(stage, cv);
+
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const drawStatic = () => renderFrame(surface, -0.35, BASE_TILT);
+
+  /* Canvas 2D does not wait on webfonts: remeasure once the real face lands,
+     otherwise the grid stays pinned to the fallback monospace metric. */
+  const remeasure = () => {
+    measure(stage, cv);
+    if (reduced.matches || !state.running) drawStatic();
+  };
+  if (document.fonts && document.fonts.load) {
+    document.fonts.load(FONT_PX + 'px "IBM Plex Mono"').then(remeasure).catch(() => {});
+    document.fonts.ready.then(remeasure).catch(() => {});
+  }
+
+  new ResizeObserver(remeasure).observe(stage);
+  const recolor = () => {
+    RAMP = window.suryaIsDark() ? RAMP_DARK : RAMP_LIGHT;
+    if (reduced.matches || !state.running) drawStatic();
+  };
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', recolor);
+  document.addEventListener('theme-change', recolor);
+
+  if (reduced.matches) {
+    drawStatic();
+    reduced.addEventListener('change', (e) => { if (!e.matches) run(); });
+    return true;
+  }
+  run();
+  return true;
+
+  function run() {
+    if (state.running) return;
+    state.running = true;
+
+    let clock = 0, last = performance.now();
+    let ptrX = 0, ptrY = 0, hover = 0, wantHover = 0;
+    let yaw = 0, pitch = BASE_TILT;
+
+    document.addEventListener('pointermove', (e) => {
+      const r = stage.getBoundingClientRect();
+      /* Reactive band: the full width of the hero, from the top of the page down
+         to the stage's bottom edge, which sits just above the headline. */
+      const inside = e.clientY < r.bottom && e.clientY > r.top - 400;
+      wantHover = inside ? 1 : 0;
+      ptrX = Math.max(-1, Math.min(1, (e.clientX - (r.left + r.width / 2)) / (r.width / 2)));
+      ptrY = Math.max(-1, Math.min(1, (e.clientY - (r.top + r.height / 2)) / (r.height / 2)));
+    });
+    document.addEventListener('pointerleave', () => { wantHover = 0; });
+
+    let live = true;
+    new IntersectionObserver((es) => { live = es[0].isIntersecting; }).observe(stage);
+
+    const frame = () => {
+      const now = performance.now();
+      const dt = Math.min(0.05, (now - last) / 1000);
+      last = now;
+      clock += dt;
+
+      hover += (wantHover - hover) * Math.min(1, dt * 3.5);
+      /* Idle: a slow left-to-right pan, with a second harmonic so it never
+         feels like a metronome. Damped, not killed, while the cursor leads. */
+      const idleYaw = IDLE_YAW * Math.sin(clock * 0.40) + 0.055 * Math.sin(clock * 0.93 + 1.3);
+      const idlePitch = 0.05 * Math.sin(clock * 0.31 + 0.4);
+      let tYaw = idleYaw * (1 - hover * 0.72) + ptrX * REACH_YAW * hover;
+      let tPitch = BASE_TILT + idlePitch * (1 - hover * 0.6) - ptrY * REACH_PITCH * hover;
+      tYaw = tYaw < -MAX_YAW ? -MAX_YAW : tYaw > MAX_YAW ? MAX_YAW : tYaw;
+      tPitch = tPitch < -MAX_PITCH ? -MAX_PITCH : tPitch > MAX_PITCH ? MAX_PITCH : tPitch;
+      const ease = Math.min(1, dt * 4.5);
+      yaw += (tYaw - yaw) * ease;
+      pitch += (tPitch - pitch) * ease;
+
+      renderFrame(surface, yaw, pitch);
+    };
+
+    const loop = () => {
+      if (live && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) frame();
+      else last = performance.now();
+      requestAnimationFrame(loop);
+    };
+    requestAnimationFrame(loop);
+  }
+}
+
+/* Layout may not be settled on the first tick; retry briefly rather than
+   giving up on the first miss. setTimeout, not rAF, so booting still happens
+   in a background or hidden tab. */
+let tries = 0;
+const attempt = () => {
+  if (boot()) return;
+  if (tries++ > 600) return;
+  setTimeout(attempt, 33);
+};
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', attempt);
+} else {
+  attempt();
+}
+})();
+</script>
+<script>
+/* Ambient background: a sparse field of faint characters that twinkle and
+   drift very slowly upward. Decoration only; it must never compete with text. */
+(() => {
+'use strict';
+const cv = document.getElementById('bgField');
+const ctx = cv.getContext('2d');
+const CHARS = '.:-=+*';
+const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+let glyphs = [], W = 0, H = 0;
+
+const color = () => (window.suryaIsDark() ? '#7b7b7b' : '#8f8f8f');
+
+function init() {
+  const dpr = Math.min(2, window.devicePixelRatio || 1);
+  W = window.innerWidth; H = window.innerHeight;
+  cv.width = Math.round(W * dpr);
+  cv.height = Math.round(H * dpr);
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  ctx.font = '11px "IBM Plex Mono", ui-monospace, monospace';
+  ctx.textBaseline = 'top';
+  const count = Math.min(110, Math.round((W * H) / 16000));
+  glyphs = Array.from({ length: count }, () => ({
+    x: Math.random() * W,
+    y: Math.random() * H,
+    c: CHARS[(Math.random() * CHARS.length) | 0],
+    phase: Math.random() * Math.PI * 2,
+    speed: 0.25 + Math.random() * 0.5,
+    drift: 2 + Math.random() * 5
+  }));
+}
+
+function draw(t) {
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = color();
+  for (const g of glyphs) {
+    const tw = 0.5 + 0.5 * Math.sin(t * 0.001 * g.speed + g.phase);
+    ctx.globalAlpha = 0.02 + tw * 0.07;
+    const y = ((g.y - t * 0.001 * g.drift) % H + H) % H;
+    ctx.fillText(g.c, g.x, y);
+  }
+  ctx.globalAlpha = 1;
+}
+
+let lastDraw = 0;
+function loop(t) {
+  /* ~12 fps is plenty for a twinkle; anything faster is wasted battery. */
+  if (t - lastDraw > 80) { draw(t); lastDraw = t; }
+  requestAnimationFrame(loop);
+}
+
+init();
+window.addEventListener('resize', init);
+document.addEventListener('theme-change', () => draw(performance.now()));
+if (reduced.matches) {
+  draw(0);
+  reduced.addEventListener('change', (e) => { if (!e.matches) requestAnimationFrame(loop); });
+} else {
+  requestAnimationFrame(loop);
+}
+})();
+</script>
+<script>
+/* ASCII portrait: the headshot re-rendered as characters, shown on hover. */
+(() => {
+'use strict';
+const wrap = document.getElementById('portrait');
+const img = wrap.querySelector('img');
+const cv = document.getElementById('portraitAscii');
+const SHADE = ' .:-=+*#%@';
+
+function render() {
+  if (!img.complete || !img.naturalWidth || !wrap.clientWidth) return;
+  const w = wrap.clientWidth, h = wrap.clientHeight;
+  const dpr = Math.min(2, window.devicePixelRatio || 1);
+  cv.width = Math.round(w * dpr);
+  cv.height = Math.round(h * dpr);
+  const ctx = cv.getContext('2d');
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+  const fontPx = 7;
+  ctx.font = fontPx + 'px "IBM Plex Mono", ui-monospace, monospace';
+  ctx.textBaseline = 'top';
+  const cw = ctx.measureText('M').width || 4.2;
+  const ch = cw * 1.735;
+  const cols = Math.max(20, Math.floor(w / cw));
+  const rows = Math.max(20, Math.floor(h / ch));
+
+  const off = document.createElement('canvas');
+  off.width = cols; off.height = rows;
+  const octx = off.getContext('2d', { willReadFrequently: true });
+  octx.drawImage(img, 0, 0, cols, rows);
+  const data = octx.getImageData(0, 0, cols, rows).data;
+
+  const dark = window.suryaIsDark();
+  const styles = getComputedStyle(document.documentElement);
+  const bg = styles.getPropertyValue('--bg').trim();
+  const ink = styles.getPropertyValue('--ink').trim();
+  ctx.fillStyle = bg;
+  ctx.fillRect(0, 0, w, h);
+  ctx.fillStyle = ink;
+  for (let y = 0; y < rows; y++) {
+    for (let x = 0; x < cols; x++) {
+      const i = (y * cols + x) * 4;
+      const lum = (0.2126 * data[i] + 0.7152 * data[i + 1] + 0.0722 * data[i + 2]) / 255;
+      /* Ink density follows the subject: dark areas on paper, bright areas on night. */
+      const density = dark ? lum : 1 - lum;
+      const s = Math.round(density * (SHADE.length - 1));
+      if (s > 0) ctx.fillText(SHADE[s], x * cw, y * ch);
+    }
+  }
+}
+
+if (img.complete) render(); else img.addEventListener('load', render);
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(render).catch(() => {});
+new ResizeObserver(render).observe(wrap);
+document.addEventListener('theme-change', render);
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', render);
+/* Touch screens have no hover: tap toggles instead. */
+wrap.addEventListener('click', () => wrap.classList.toggle('ascii'));
+})();
+</script>
+<script>
+/* Terminal palette + footer commit ticker. */
+(() => {
+'use strict';
+
+const overlay = document.getElementById('term');
+const out = document.getElementById('termOut');
+const input = document.getElementById('termIn');
+const openBtn = document.getElementById('termOpen');
+const closeBtn = document.getElementById('termClose');
+let opened = false;
+const history = [];
+let histIdx = -1;
+
+const print = (text, cls) => {
+  const d = document.createElement('div');
+  if (cls) d.className = cls;
+  d.textContent = text;
+  out.appendChild(d);
+  out.scrollTop = out.scrollHeight;
+};
+const blank = () => print(' ');
+
+const goto = (id) => {
+  close();
+  document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+};
+const openUrl = (u) => window.open(u, '_blank', 'noopener');
+
+const COMMANDS = {
+  help:       { desc: 'every command', fn: () => {
+    print('commands', 't-ink');
+    Object.keys(COMMANDS).forEach(k => print('  ' + k.padEnd(12) + COMMANDS[k].desc));
+  }},
+  summary:    { desc: 'the short version', fn: () => {
+    print('surya thirukonda, college station tx', 't-ink');
+    print('  b.s. computer science, texas a&m, class of 2028, gpa 4.0');
+    print('  founding engineer at revio (ashvish.com)');
+    print('  cto at stook');
+    print('  swe intern, quantitative systems at dekalb capital management');
+    print('  ml + time-series forecasting reu at portland state');
+    print('  aws certified cloud practitioner (clf-c02)');
+  }},
+  skills:     { desc: 'languages and stack', fn: () => {
+    print('  advanced      python, postgresql');
+    print('  intermediate  aws, sql, c++, javascript, node.js, docker,');
+    print('                machine learning, llms');
+    print('  daily tools   fastapi, supabase, prisma, pandas');
+  }},
+  now:        { desc: 'what i am doing today', fn: () => {
+    print('  revio, founding engineer (since feb 2026)');
+    print('  stook, cto (since apr 2026)');
+    print('  dekalb capital management, quant systems (since jun 2026)');
+    print('  portland state reu, time-series forecasting (since jun 2026)');
+  }},
+  about:      { desc: 'jump to about', fn: () => goto('about') },
+  experience: { desc: 'jump to experience', fn: () => goto('experience') },
+  research:   { desc: 'jump to research', fn: () => goto('research') },
+  hacks:      { desc: 'jump to hackathons', fn: () => goto('competitions') },
+  projects:   { desc: 'jump to also built', fn: () => goto('projects') },
+  resume:     { desc: 'open the pdf', fn: () => openUrl('assets/Surya_Thirukonda_Resume.pdf') },
+  github:     { desc: 'github.com/SuryaThirukonda', fn: () => openUrl('https://github.com/SuryaThirukonda') },
+  linkedin:   { desc: 'linkedin.com/in/surya-thirukonda', fn: () => openUrl('https://linkedin.com/in/surya-thirukonda') },
+  pypi:       { desc: 'gaussian-hsmm on pypi', fn: () => openUrl('https://pypi.org/project/gaussian-hsmm/') },
+  email:      { desc: 'surya.thirukonda@tamu.edu', fn: () => { location.href = 'mailto:Surya.Thirukonda@tamu.edu'; } },
+  theme:      { desc: 'cycle light / dark / auto', fn: () => document.getElementById('themeBtn').click() },
+  clear:      { desc: 'clear the screen', fn: () => { out.textContent = ''; } },
+  exit:       { desc: 'close (or press esc)', fn: () => close() }
+};
+
+const banner = () => {
+  /* The name, set from the same 5x7 glyphs the hero uses. */
+  const A = window.suryaAscii;
+  if (A) {
+    for (let r = 0; r < 7; r++) {
+      print(A.WORD.split('').map(L => A.GLYPHS[L][r].replace(/1/g, '#').replace(/0/g, ' ')).join(' '), 't-art');
+    }
+    blank();
+  }
+  print('type a command and press enter');
+  blank();
+  ['help', 'summary', 'resume', 'github', 'exit'].forEach(k =>
+    print('  ' + k.padEnd(12) + COMMANDS[k].desc));
+  blank();
+};
+
+const open = () => {
+  overlay.hidden = false;
+  requestAnimationFrame(() => overlay.classList.add('open'));
+  if (!opened) { banner(); opened = true; }
+  input.focus();
+};
+function close() {
+  overlay.classList.remove('open');
+  overlay.hidden = true;
+  input.blur();
+}
+
+const run = (raw) => {
+  const cmd = raw.trim().toLowerCase();
+  if (!cmd) return;
+  print('$ ' + cmd, 't-cmd');
+  history.push(cmd);
+  histIdx = history.length;
+  const c = COMMANDS[cmd];
+  if (c) c.fn();
+  else print('command not found: ' + cmd + ' (try help)');
+};
+
+openBtn.addEventListener('click', open);
+closeBtn.addEventListener('click', close);
+overlay.addEventListener('mousedown', (e) => { if (e.target === overlay) close(); });
+
+document.addEventListener('keydown', (e) => {
+  const typing = /^(input|textarea)$/i.test(document.activeElement?.tagName || '');
+  if (overlay.hidden) {
+    if ((e.key === '/' && !typing) || ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k')) {
+      e.preventDefault();
+      open();
+    }
+    return;
+  }
+  if (e.key === 'Escape') { close(); return; }
+});
+
+input.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    run(input.value);
+    input.value = '';
+  } else if (e.key === 'ArrowUp') {
+    e.preventDefault();
+    if (histIdx > 0) input.value = history[--histIdx] || '';
+  } else if (e.key === 'ArrowDown') {
+    e.preventDefault();
+    if (histIdx < history.length) input.value = history[++histIdx] || '';
+  } else if (e.key === 'Tab') {
+    e.preventDefault();
+    const v = input.value.trim().toLowerCase();
+    if (!v) return;
+    const hit = Object.keys(COMMANDS).find(k => k.startsWith(v));
+    if (hit) input.value = hit;
+  }
+});
+
+/* Footer ticker: latest public push, straight from the GitHub API. Stays
+   hidden if the request fails, so the footer never shows an error state. */
+const MONTHS = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
+const showTicker = (full, msg, when) => {
+  const t = document.getElementById('ghTicker');
+  const d = new Date(when);
+  const stamp = MONTHS[d.getMonth()] + ' ' + d.getDate();
+  const repo = full.split('/')[1];
+  t.textContent = msg
+    ? 'LAST PUSH: "' + (msg.length > 44 ? msg.slice(0, 43) + '…' : msg) + '" (' + repo + ', ' + stamp + ')'
+    : 'LAST PUSH: ' + repo + ' (' + stamp + ')';
+  t.href = 'https://github.com/' + full;
+  t.hidden = false;
+};
+fetch('https://api.github.com/users/SuryaThirukonda/events/public')
+  .then(r => (r.ok ? r.json() : Promise.reject()))
+  .then(events => {
+    const push = events.find(e => e.type === 'PushEvent' && e.payload?.head);
+    if (!push) return Promise.reject();
+    /* The events payload no longer carries commit messages, only the head SHA. */
+    return fetch('https://api.github.com/repos/' + push.repo.name + '/commits/' + push.payload.head)
+      .then(r => (r.ok ? r.json() : null))
+      .then(c => showTicker(push.repo.name, c?.commit?.message?.split('\n')[0] || null, push.created_at))
+      .catch(() => showTicker(push.repo.name, null, push.created_at));
+  })
+  .catch(() =>
+    fetch('https://api.github.com/users/SuryaThirukonda/repos?sort=pushed&per_page=1')
+      .then(r => (r.ok ? r.json() : Promise.reject()))
+      .then(rs => rs[0] && showTicker(rs[0].full_name, null, rs[0].pushed_at))
+      .catch(() => {})
+  );
+})();
+</script>
+</body>
+</html>
