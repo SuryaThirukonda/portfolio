@@ -2,931 +2,1933 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Surya Thirukonda · Software Engineer</title>
-<meta name="description" content="Surya Thirukonda, computer science at Texas A&M. Founding engineer at Revio, CTO at Stook, data infrastructure at DeKalb Capital Management, and time-series forecasting research at Portland State.">
+<meta name="description" content="Surya Thirukonda, computer science at Texas A&M. Founding engineer at Revio, undergraduate researcher in the Rathinam Group, and hackathon builder: HackTX, HackRice, HackHCC, TIDALHACK and TAMUhack.">
 <meta property="og:title" content="Surya Thirukonda · Software Engineer">
-<meta property="og:description" content="Founding engineer at Revio, CTO at Stook, data infrastructure at DeKalb Capital Management, and time-series forecasting research at Portland State.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23fafafa'/%3E%3Ctext x='16' y='23' text-anchor='middle' font-family='monospace' font-size='19' fill='%23111111'%3ES%3C/text%3E%3C/svg%3E">
+<meta property="og:description" content="Founding engineer at Revio, orbit-planning research in the Rathinam Group at Texas A&M, and a run of hackathon builds from TAMUhack to HackTX.">
+<meta name="theme-color" content="#fbfbfd">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231d1d1f'/%3E%3Ctext x='16' y='22.5' text-anchor='middle' font-family='-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif' font-weight='700' font-size='18' fill='%23ffffff'%3ES%3C/text%3E%3C/svg%3E">
+<!-- SF Pro / SF Mono render natively on Apple devices (and anywhere they are installed).
+     Apple's license does not allow serving SF as a web font, so other systems fall back to Inter. -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,450;0,500;0,600;1,450;1,500&family=IBM+Plex+Mono:wght@400;450;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<script>
+/* Theme before first paint: light unless the visitor chose dark. */
+(() => {
+  document.documentElement.classList.add('js');
+  try { if (localStorage.getItem('surya-theme') === 'dark') document.documentElement.dataset.theme = 'dark'; } catch (e) {}
+})();
+</script>
 <style>
 :root {
-  --bg: #fafafa;
-  --ink: #131313;
-  --mut: #4f4f4f;
-  --dim: #6f6f6f;
-  --line: #e7e7e7;
-  --line2: #efefef;
-  --edge: #d6d6d6;
-  --hover: rgba(0,0,0,.03);
-  --overlay: rgba(0,0,0,.16);
-  --glass-a: rgba(255,255,255,.62);
-  --glass-b: rgba(255,255,255,.36);
-  --glass-border: rgba(0,0,0,.1);
-  --glass-top: rgba(255,255,255,.65);
-  --glass-bottom: rgba(255,255,255,.18);
-  --glass-shadow: rgba(0,0,0,.22);
-  --glass-rule: rgba(0,0,0,.07);
-  --glass-btn: rgba(0,0,0,.12);
-  --sans: 'IBM Plex Sans', system-ui, sans-serif;
-  --mono: 'IBM Plex Mono', ui-monospace, monospace;
-}
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #101010;
-    --ink: #ececec;
-    --mut: #a6a6a6;
-    --dim: #8c8c8c;
-    --line: #232323;
-    --line2: #1c1c1c;
-    --edge: #333333;
-    --hover: rgba(255,255,255,.04);
-    --overlay: rgba(0,0,0,.45);
-    --glass-a: rgba(46,46,46,.55);
-    --glass-b: rgba(22,22,22,.48);
-    --glass-border: rgba(255,255,255,.12);
-    --glass-top: rgba(255,255,255,.14);
-    --glass-bottom: rgba(255,255,255,0);
-    --glass-shadow: rgba(0,0,0,.6);
-    --glass-rule: rgba(255,255,255,.09);
-    --glass-btn: rgba(255,255,255,.16);
-  }
+  --bg: #fbfbfd;
+  --bg-2: #f5f5f7;
+  --surface: #ffffff;
+  --ink: #1d1d1f;
+  --ink-2: #424245;
+  --mut: #6e6e73;
+  --dim: #86868b;
+  --line: rgba(0,0,0,.08);
+  --line-2: rgba(0,0,0,.14);
+  --accent: #0066cc;
+  --accent-hover: #0077ed;
+  --accent-soft: rgba(0,113,227,.09);
+  --on-accent: #ffffff;
+  --live: #1f9d4c;
+  --award: #9a4a00;
+  --award-bg: rgba(255,247,235,.92);
+  --glass: rgba(251,251,253,.74);
+  --scrim: rgba(0,0,0,.34);
+  --shadow-sm: 0 1px 2px rgba(0,0,0,.04), 0 2px 10px rgba(0,0,0,.04);
+  --shadow: 0 6px 16px rgba(0,0,0,.06), 0 18px 44px rgba(0,0,0,.08);
+  --shadow-lg: 0 30px 90px rgba(0,0,0,.22);
+  --gen-a: 92%; --gen-b: 84%; --gen-ink: 28%;
+  --text: "SF Pro Text", -apple-system, BlinkMacSystemFont, "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --display: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --mono: "SF Mono", SFMono-Regular, ui-monospace, Menlo, Monaco, Consolas, monospace;
+  --nav-h: 56px;
+  color-scheme: light;
 }
 :root[data-theme="dark"] {
-  --bg: #101010;
-  --ink: #ececec;
-  --mut: #a6a6a6;
-  --dim: #8c8c8c;
-  --line: #232323;
-  --line2: #1c1c1c;
-  --edge: #333333;
-  --hover: rgba(255,255,255,.04);
-  --overlay: rgba(0,0,0,.45);
-  --glass-a: rgba(46,46,46,.55);
-  --glass-b: rgba(22,22,22,.48);
-  --glass-border: rgba(255,255,255,.12);
-  --glass-top: rgba(255,255,255,.14);
-  --glass-bottom: rgba(255,255,255,0);
-  --glass-shadow: rgba(0,0,0,.6);
-  --glass-rule: rgba(255,255,255,.09);
-  --glass-btn: rgba(255,255,255,.16);
+  --bg: #000000;
+  --bg-2: #111113;
+  --surface: #161618;
+  --ink: #f5f5f7;
+  --ink-2: #d2d2d7;
+  --mut: #a1a1a6;
+  --dim: #8e8e93;
+  --line: rgba(255,255,255,.1);
+  --line-2: rgba(255,255,255,.18);
+  --accent: #2997ff;
+  --accent-hover: #47a6ff;
+  --accent-soft: rgba(41,151,255,.14);
+  --on-accent: #ffffff;
+  --live: #30d158;
+  --award: #ffb340;
+  --award-bg: rgba(28,28,30,.86);
+  --glass: rgba(0,0,0,.7);
+  --scrim: rgba(0,0,0,.62);
+  --shadow-sm: 0 1px 2px rgba(0,0,0,.5);
+  --shadow: 0 10px 30px rgba(0,0,0,.55);
+  --shadow-lg: 0 30px 90px rgba(0,0,0,.75);
+  --gen-a: 15%; --gen-b: 22%; --gen-ink: 86%;
+  color-scheme: dark;
 }
-html { scroll-behavior: smooth; background: var(--bg); }
+
+*, *::before, *::after { box-sizing: border-box; }
+html {
+  background: var(--bg);
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--nav-h) + 16px);
+  -webkit-text-size-adjust: 100%;
+}
+html.lock { overflow: hidden; }
 body {
   margin: 0;
-  overflow-x: hidden;
-  background: transparent;
-  color: var(--ink);
-  font-family: var(--mono);
-}
-#bgField {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-}
-a { color: var(--ink); }
-a:hover { color: var(--ink); }
-::selection { background: rgba(127,127,127,.28); }
-:focus { outline: none; }
-:focus-visible { outline: 1.5px solid var(--ink); outline-offset: 3px; }
-
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip-path: inset(50%);
-  white-space: nowrap;
-  margin: 0;
-}
-.skip-link {
-  position: absolute;
-  left: -9999px;
-  top: 0;
-  z-index: 50;
-  background: var(--ink);
-  color: var(--bg);
-  padding: 10px 16px;
-  font: 500 12px/1 var(--mono);
-  text-decoration: none;
-}
-.skip-link:focus-visible { left: 0; color: var(--bg); }
-
-header {
-  position: sticky;
-  top: 0;
-  z-index: 30;
-  background: color-mix(in srgb, var(--bg) 92%, transparent);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--line);
-}
-nav {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 14px 40px;
-  display: flex;
-  align-items: center;
-  gap: 24px;
-  font: 400 11px/1 var(--mono);
-  letter-spacing: 0.1em;
-}
-nav .brand { color: var(--ink); text-decoration: none; }
-nav .spacer { flex: 1; }
-nav .navlink { color: var(--dim); text-decoration: none; transition: color .2s ease; }
-nav .navlink:hover { color: var(--ink); }
-nav button.navlink {
-  appearance: none;
-  background: none;
-  border: none;
-  cursor: pointer;
-  font: inherit;
-  letter-spacing: inherit;
-  padding: 0;
-}
-nav .resume {
-  color: var(--bg);
-  background: var(--ink);
-  text-decoration: none;
-  padding: 8px 13px;
-  transition: opacity .2s ease;
-}
-nav .resume:hover { opacity: .82; color: var(--bg); }
-
-.hero {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 64px 40px 88px;
-  text-align: center;
-}
-#ascStage {
-  position: relative;
-  width: 100%;
-  height: 360px;
-  margin: 0 0 34px;
-}
-#ascName { display: block; width: 100%; height: 100%; }
-.hero h2 {
-  font-family: var(--sans);
-  font-weight: 450;
-  font-size: 44px;
-  line-height: 1.12;
-  letter-spacing: -0.02em;
-  margin: 0 auto 20px;
-  padding-bottom: 4px;
-  max-width: 22ch;
-}
-.hero h2 em { font-style: italic; font-weight: 500; }
-.hero .lede {
-  font-family: var(--sans);
-  font-size: 15px;
-  line-height: 1.75;
-  color: var(--mut);
-  margin: 0 auto 32px;
-  max-width: 62ch;
-}
-.chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 9px;
-  justify-content: center;
-  font: 400 11px/1 var(--mono);
-  letter-spacing: 0.08em;
-}
-.chips a {
-  color: var(--ink);
-  border: 1px solid var(--edge);
-  text-decoration: none;
-  padding: 12px 16px;
-  transition: border-color .2s ease;
-  background: color-mix(in srgb, var(--bg) 70%, transparent);
-}
-.chips a:hover { border-color: var(--ink); }
-
-.ledger { max-width: 1000px; margin: 0 auto; padding: 0 40px; }
-.ledger + .ledger { padding-top: 64px; }
-.page-end { padding-bottom: 88px; }
-.ledger-head {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  font: 400 11px/1 var(--mono);
-  letter-spacing: 0.16em;
-  color: var(--dim);
-  padding-bottom: 18px;
-  border-bottom: 1px solid var(--line);
-}
-.ledger-head .orn {
-  color: var(--edge);
-  letter-spacing: 0.2em;
-  user-select: none;
-}
-.row {
-  display: grid;
-  grid-template-columns: 96px 1fr 190px;
-  gap: 26px;
-  align-items: baseline;
-  padding: 24px 10px;
-  border-bottom: 1px solid var(--line2);
-}
-.row:last-child { border-bottom: 1px solid var(--line); }
-a.row {
-  text-decoration: none;
-  color: inherit;
-  transition: background .25s ease;
-}
-a.row:hover { background: var(--hover); }
-.row-tag {
-  font: 500 11px/1 var(--mono);
-  letter-spacing: 0.08em;
-  color: var(--dim);
-}
-.row-tag.win { color: var(--ink); }
-.row-title {
-  font-family: var(--sans);
-  font-weight: 500;
-  font-size: 18px;
-  letter-spacing: -0.01em;
-  display: block;
-  margin-bottom: 7px;
-}
-.row-desc {
-  font-family: var(--sans);
-  font-size: 14px;
-  line-height: 1.7;
-  color: var(--mut);
-}
-.row-meta {
-  font: 400 10px/1.8 var(--mono);
-  letter-spacing: 0.08em;
-  color: var(--dim);
-  text-align: right;
-}
-.row-meta a { color: var(--dim); }
-.row-meta a:hover { color: var(--ink); }
-
-.mini-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0 44px;
-}
-.mini {
-  display: flex;
-  justify-content: space-between;
-  gap: 16px;
-  align-items: baseline;
-  padding: 16px 4px;
-  border-bottom: 1px solid var(--line2);
-}
-.mini span:first-child { font-family: var(--sans); font-size: 14px; }
-.mini a, .mini .mini-tag {
-  font: 400 10px/1 var(--mono);
-  letter-spacing: 0.08em;
-  white-space: nowrap;
-}
-.mini .mini-tag { color: var(--dim); }
-
-.about-grid {
-  display: grid;
-  grid-template-columns: 200px minmax(0, 1fr);
-  gap: 52px;
-  align-items: start;
-  padding-top: 38px;
-}
-.portrait {
-  position: relative;
-  border: 1px solid var(--edge);
-}
-.portrait img {
-  width: 100%;
-  display: block;
-  filter: grayscale(1) contrast(1.04);
-}
-.portrait canvas {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  transition: opacity .25s ease;
   background: var(--bg);
-}
-.portrait:hover canvas, .portrait.ascii canvas { opacity: 1; }
-.portrait .hint {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -22px;
-  font: 400 9px/1 var(--mono);
-  letter-spacing: 0.14em;
-  color: var(--edge);
-  text-align: center;
-  user-select: none;
-}
-.about-grid h2 {
-  font-family: var(--sans);
-  font-weight: 450;
-  font-size: 26px;
-  line-height: 1.35;
-  letter-spacing: -0.015em;
-  margin: 0 0 20px;
-  max-width: 34ch;
-}
-.about-grid h2 em { font-style: italic; font-weight: 500; }
-.about-grid p {
-  font-family: var(--sans);
-  font-size: 15px;
-  line-height: 1.75;
-  color: var(--mut);
-  margin: 0 0 18px;
-  max-width: 66ch;
-}
-.about-grid p:last-of-type { margin-bottom: 28px; }
-.creds {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  font: 400 10px/1 var(--mono);
-  letter-spacing: 0.08em;
-  color: var(--dim);
-}
-.creds span { border: 1px solid var(--line); padding: 9px 12px; background: color-mix(in srgb, var(--bg) 70%, transparent); }
-
-footer { border-top: 1px solid var(--line); margin-top: 88px; background: var(--bg); }
-footer .inner {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 28px 40px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  align-items: center;
-  justify-content: space-between;
-  font: 400 10px/1 var(--mono);
-  letter-spacing: 0.1em;
-  color: var(--dim);
-}
-footer a { text-decoration: none; color: var(--dim); }
-footer a:hover { color: var(--ink); }
-
-/* Terminal: the page surface is flat and sharp; overlays are glass and rounded.
-   Web glassmorphism approximation, not Apple's Liquid Glass. */
-.term-overlay[hidden] { display: none; }
-.term-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 60;
-  display: flex;
-  align-items: stretch;
-  justify-content: center;
-  padding: 3vh 3vw;
-  background: var(--overlay);
-  opacity: 0;
-  transition: opacity .18s ease;
-}
-.term-overlay.open { opacity: 1; }
-.term-panel {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  cursor: text;
-  border-radius: 12px;
-  border: 1px solid var(--glass-border);
-  background: linear-gradient(135deg, var(--glass-a), var(--glass-b));
-  backdrop-filter: blur(28px) saturate(160%);
-  -webkit-backdrop-filter: blur(28px) saturate(160%);
-  box-shadow: inset 0 1px 0 var(--glass-top), inset 0 -1px 0 var(--glass-bottom), 0 24px 80px var(--glass-shadow);
-  transform: translateY(10px) scale(.985);
-  transition: transform .18s cubic-bezier(.16,1,.3,1);
-  overflow: hidden;
-}
-.term-overlay.open .term-panel { transform: none; }
-.term-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 12px 16px;
-  font: 400 10px/1 var(--mono);
-  letter-spacing: 0.1em;
-  color: var(--dim);
-  border-bottom: 1px solid var(--glass-rule);
-}
-.term-bar button {
-  appearance: none;
-  background: none;
-  border: 1px solid var(--glass-btn);
-  cursor: pointer;
-  font: 400 9px/1 var(--mono);
-  letter-spacing: 0.1em;
-  color: var(--dim);
-  padding: 5px 8px;
-  border-radius: 6px;
-}
-.term-bar button:hover { color: var(--ink); border-color: var(--ink); }
-.term-out {
-  flex: 1;
-  padding: 16px 20px 2px;
-  overflow-y: auto;
-  font: 400 13px/1.9 var(--mono);
-  color: var(--mut);
-}
-.term-out div { white-space: pre-wrap; }
-.term-out .t-ink { color: var(--ink); }
-.term-out .t-cmd { color: var(--ink); font-weight: 500; }
-.term-out .t-art { color: var(--dim); line-height: 1.25; font-size: 10px; }
-.term-out a { color: var(--ink); }
-.term-line {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 12px 20px 16px;
-}
-.term-prompt { font: 500 13px/1 var(--mono); color: var(--dim); }
-#termIn {
-  flex: 1;
-  background: none;
-  border: none;
-  outline: none;
-  font: 400 13px/1.4 var(--mono);
   color: var(--ink);
-  caret-color: var(--ink);
+  font: 400 16px/1.55 var(--text);
+  letter-spacing: -0.011em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
-@supports not (backdrop-filter: blur(1px)) {
-  .term-panel { background: var(--bg); }
+img { max-width: 100%; height: auto; display: block; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; text-underline-offset: 3px; }
+button { font: inherit; color: inherit; }
+::selection { background: var(--accent-soft); }
+:focus { outline: none; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+h1, h2, h3 { font-family: var(--display); margin: 0; }
+p { margin: 0; }
+kbd {
+  font: 500 11px/1 var(--mono);
+  color: var(--mut);
+  border: 1px solid var(--line-2);
+  border-radius: 5px;
+  padding: 3px 5px;
+  background: var(--surface);
 }
-@media (prefers-reduced-transparency: reduce) {
-  .term-panel { background: var(--bg); backdrop-filter: none; -webkit-backdrop-filter: none; }
+.i { width: 18px; height: 18px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.i.sm { width: 14px; height: 14px; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.skip-link { position: absolute; left: -9999px; top: 8px; z-index: 100; background: var(--ink); color: var(--bg); padding: 10px 14px; border-radius: 10px; }
+.skip-link:focus-visible { left: 8px; }
+
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  height: 40px; padding: 0 18px;
+  border-radius: 8px; border: 1px solid transparent;
+  font: 500 15px/1 var(--text); letter-spacing: -0.01em;
+  cursor: pointer; white-space: nowrap;
+  transition: background .2s ease, border-color .2s ease, color .2s ease, transform .15s ease;
+}
+.btn:hover { text-decoration: none; }
+.btn:active { transform: scale(.97); }
+.btn-primary { background: var(--accent); color: var(--on-accent); }
+.btn-primary:hover { background: var(--accent-hover); color: var(--on-accent); }
+.btn-ghost { background: var(--surface); color: var(--ink); border-color: var(--line-2); }
+.btn-ghost:hover { border-color: var(--ink); color: var(--ink); }
+.btn-sm { height: 34px; padding: 0 14px; font-size: 13.5px; }
+.icon-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  height: 36px; min-width: 36px; padding: 0 10px;
+  border-radius: 8px; border: 1px solid transparent; background: transparent;
+  color: var(--ink-2); cursor: pointer;
+  transition: background .2s ease, color .2s ease;
+}
+.icon-btn:hover { background: var(--bg-2); color: var(--ink); }
+
+/* ---------- Nav ---------- */
+.nav {
+  position: sticky; top: 0; z-index: 30;
+  background: var(--glass);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid var(--line);
+}
+.nav-in { height: var(--nav-h); display: flex; align-items: center; gap: 28px; }
+.brand { font: 600 16px/1 var(--display); color: var(--ink); letter-spacing: -0.02em; }
+.brand:hover { text-decoration: none; color: var(--ink); }
+.nav-links { display: flex; gap: 24px; margin-left: auto; }
+.nav-links a { font-size: 13.5px; color: var(--mut); transition: color .2s ease; }
+.nav-links a:hover, .nav-links a.on { color: var(--ink); text-decoration: none; }
+.nav-actions { display: flex; align-items: center; gap: 4px; }
+.nav-actions kbd { margin-left: 2px; }
+.theme-btn .i-sun { display: none; }
+:root[data-theme="dark"] .theme-btn .i-sun { display: block; }
+:root[data-theme="dark"] .theme-btn .i-moon { display: none; }
+
+/* ---------- Hero ---------- */
+.hero { padding-top: 36px; padding-bottom: 72px; }
+.asc-stage { position: relative; height: 300px; margin-bottom: 36px; }
+.asc-stage canvas { display: block; width: 100%; height: 100%; }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) 260px; gap: 64px; align-items: center; }
+.live-wrap { position: relative; display: inline-block; margin-bottom: 22px; }
+.live-pill {
+  display: inline-flex; align-items: center; gap: 10px; max-width: 100%;
+  height: 36px; padding: 0 14px 0 12px;
+  background: var(--surface); border: 1px solid var(--line-2); border-radius: 8px;
+  font-size: 13.5px; color: var(--ink-2); cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: border-color .2s ease, box-shadow .2s ease;
+}
+.live-pill:hover, .live-pill[aria-expanded="true"] { border-color: var(--ink); box-shadow: var(--shadow); }
+.live-pill .pill-label { font-weight: 600; color: var(--ink); }
+.live-pill .pill-body { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.live-pill .i { transition: transform .2s ease; }
+.live-pill[aria-expanded="true"] .i { transform: rotate(180deg); }
+.dot { width: 8px; height: 8px; border-radius: 50%; background: var(--live); flex: none; position: relative; }
+.dot.idle { background: var(--dim); }
+
+.pop {
+  position: absolute; top: calc(100% + 10px); left: 0; z-index: 40;
+  width: min(400px, calc(100vw - 32px));
+  background: var(--surface); border: 1px solid var(--line); border-radius: 10px;
+  box-shadow: var(--shadow-lg); overflow: hidden;
+  transform-origin: top left; animation: popIn .22s cubic-bezier(.2,.8,.2,1);
+}
+.pop[hidden] { display: none; }
+@keyframes popIn { from { opacity: 0; transform: translateY(-6px) scale(.98); } }
+.pop-head { display: flex; align-items: center; justify-content: space-between; padding: 14px 16px 10px; font-size: 12px; color: var(--mut); }
+.pop-head b { font-weight: 600; color: var(--ink); font-size: 13px; }
+.pop-commit { display: block; margin: 0 8px; padding: 12px; border-radius: 8px; background: var(--bg-2); color: var(--ink); }
+.pop-commit:hover { text-decoration: none; background: var(--accent-soft); }
+.pop-commit .pc-repo { font: 500 12px/1.3 var(--mono); color: var(--mut); }
+.pop-commit .pc-msg { display: block; margin: 6px 0; font-size: 14.5px; line-height: 1.4; font-weight: 500; overflow-wrap: anywhere; }
+.pop-commit .pc-meta { font-size: 12px; color: var(--mut); }
+.pop-commit .pc-cta { display: inline-flex; align-items: center; gap: 4px; color: var(--accent); font-size: 12.5px; font-weight: 500; margin-top: 8px; }
+.pop-sub { padding: 14px 16px 4px; font-size: 11.5px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--dim); }
+.pop-list { list-style: none; margin: 0; padding: 0 8px 4px; }
+.pop-list a { display: flex; align-items: center; gap: 10px; padding: 8px; border-radius: 6px; color: var(--ink); font-size: 13.5px; }
+.pop-list a:hover { background: var(--bg-2); text-decoration: none; }
+.pop-list .pl-name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.pop-list time { font-size: 12px; color: var(--mut); white-space: nowrap; }
+.pop-foot { display: flex; justify-content: space-between; gap: 12px; padding: 10px 16px 14px; border-top: 1px solid var(--line); margin-top: 6px; font-size: 13px; }
+.lang { width: 9px; height: 9px; border-radius: 50%; flex: none; background: var(--dim); }
+
+.hero h1 {
+  font-size: clamp(40px, 5.4vw, 60px); font-weight: 700;
+  line-height: 1.05; letter-spacing: -0.035em;
+}
+.hero-tag { margin-top: 10px; font: 500 clamp(18px, 2vw, 21px)/1.35 var(--display); letter-spacing: -0.015em; color: var(--mut); }
+.hero-lede { margin-top: 20px; max-width: 60ch; font-size: 17px; line-height: 1.65; color: var(--ink-2); }
+.hero-cta { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 32px; }
+.socials { display: flex; gap: 4px; margin-left: 4px; }
+.hero-portrait { margin: 0; justify-self: end; width: 100%; }
+.portrait-card { border-radius: 12px; overflow: hidden; background: var(--bg-2); border: 1px solid var(--line); }
+.portrait-card img { width: 100%; aspect-ratio: 1022 / 1145; object-fit: cover; }
+.hero-portrait figcaption { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 14px; font-size: 13px; color: var(--mut); }
+
+/* ---------- Sections ---------- */
+.section { padding: 72px 0; border-top: 1px solid var(--line); }
+.sec-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; flex-wrap: wrap; margin-bottom: 28px; }
+.sec-head h2 { font-size: clamp(26px, 3vw, 32px); font-weight: 600; letter-spacing: -0.025em; line-height: 1.15; }
+.sec-sub { margin-top: 8px; max-width: 64ch; color: var(--mut); font-size: 16px; }
+
+.surface { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; }
+
+/* Work list */
+.list { list-style: none; margin: 0; padding: 6px; }
+.list > li + li { border-top: 1px solid var(--line); }
+.wrow {
+  display: grid; grid-template-columns: minmax(0, 1fr) auto 18px; gap: 18px; align-items: center;
+  padding: 18px 16px; border-radius: 8px; color: var(--ink);
+  transition: background .2s ease;
+}
+.list > li + li .wrow { margin-top: 1px; }
+.wrow:hover { background: var(--bg-2); text-decoration: none; }
+.wrow .w-role { display: block; font-weight: 600; font-size: 16.5px; letter-spacing: -0.015em; }
+.wrow .w-org { display: block; font-size: 14px; color: var(--mut); margin-top: 2px; }
+.wrow .w-sum { display: block; font-size: 14.5px; color: var(--ink-2); margin-top: 8px; max-width: 72ch; }
+.wrow .w-side { text-align: right; font-size: 13px; color: var(--mut); white-space: nowrap; }
+.wrow .chev { color: var(--dim); transition: transform .2s ease, color .2s ease; }
+.wrow:hover .chev { transform: translateX(3px); color: var(--ink); }
+.w-award { display: inline-flex; align-items: center; gap: 5px; margin-top: 6px; font-size: 12.5px; font-weight: 600; color: var(--award); }
+
+/* Projects */
+.toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; justify-content: space-between; margin-bottom: 24px; }
+.seg {
+  display: inline-flex; gap: 2px; padding: 3px; max-width: 100%; overflow-x: auto;
+  background: var(--bg-2); border: 1px solid var(--line); border-radius: 8px;
+  scrollbar-width: none;
+}
+.seg::-webkit-scrollbar { display: none; }
+.seg button {
+  border: 0; background: transparent; cursor: pointer; white-space: nowrap;
+  height: 32px; padding: 0 14px; border-radius: 6px;
+  font-size: 13.5px; font-weight: 500; color: var(--mut);
+  transition: background .2s ease, color .2s ease, box-shadow .2s ease;
+}
+.seg button span { color: var(--dim); font-weight: 400; margin-left: 4px; font-variant-numeric: tabular-nums; }
+.seg button:hover { color: var(--ink); }
+.seg button[aria-pressed="true"] { background: var(--surface); color: var(--ink); box-shadow: var(--shadow-sm); }
+.search {
+  display: flex; align-items: center; gap: 8px; height: 40px; padding: 0 14px;
+  width: min(300px, 100%);
+  background: var(--surface); border: 1px solid var(--line-2); border-radius: 8px; color: var(--mut);
+}
+.search:focus-within { border-color: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); }
+.search input { flex: 1; min-width: 0; border: 0; outline: 0; background: transparent; color: var(--ink); font: 400 14.5px/1 var(--text); }
+.search input::-webkit-search-cancel-button { display: none; }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); gap: 20px; }
+.card {
+  position: relative; display: flex; flex-direction: column;
+  background: var(--surface); border: 1px solid var(--line); border-radius: 12px; overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s ease, border-color .2s ease;
+}
+.card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+.card[hidden] { display: none; }
+.media { position: relative; aspect-ratio: 16 / 10; overflow: hidden; background: var(--bg-2); border-bottom: 1px solid var(--line); }
+.media > img { width: 100%; height: 100%; object-fit: cover; object-position: top left; transition: transform .6s cubic-bezier(.2,.8,.2,1); }
+.card:hover .media > img { transform: scale(1.035); }
+.badge {
+  position: absolute; top: 12px; left: 12px; z-index: 1;
+  display: inline-flex; align-items: center; gap: 6px; max-width: calc(100% - 24px);
+  padding: 6px 10px; border-radius: 6px;
+  background: var(--award-bg); color: var(--award);
+  -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+  font-size: 12px; font-weight: 600; line-height: 1.2; box-shadow: var(--shadow-sm);
+}
+.vid-flag {
+  position: absolute; right: 12px; bottom: 12px; z-index: 1;
+  display: inline-flex; align-items: center; gap: 5px; padding: 5px 9px 5px 7px; border-radius: 6px;
+  background: rgba(0,0,0,.62); color: #fff; font-size: 11.5px; font-weight: 600;
+  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+}
+.vid-flag .i { width: 12px; height: 12px; }
+/* Cover for work without screenshots: a quiet dark panel on a faint dot grid. */
+.gen {
+  width: 100%; height: 100%; padding: 22px 24px;
+  display: flex; flex-direction: column; justify-content: flex-end; gap: 8px;
+  background-color: #141416;
+  background-image: radial-gradient(rgba(255,255,255,.09) 1px, transparent 1px);
+  background-size: 14px 14px;
+  color: #f5f5f7;
+}
+.gen-t { font: 600 28px/1.05 var(--display); letter-spacing: -0.03em; }
+.gen-l { font: 500 12.5px/1.3 var(--mono); color: #a1a1a6; }
+.card-body { display: flex; flex-direction: column; flex: 1; padding: 18px 20px 18px; }
+.card-meta { font-size: 12.5px; color: var(--mut); display: flex; gap: 6px; flex-wrap: wrap; }
+.card-meta .kind { color: var(--accent); font-weight: 600; }
+.card h3 { margin-top: 6px; font-size: 21px; font-weight: 700; letter-spacing: -0.025em; line-height: 1.2; }
+.card-link { color: var(--ink); }
+.card-link:hover { text-decoration: none; color: var(--ink); }
+.card-link::after { content: ""; position: absolute; inset: 0; z-index: 2; border-radius: inherit; }
+.card-tag {
+  margin-top: 8px; font-size: 14.5px; line-height: 1.5; color: var(--ink-2);
+  display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+}
+.chips { list-style: none; display: flex; flex-wrap: wrap; gap: 6px; margin: 14px 0 0; padding: 0; }
+.chips li { font-size: 12px; line-height: 1; padding: 6px 8px; border-radius: 5px; background: var(--bg-2); color: var(--ink-2); border: 1px solid var(--line); }
+.card-foot { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: auto; padding-top: 16px; }
+.upd { font-size: 12px; color: var(--mut); display: inline-flex; align-items: center; gap: 6px; min-height: 18px; }
+.card-links { position: relative; z-index: 3; display: flex; gap: 2px; margin-right: -8px; }
+.card-links a { display: inline-flex; width: 34px; height: 34px; align-items: center; justify-content: center; border-radius: 6px; color: var(--mut); }
+.card-links a:hover { background: var(--bg-2); color: var(--ink); }
+.empty { padding: 48px 0; text-align: center; color: var(--mut); }
+
+/* Awards */
+.awards { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 20px; align-items: start; }
+.arow {
+  display: grid; grid-template-columns: 96px minmax(0, 1fr) auto; gap: 16px; align-items: center;
+  padding: 16px 16px; border-radius: 8px; color: var(--ink);
+}
+a.arow:hover { background: var(--bg-2); text-decoration: none; }
+.arow time { font-size: 13px; color: var(--mut); font-variant-numeric: tabular-nums; }
+.arow .a-title { display: flex; align-items: center; gap: 8px; font-weight: 600; letter-spacing: -0.015em; }
+.arow .a-title .i { color: var(--award); }
+.arow .a-sub { display: block; font-size: 14px; color: var(--mut); margin-top: 2px; }
+.arow .a-go { font-size: 13px; color: var(--accent); white-space: nowrap; display: inline-flex; align-items: center; gap: 4px; }
+.creds { padding: 22px; }
+.creds h3 { font-size: 17px; font-weight: 600; letter-spacing: -0.015em; margin-bottom: 14px; }
+.creds ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+.creds li { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 10px; font-size: 14.5px; line-height: 1.45; }
+.creds li .i { color: var(--accent); margin-top: 2px; }
+.creds small { display: block; color: var(--mut); font-size: 13px; }
+
+/* Activity */
+.act { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 20px; }
+.latest { padding: 26px; display: flex; flex-direction: column; gap: 14px; min-height: 260px; }
+.latest .l-top { display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 600; color: var(--live); }
+.latest .l-title { font: 700 28px/1.1 var(--display); letter-spacing: -0.03em; }
+.latest .l-msg { font-size: 17px; line-height: 1.5; color: var(--ink-2); overflow-wrap: anywhere; }
+.latest .l-meta { font: 500 12.5px/1.6 var(--mono); color: var(--mut); overflow-wrap: anywhere; }
+.latest .l-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: auto; }
+.act-list { list-style: none; margin: 0; padding: 6px; }
+.act-list > li + li { border-top: 1px solid var(--line); }
+.act-list a { display: grid; grid-template-columns: 10px minmax(0, 1fr) auto; gap: 12px; align-items: center; padding: 13px 12px; border-radius: 8px; color: var(--ink); }
+.act-list a:hover { background: var(--bg-2); text-decoration: none; }
+.act-list .r-name { font-weight: 600; font-size: 15px; letter-spacing: -0.01em; display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.act-list .r-name code { font: 400 12px/1 var(--mono); color: var(--mut); margin-left: 6px; }
+.act-list .r-msg { display: block; font-size: 13px; color: var(--mut); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; margin-top: 2px; }
+.act-list time { font-size: 12.5px; color: var(--mut); white-space: nowrap; }
+.act-status { margin-top: 14px; font-size: 13px; color: var(--mut); display: flex; align-items: center; gap: 8px; }
+.skel { display: block; height: 12px; border-radius: 6px; background: linear-gradient(90deg, var(--bg-2), var(--line), var(--bg-2)); background-size: 200% 100%; animation: shimmer 1.4s linear infinite; }
+@keyframes shimmer { to { background-position: -200% 0; } }
+.spin { animation: spin .8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* About */
+.about { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: 48px; align-items: start; }
+.about h2 { font-size: clamp(26px, 3vw, 32px); font-weight: 600; letter-spacing: -0.025em; line-height: 1.15; margin-bottom: 18px; }
+.about p { font-size: 17px; line-height: 1.65; color: var(--ink-2); margin-bottom: 16px; max-width: 62ch; }
+.about .about-lead { font: 600 21px/1.35 var(--display); letter-spacing: -0.015em; color: var(--ink); }
+.edu { padding: 22px; margin-bottom: 16px; }
+.edu b { display: block; font-weight: 600; letter-spacing: -0.015em; }
+.edu div > span { display: block; font-size: 14px; color: var(--mut); margin-top: 2px; }
+.skills { padding: 8px 22px; }
+.skill { display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 16px; padding: 14px 0; }
+.skill + .skill { border-top: 1px solid var(--line); }
+.skill dt { font-size: 13.5px; font-weight: 600; color: var(--ink); }
+.skill dd { margin: 0; font-size: 14px; line-height: 1.55; color: var(--ink-2); }
+
+/* Contact */
+.contact { text-align: center; padding: 56px 24px; border-radius: 14px; background: var(--bg-2); border: 1px solid var(--line); }
+.contact h2 { font-size: clamp(28px, 3.6vw, 40px); font-weight: 600; letter-spacing: -0.03em; line-height: 1.1; }
+.contact p { margin: 12px auto 0; max-width: 50ch; font-size: 17px; color: var(--mut); }
+.contact .hero-cta { justify-content: center; }
+
+footer { padding: 36px 0 48px; }
+.foot { display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: space-between; font-size: 12.5px; color: var(--mut); border-top: 1px solid var(--line); padding-top: 22px; }
+.foot a { color: var(--mut); }
+.foot a:hover { color: var(--ink); }
+
+/* Reveal */
+.js .reveal { opacity: 0; transform: translateY(14px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.8,.2,1); }
+.js .reveal.in { opacity: 1; transform: none; }
+
+/* ---------- Detail sheet ---------- */
+dialog { color: var(--ink); }
+.sheet {
+  width: min(1000px, calc(100vw - 32px)); max-width: none;
+  max-height: calc(100dvh - 48px);
+  padding: 0; border: 0; border-radius: 14px; overflow: hidden;
+  background: var(--surface); box-shadow: var(--shadow-lg);
+}
+.sheet[open] { animation: sheetIn .38s cubic-bezier(.2,.8,.2,1); }
+.sheet::backdrop { background: var(--scrim); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); animation: fade .3s ease; }
+@keyframes sheetIn { from { opacity: 0; transform: translateY(24px) scale(.98); } }
+@keyframes fade { from { opacity: 0; } }
+.sheet-close { position: absolute; top: 14px; right: 14px; z-index: 5; background: var(--bg-2); border: 1px solid var(--line); }
+.sheet-close:hover { background: var(--line); }
+.sheet-scroll { max-height: calc(100dvh - 48px); overflow-y: auto; overscroll-behavior: contain; }
+.d-head { padding: 36px 40px 22px; padding-right: 72px; }
+.d-eyebrow { font-size: 14px; color: var(--mut); display: flex; flex-wrap: wrap; gap: 6px; }
+.d-eyebrow .kind { color: var(--accent); font-weight: 600; }
+.d-head h2 { margin-top: 6px; font-size: clamp(30px, 4vw, 42px); font-weight: 700; letter-spacing: -0.035em; line-height: 1.08; }
+.d-role { margin-top: 6px; font-size: 18px; font-weight: 600; color: var(--ink-2); letter-spacing: -0.015em; }
+.d-tag { margin-top: 12px; font-size: 18px; line-height: 1.5; color: var(--ink-2); max-width: 70ch; }
+.d-badges { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 16px; }
+.d-badges .badge { position: static; box-shadow: none; border: 1px solid var(--line); }
+.d-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+.gallery { padding: 0 40px; }
+.viewer { position: relative; border-radius: 10px; overflow: hidden; background: var(--bg-2); border: 1px solid var(--line); aspect-ratio: 16 / 10; }
+.stage { position: absolute; inset: 0; display: grid; place-items: center; touch-action: pan-y; }
+.stage a { display: contents; }
+.stage img { width: 100%; height: 100%; object-fit: contain; opacity: 0; transition: opacity .3s ease; cursor: zoom-in; }
+.stage img.loaded { opacity: 1; }
+.stage iframe { width: 100%; height: 100%; border: 0; background: #000; }
+.poster { position: absolute; inset: 0; border: 0; padding: 0; background: #000; cursor: pointer; display: grid; place-items: center; }
+.poster img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .75; cursor: pointer; }
+.poster .play { position: relative; display: inline-flex; align-items: center; gap: 10px; padding: 13px 20px 13px 16px; border-radius: 8px; background: rgba(255,255,255,.92); color: #1d1d1f; font-weight: 600; font-size: 15px; box-shadow: 0 10px 30px rgba(0,0,0,.35); transition: transform .2s ease; }
+.poster:hover .play { transform: scale(1.05); }
+.nav-btn {
+  position: absolute; top: 50%; z-index: 2; transform: translateY(-50%);
+  width: 38px; height: 38px; border-radius: 8px; border: 0; cursor: pointer;
+  display: grid; place-items: center;
+  background: rgba(255,255,255,.88); color: #1d1d1f; box-shadow: 0 4px 14px rgba(0,0,0,.18);
+  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+  opacity: 0; transition: opacity .2s ease, transform .2s ease;
+}
+.viewer:hover .nav-btn, .nav-btn:focus-visible { opacity: 1; }
+.nav-btn:hover { transform: translateY(-50%) scale(1.06); }
+.nav-btn.prev { left: 14px; }
+.nav-btn.next { right: 14px; }
+.count { position: absolute; right: 14px; top: 14px; z-index: 2; padding: 5px 9px; border-radius: 6px; background: rgba(0,0,0,.55); color: #fff; font-size: 12px; font-weight: 500; font-variant-numeric: tabular-nums; }
+.cap { margin-top: 12px; min-height: 22px; font-size: 14px; color: var(--mut); }
+.thumbs { display: flex; gap: 10px; overflow-x: auto; padding: 14px 2px 4px; scrollbar-width: thin; }
+.thumb {
+  position: relative; flex: none; width: 104px; aspect-ratio: 16 / 10; padding: 0; cursor: pointer;
+  border-radius: 6px; overflow: hidden; border: 2px solid transparent; background: var(--bg-2);
+  opacity: .62; transition: opacity .2s ease, border-color .2s ease;
+}
+.thumb:hover { opacity: 1; }
+.thumb[aria-current="true"] { opacity: 1; border-color: var(--accent); }
+.thumb img { width: 100%; height: 100%; object-fit: cover; }
+.thumb .i { position: absolute; inset: 0; margin: auto; width: 22px; height: 22px; color: #fff; filter: drop-shadow(0 1px 4px rgba(0,0,0,.6)); }
+.banner { margin: 0 40px; border-radius: 10px; overflow: hidden; aspect-ratio: 16 / 6; border: 1px solid var(--line); }
+.banner .gen-t { font-size: clamp(30px, 5vw, 48px); }
+.d-body { display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: 40px; padding: 32px 40px 8px; }
+.d-summary { font-size: 17px; line-height: 1.65; color: var(--ink-2); margin-bottom: 22px; }
+.d-body h3 { font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: .05em; color: var(--dim); margin-bottom: 12px; font-family: var(--text); }
+.d-list { margin: 0; padding: 0; list-style: none; display: grid; gap: 12px; }
+.d-list li { position: relative; padding-left: 20px; font-size: 15.5px; line-height: 1.6; color: var(--ink-2); }
+.d-list li::before { content: ""; position: absolute; left: 3px; top: .68em; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+.d-side dl { margin: 0; display: grid; gap: 18px; }
+.d-side dt { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .05em; color: var(--dim); margin-bottom: 6px; }
+.d-side dd { margin: 0; font-size: 14.5px; color: var(--ink-2); }
+.d-side .chips { margin: 0; }
+.d-side .lnk { display: flex; flex-direction: column; gap: 6px; }
+.d-side .lnk a { display: inline-flex; align-items: center; gap: 6px; font-size: 14.5px; }
+.d-nav { display: flex; justify-content: space-between; gap: 12px; padding: 26px 40px 32px; margin-top: 24px; border-top: 1px solid var(--line); }
+.d-nav a { display: flex; flex-direction: column; gap: 2px; max-width: 48%; color: var(--ink); font-weight: 600; font-size: 15px; letter-spacing: -0.01em; }
+.d-nav a:hover { text-decoration: none; color: var(--accent); }
+.d-nav a small { font-size: 12px; font-weight: 500; color: var(--mut); }
+.d-nav a.next { text-align: right; margin-left: auto; }
+
+/* ---------- Command palette ---------- */
+.palette {
+  width: min(640px, calc(100vw - 32px)); max-width: none; margin: 12vh auto auto;
+  padding: 0; border: 1px solid var(--line); border-radius: 12px; overflow: hidden;
+  background: var(--surface); box-shadow: var(--shadow-lg);
+}
+.palette[open] { animation: sheetIn .25s cubic-bezier(.2,.8,.2,1); }
+.palette::backdrop { background: var(--scrim); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+.pal-in { display: flex; align-items: center; gap: 12px; padding: 16px 18px; border-bottom: 1px solid var(--line); color: var(--mut); }
+.pal-in input { flex: 1; min-width: 0; border: 0; outline: 0; background: transparent; color: var(--ink); font: 400 18px/1.2 var(--text); letter-spacing: -0.015em; }
+.pal-list { list-style: none; margin: 0; padding: 8px; max-height: min(52vh, 440px); overflow-y: auto; }
+.pal-group { padding: 10px 10px 6px; font-size: 11.5px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--dim); }
+.pal-item { display: flex; align-items: center; gap: 12px; padding: 10px; border-radius: 6px; cursor: pointer; }
+.pal-item .ico { width: 30px; height: 30px; border-radius: 6px; display: grid; place-items: center; background: var(--bg-2); color: var(--ink-2); flex: none; }
+.pal-item .lbl { flex: 1; min-width: 0; font-size: 15px; font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.pal-item .hint { font-size: 12.5px; color: var(--mut); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 45%; }
+.pal-item[aria-selected="true"] { background: var(--accent-soft); }
+.pal-item[aria-selected="true"] .ico { background: var(--accent); color: var(--on-accent); }
+.pal-empty { padding: 28px; text-align: center; color: var(--mut); font-size: 14px; }
+.pal-foot { display: flex; gap: 16px; padding: 10px 18px; border-top: 1px solid var(--line); font-size: 12px; color: var(--mut); }
+
+.toast {
+  position: fixed; left: 50%; bottom: 28px; z-index: 90; transform: translate(-50%, 20px);
+  padding: 11px 18px; border-radius: 8px; background: var(--ink); color: var(--bg);
+  font-size: 14px; font-weight: 500; box-shadow: var(--shadow-lg);
+  opacity: 0; pointer-events: none; transition: opacity .25s ease, transform .25s ease;
+}
+.toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 960px) {
+  .hero-grid { grid-template-columns: minmax(0, 1fr) 220px; gap: 40px; }
+  .asc-stage { height: 240px; }
+  .awards, .act, .about { grid-template-columns: minmax(0, 1fr); }
+  .d-body { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+}
+@media (max-width: 780px) {
+  .nav-links { display: none; }
+  .nav-actions { margin-left: auto; }
+  .nav-actions kbd { display: none; }
+  .hero-grid { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+  .hero-portrait { order: -1; justify-self: start; width: 112px; }
+  .portrait-card { border-radius: 10px; }
+  .hero-portrait figcaption { display: none; }
+  .asc-stage { height: 170px; margin-bottom: 20px; }
+}
+@media (max-width: 640px) {
+  .wrap { padding-left: 16px; padding-right: 16px; }
+  .section { padding: 52px 0; }
+  .hero { padding-top: 20px; padding-bottom: 52px; }
+  .asc-stage { height: 130px; }
+  .hero-lede { font-size: 16.5px; }
+  .wrow { grid-template-columns: minmax(0, 1fr); gap: 8px; padding: 16px 10px; }
+  .wrow .w-side { text-align: left; }
+  .wrow .w-side br { display: none; }
+  .wrow .w-award { margin: 0 0 0 10px; }
+  .wrow .chev { display: none; }
+  .arow { grid-template-columns: minmax(0, 1fr); gap: 4px; }
+  .arow .a-go { display: none; }
+  .skill { grid-template-columns: minmax(0, 1fr); gap: 4px; }
+  .toolbar { flex-direction: column; align-items: stretch; }
+  .search { width: 100%; }
+  .contact { padding: 44px 20px; border-radius: 12px; }
+  .sheet { width: 100vw; max-height: 94dvh; margin: auto 0 0; border-radius: 12px 12px 0 0; }
+  .sheet-scroll { max-height: 94dvh; }
+  .d-head { padding: 28px 20px 18px; padding-right: 60px; }
+  .gallery { padding: 0 20px; }
+  .banner { margin: 0 20px; }
+  .d-body { padding: 26px 20px 4px; }
+  .d-nav { padding: 22px 20px 28px; }
+  .nav-btn { opacity: 1; width: 34px; height: 34px; }
+  .thumb { width: 84px; }
+  .palette { margin-top: 8vh; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .term-overlay, .term-panel { transition: none; }
-}
-
-@media (max-width: 760px) {
-  nav { padding: 14px 20px; gap: 16px; }
-  .hero { padding: 40px 20px 64px; }
-  #ascStage { height: 240px; margin-bottom: 26px; }
-  .hero h2 { font-size: 32px; }
-  .ledger { padding-left: 20px; padding-right: 20px; }
-  .ledger + .ledger { padding-top: 48px; }
-  .page-end { padding-bottom: 64px; }
-  .row {
-    grid-template-columns: 1fr;
-    gap: 8px;
-    padding: 20px 4px;
-  }
-  .row-meta { text-align: left; }
-  .mini-grid { grid-template-columns: 1fr; gap: 0; }
-  .about-grid { grid-template-columns: 1fr; gap: 34px; padding-top: 28px; }
-  .portrait { max-width: 220px; }
-  footer { margin-top: 64px; }
-  footer .inner { padding: 24px 20px; }
-}
-@media (max-width: 560px) {
-  nav a.navlink { display: none; }
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
+  .js .reveal { opacity: 1; transform: none; }
 }
 </style>
 </head>
 <body>
-<canvas id="bgField" aria-hidden="true"></canvas>
-<a class="skip-link" href="#about">Skip to content</a>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+  <symbol id="i-left" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></symbol>
+  <symbol id="i-right" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol>
+  <symbol id="i-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+  <symbol id="i-ext" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-github" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M12 .5C5.73.5.5 5.74.5 12.02c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-1.97c-3.2.7-3.87-1.54-3.87-1.54-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.68.8.56 4.56-1.52 7.85-5.83 7.85-10.91C23.5 5.74 18.27.5 12 .5z"/></symbol>
+  <symbol id="i-linkedin" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m3.5 7 8.5 6 8.5-6"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></symbol>
+  <symbol id="i-trophy" viewBox="0 0 24 24"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4zM17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></symbol>
+  <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 11a8 8 0 1 0-2.34 5.66M20 4v7h-7"/></symbol>
+  <symbol id="i-commit" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.5"/><path d="M2 12h6.5M15.5 12H22"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></symbol>
+  <symbol id="i-box" viewBox="0 0 24 24"><path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="m3 8 9 5 9-5M12 13v8"/></symbol>
+  <symbol id="i-hex" viewBox="0 0 24 24"><path d="M7.5 3h9l4.5 9-4.5 9h-9L3 12z"/></symbol>
+  <symbol id="i-screen" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+  <symbol id="i-cap" viewBox="0 0 24 24"><path d="M2 9.5 12 5l10 4.5L12 14z"/><path d="M6 11.5V16c2 1.8 4 2.5 6 2.5s4-.7 6-2.5v-4.5M22 9.5V15"/></symbol>
+  <symbol id="i-badge" viewBox="0 0 24 24"><circle cx="12" cy="9" r="6"/><path d="m8.5 14-1.5 7 5-2.5 5 2.5-1.5-7"/></symbol>
+  <symbol id="i-hash" viewBox="0 0 24 24"><path d="M5 9h14M5 15h14M10 4 8 20M16 4l-2 16"/></symbol>
+  <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></symbol>
+</svg>
 
-<header>
-<nav aria-label="Site">
-<a class="brand" href="#top">SURYA THIRUKONDA</a>
-<span class="spacer"></span>
-<a class="navlink" href="#about">ABOUT</a>
-<a class="navlink" href="#experience">WORK</a>
-<button class="navlink" id="termOpen" type="button" aria-haspopup="dialog">TERMINAL</button>
-<button class="navlink" id="themeBtn" type="button" aria-label="Cycle color theme">AUTO</button>
-<a class="resume" href="assets/Surya_Thirukonda_Resume.pdf" target="_blank" rel="noreferrer">RÉSUMÉ ↓</a>
-</nav>
+<a class="skip-link" href="#work">Skip to content</a>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="#top">Surya Thirukonda</a>
+    <nav class="nav-links" aria-label="Sections">
+      <a href="#work">Work</a>
+      <a href="#projects">Projects</a>
+      <a href="#awards">Awards</a>
+      <a href="#activity">Activity</a>
+      <a href="#about">About</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="icon-btn" id="searchBtn" type="button" aria-label="Search the site" aria-keyshortcuts="Control+K Meta+K"><svg class="i"><use href="#i-search"/></svg><kbd id="kbdHint">⌘K</kbd></button>
+      <button class="icon-btn theme-btn" id="themeBtn" type="button" aria-label="Switch to dark mode"><svg class="i i-moon"><use href="#i-moon"/></svg><svg class="i i-sun"><use href="#i-sun"/></svg></button>
+      <a class="btn btn-primary btn-sm" href="assets/Surya_Thirukonda_Resume.pdf" target="_blank" rel="noopener">Résumé</a>
+    </div>
+  </div>
 </header>
 
+<main>
 <section id="top" class="hero">
-<div id="ascStage">
-<h1 class="sr-only">Surya Thirukonda</h1>
-<canvas id="ascName" role="img" aria-label="Surya, rendered as rotating three-dimensional ASCII art"></canvas>
-</div>
-<h2>I like to <em>ship</em> things.</h2>
-<p class="lede">Computer science at Texas A&amp;M, class of 2028. Right now: founding engineer at Revio, CTO at Stook, data infrastructure at DeKalb Capital Management, and forecasting research as an REU at Portland State.</p>
-<div class="chips">
-<a href="mailto:Surya.Thirukonda@tamu.edu">EMAIL</a>
-<a href="tel:+12818321205">281-832-1205</a>
-<a href="https://github.com/SuryaThirukonda" target="_blank" rel="noreferrer">GITHUB ↗</a>
-<a href="https://linkedin.com/in/surya-thirukonda" target="_blank" rel="noreferrer">LINKEDIN ↗</a>
-</div>
+ <div class="wrap">
+  <div class="asc-stage" id="ascStage">
+    <canvas id="ascName" role="img" aria-label="SURYA, rendered as rotating three-dimensional ASCII art"></canvas>
+  </div>
+  <div class="hero-grid">
+  <div>
+    <div class="live-wrap">
+      <button class="live-pill" id="pushPill" type="button" aria-expanded="false" aria-controls="pushPop">
+        <span class="dot idle" id="pushDot"></span>
+        <span class="pill-label">Latest push</span>
+        <span class="pill-body" id="pushPillBody">Checking GitHub…</span>
+        <svg class="i sm"><use href="#i-down"/></svg>
+      </button>
+      <div class="pop" id="pushPop" hidden role="dialog" aria-label="Latest GitHub activity"></div>
+    </div>
+    <h1>Surya Thirukonda</h1>
+    <p class="hero-tag">Software engineer · Computer Science at Texas A&amp;M, class of 2028</p>
+    <p class="hero-lede">Founding engineer at Revio and undergraduate researcher in the Rathinam Group. I build backend systems, data pipelines and research tools, from manuscript formatting to Treasury-yield forecasting to orbit planning, and I compete in hackathons, with five awards in the past year.</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="#projects">View projects</a>
+      <a class="btn btn-ghost" href="assets/Surya_Thirukonda_Resume.pdf" target="_blank" rel="noopener"><svg class="i sm"><use href="#i-doc"/></svg>Résumé</a>
+      <div class="socials">
+        <a class="icon-btn" href="https://github.com/SuryaThirukonda" target="_blank" rel="noopener" aria-label="GitHub"><svg class="i"><use href="#i-github"/></svg></a>
+        <a class="icon-btn" href="https://www.linkedin.com/in/surya-thirukonda" target="_blank" rel="noopener" aria-label="LinkedIn"><svg class="i"><use href="#i-linkedin"/></svg></a>
+        <a class="icon-btn" href="mailto:Surya.Thirukonda@tamu.edu" aria-label="Email"><svg class="i"><use href="#i-mail"/></svg></a>
+      </div>
+    </div>
+  </div>
+  <figure class="hero-portrait">
+    <div class="portrait-card" id="portrait"><img src="assets/headshot.jpg" alt="Surya Thirukonda" width="1022" height="1145"></div>
+    <figcaption><svg class="i sm"><use href="#i-pin"/></svg>College Station, Texas</figcaption>
+  </figure>
+  </div>
+ </div>
 </section>
 
-<section id="about" class="ledger">
-<div class="ledger-head">ABOUT <span class="orn" aria-hidden="true">.:=:.</span></div>
-<div class="about-grid">
-<div class="portrait" id="portrait">
-<img src="assets/headshot.jpg" alt="Surya Thirukonda">
-<canvas id="portraitAscii" aria-hidden="true"></canvas>
-<span class="hint" aria-hidden="true">HOVER</span>
-</div>
-<div>
-<h2>Most of what I've built started as somebody's <em>real problem</em>.</h2>
-<p>A restaurant's floor. A journal's submission spec. A wheat farmer's harvest window. A dog's heart rate. I like the parts of a system other people skip: schema design, ingestion throughput, and the difference between a model that scores well and a model you can defend to a stakeholder.</p>
-<p>When a project wins something I try not to let it end there. WaiterDock is the clearest case: we won the sponsor's challenge at TAMUhack, and instead of posting about it I asked whether they'd like it running in their restaurant. They did.</p>
-<div class="creds">
-<span>B.S. COMPUTER SCIENCE, TEXAS A&amp;M, 2028</span>
-<span>GPA 4.0</span>
-<span>AWS CERTIFIED CLOUD PRACTITIONER</span>
-<span>USACO SILVER</span>
-<span>YC STARTUP SCHOOL 2026 ATTENDEE</span>
-<span>COLLEGE STATION, TEXAS</span>
-</div>
-</div>
-</div>
+<section id="work" class="section">
+  <div class="wrap">
+    <header class="sec-head reveal">
+      <div>
+        <h2>Experience</h2>
+        <p class="sec-sub">Select a role for details, screenshots and links.</p>
+      </div>
+    </header>
+    <ol class="list surface reveal" id="workList"></ol>
+  </div>
 </section>
 
-<section id="experience" class="ledger">
-<div class="ledger-head">EXPERIENCE <span class="orn" aria-hidden="true">:=+=:</span></div>
-
-<a class="row" href="https://www.ashvish.com" target="_blank" rel="noreferrer">
-<span class="row-tag">FOUNDING ENG.</span>
-<span>
-<span class="row-title">Revio: a manuscript engine that never rewrites the author</span>
-<span class="row-desc">In-place DOCX edits preserve images, tables, footnotes and styles, and a constrained agent can only propose fixes it can prove safe. 40+ journal profiles, 200+ conversions, 99%+ uptime in live beta.</span>
-</span>
-<span class="row-meta">SINCE FEB 2026<br>ASHVISH.COM ↗</span>
-</a>
-
-<div class="row">
-<span class="row-tag">CTO</span>
-<span>
-<span class="row-title">Stook: deterministic crop-marketing signals, explained by AI</span>
-<span class="row-desc">Interviews with wheat farmers invalidated our original thesis, so we rebuilt the backtest around harvest parity and pivoted to white-labeling for grain elevators and cooperatives.</span>
-</span>
-<span class="row-meta">SINCE APR 2026<br>AI VENTURE VELOCITY, STAGE 1</span>
-</div>
-
-<div class="row">
-<span class="row-tag">INTERNSHIP</span>
-<span>
-<span class="row-title">DeKalb Capital Management: quantitative systems</span>
-<span class="row-desc">Portfolio analytics and stock screening on a Dockerized FastAPI dashboard: yfinance and Interactive Brokers sync across 100+ tracked equities, made idempotent and retry-safe, on QuestDB storage.</span>
-</span>
-<span class="row-meta">SINCE JUN 2026<br>PRIVATE REPOSITORY</span>
-</div>
-
-<div class="row">
-<span class="row-tag">CONTRACT</span>
-<span>
-<span class="row-title">Mai Shan Yun: four months, shipped to the restaurant</span>
-<span class="row-desc">I turned the hackathon prize into a contract: Stripe payments, RBAC, order-state APIs and WebSocket sync, then clock-in tracking, task assignment and automated payroll.</span>
-</span>
-<span class="row-meta">FEB-JUN 2026<br>REACT, EXPRESS, STRIPE</span>
-</div>
-
-<a class="row" href="https://github.com/EthanJG2814-Creator/VEST-Project" target="_blank" rel="noreferrer">
-<span class="row-tag">HARDWARE</span>
-<span>
-<span class="row-title">VEST: telemetry for a canine health monitor</span>
-<span class="row-desc">REST APIs and cloud pipelines carrying 12 samples a second across four biometric streams, from an ESP32 through Supabase to a React Native interface.</span>
-</span>
-<span class="row-meta">JAN-MAY 2026<br>TURTLE ROBOTICS ↗</span>
-</a>
+<section id="projects" class="section">
+  <div class="wrap">
+    <header class="sec-head reveal">
+      <div>
+        <h2>Projects</h2>
+        <p class="sec-sub">Hackathon builds, research tools and applications, newest first. Open any card for screenshots, demo videos and links.</p>
+      </div>
+    </header>
+    <div class="toolbar reveal">
+      <div class="seg" id="filters" role="group" aria-label="Filter projects"></div>
+      <label class="search"><svg class="i sm"><use href="#i-search"/></svg><span class="sr-only">Filter projects</span><input id="projSearch" type="search" placeholder="Filter by name or tech" autocomplete="off" spellcheck="false"></label>
+    </div>
+    <div class="grid" id="projectGrid"></div>
+    <p class="empty" id="projEmpty" hidden>No projects match that. <button class="btn btn-ghost btn-sm" id="clearFilter" type="button">Show all</button></p>
+  </div>
 </section>
 
-<section id="research" class="ledger">
-<div class="ledger-head">RESEARCH <span class="orn" aria-hidden="true">.:~:.</span></div>
-
-<a class="row" href="https://github.com/raghavken/altREU" target="_blank" rel="noreferrer">
-<span class="row-tag">REU</span>
-<span>
-<span class="row-title">Portland State: regime-aware time-series forecasting</span>
-<span class="row-desc">Does regime-aware modeling improve short-horizon Treasury forecasts? Leakage-safe walk-forward benchmarking of 7 models over 250+ rolling origins, with filtered-state HMM/HSMM features. Manuscript in progress.</span>
-</span>
-<span class="row-meta">SINCE JUN 2026<br>REPOSITORY ↗</span>
-</a>
-
-<a class="row" href="https://github.com/SuryaThirukonda/Ratesignal" target="_blank" rel="noreferrer">
-<span class="row-tag">PLATFORM</span>
-<span>
-<span class="row-title">RateSignal: Treasury forecasting, end to end</span>
-<span class="row-desc">1,000+ forecast records across 11 maturities, 7 models and three horizons, generated and served from a full-stack platform behind authenticated REST APIs and an interactive dashboard.</span>
-</span>
-<span class="row-meta">JUN-JUL 2026<br>REPOSITORY ↗</span>
-</a>
-
-<a class="row" href="https://github.com/SuryaThirukonda/gaussian-hsmm" target="_blank" rel="noreferrer">
-<span class="row-tag">OPEN SOURCE</span>
-<span>
-<span class="row-title">gaussian-hsmm: a hidden semi-Markov model, packaged</span>
-<span class="row-desc">A scikit-learn-style Gaussian HSMM with explicit shifted-Poisson state durations, typed and MIT-licensed on PyPI, for regime segmentation an HMM can't express.</span>
-</span>
-<span class="row-meta">2026<br>PYPI + REPOSITORY ↗</span>
-</a>
+<section id="awards" class="section">
+  <div class="wrap">
+    <header class="sec-head reveal">
+      <div>
+        <h2>Awards</h2>
+      </div>
+    </header>
+    <div class="awards">
+      <ol class="list surface reveal" id="awardList"></ol>
+      <aside class="surface creds reveal">
+        <h3>Also</h3>
+        <ul>
+          <li><svg class="i"><use href="#i-badge"/></svg><span>AWS Certified Cloud Practitioner<small>CLF-C02, June 2026</small></span></li>
+          <li><svg class="i"><use href="#i-cap"/></svg><span>Craig and Galen Brown Engineering Honors<small>Texas A&amp;M University</small></span></li>
+          <li><svg class="i"><use href="#i-bolt"/></svg><span>AI Venture Velocity Challenge 2026<small>Selected for and completed Stage 1 with Stook</small></span></li>
+          <li><svg class="i"><use href="#i-pin"/></svg><span>YC Startup School 2026<small>Attendee, San Francisco</small></span></li>
+        </ul>
+      </aside>
+    </div>
+  </div>
 </section>
 
-<section id="competitions" class="ledger">
-<div class="ledger-head">HACKATHONS &amp; COMPETITIONS <span class="orn" aria-hidden="true">:=#=:</span></div>
-
-<a class="row" href="https://devpost.com/software/waiterdock" target="_blank" rel="noreferrer">
-<span class="row-tag win">WINNER</span>
-<span>
-<span class="row-title">Mai Shan Yun Challenge · TAMUhack</span>
-<span class="row-desc">WaiterDock, a real-time restaurant operations platform built in about 24 hours on the sponsor's real menu. The win over 40+ teams became a four-month paid contract.</span>
-</span>
-<span class="row-meta">JAN 2026<br>DEVPOST ↗</span>
-</a>
-
-<a class="row" href="https://github.com/ajari17/SouthwestAirlinesBaggageRevenuePredictionTeam4UPDATED" target="_blank" rel="noreferrer">
-<span class="row-tag win">1ST PLACE</span>
-<span>
-<span class="row-title">Aggie Data Science Club x Southwest Airlines</span>
-<span class="row-desc">A SARIMAX baggage-revenue forecast 24 months out, under 12% MAPE, presented to Southwest Airlines stakeholders through a Streamlit dashboard.</span>
-</span>
-<span class="row-meta">OCT-DEC 2025<br>REPOSITORY ↗</span>
-</a>
-
-<div class="row">
-<span class="row-tag win">2ND OVERALL</span>
-<span>
-<span class="row-title">HackHCC 2026 · out of 40+ teams</span>
-<span class="row-desc">Physio, our voice-first rehab agent. My part: the MediaPipe pose and motion-analysis pipeline, and one exercise built end to end through ElevenLabs voice coaching.</span>
-</span>
-<span class="row-meta">MAY 2026<br><a href="https://devpost.com/software/physio-csim7w" target="_blank" rel="noreferrer">DEVPOST ↗</a><br><a href="https://github.com/SuryaThirukonda/hackHCC" target="_blank" rel="noreferrer">GITHUB ↗</a></span>
-</div>
-
-<div class="row">
-<span class="row-tag win">2ND OVERALL</span>
-<span>
-<span class="row-title">TAMU Datathon · Spring 2026</span>
-<span class="row-desc">Cleared nearly all of the CTF-style data challenges inside the competition window.</span>
-</span>
-<span class="row-meta">SPRING 2026</span>
-</div>
+<section id="activity" class="section">
+  <div class="wrap">
+    <header class="sec-head reveal">
+      <div>
+        <h2>GitHub activity</h2>
+        <p class="sec-sub">Recent pushes, fetched from the public GitHub API when you open this page.</p>
+      </div>
+      <button class="btn btn-ghost btn-sm" id="ghRefresh" type="button"><svg class="i sm"><use href="#i-refresh"/></svg>Refresh</button>
+    </header>
+    <div class="act reveal">
+      <div class="surface latest" id="actLatest">
+        <span class="skel" style="width:30%"></span><span class="skel" style="width:70%;height:24px"></span><span class="skel" style="width:90%"></span><span class="skel" style="width:60%"></span>
+      </div>
+      <ol class="surface act-list" id="actList"></ol>
+    </div>
+    <p class="act-status" id="actStatus" aria-live="polite"></p>
+  </div>
 </section>
 
-<section id="projects" class="ledger page-end">
-<div class="ledger-head">ALSO BUILT <span class="orn" aria-hidden="true">.:::.</span></div>
-<div class="mini-grid">
-<div class="mini"><span>Lineage: pipeline integrity for inline inspection data</span><a href="https://devpost.com/software/lineage-tfiopy" target="_blank" rel="noreferrer">DEVPOST ↗</a></div>
-<div class="mini"><span>SentinelAI Lite: a local prompt privacy firewall</span><span class="mini-tag">ELECTRON</span></div>
-<div class="mini"><span>Shadow: reference-based technique coaching</span><span class="mini-tag">OPENCV</span></div>
-<div class="mini"><span>AmblyoScan: an 11-step browser eye-screening flow</span><span class="mini-tag">MEDIAPIPE</span></div>
-<div class="mini"><span>PartRank: PC builds ranked on price to performance</span><a href="https://github.com/SuryaThirukonda/PartRank" target="_blank" rel="noreferrer">GITHUB ↗</a></div>
-<div class="mini"><span>Aggie Course Insights: grade distributions for A&amp;M</span><a href="https://github.com/SuryaThirukonda/Aggie-Course-Insights" target="_blank" rel="noreferrer">GITHUB ↗</a></div>
-</div>
+<section id="about" class="section">
+  <div class="wrap about">
+    <div class="reveal">
+      <h2>About</h2>
+      <p class="about-lead">Most of what I've built started as somebody's real problem.</p>
+      <p>A restaurant's floor. A journal's submission spec. A wheat farmer's harvest window. A rescue crew's drone feed. I like the parts of a system other people skip: schema design, ingestion throughput, and the difference between a model that scores well and a model you can defend to a stakeholder.</p>
+      <p>When a project wins something I try not to let it end there. WaiterDock is the clearest case: we won the sponsor's challenge at TAMUhack, and instead of posting about it I asked whether they'd like it running in their restaurant. They did.</p>
+    </div>
+    <div class="reveal">
+      <div class="surface edu">
+        <div>
+          <b>Texas A&amp;M University</b>
+          <span>B.S. Computer Science, minor in Statistics</span>
+          <span>Engineering Honors · GPA 4.0 · May 2028</span>
+        </div>
+      </div>
+      <dl class="surface skills">
+        <div class="skill"><dt>Languages</dt><dd>Python, TypeScript, JavaScript, Java, C++, SQL, R</dd></div>
+        <div class="skill"><dt>Backend &amp; web</dt><dd>FastAPI, Node.js, Express, React, Three.js, REST, WebSockets, Prisma, SQLAlchemy, JWT, OAuth</dd></div>
+        <div class="skill"><dt>Infrastructure</dt><dd>PostgreSQL, Supabase, QuestDB, Redis, Docker, GitHub Actions, AWS (EC2, S3), Vercel, Railway, Cloudflare, Linux</dd></div>
+        <div class="skill"><dt>Data &amp; ML</dt><dd>pandas, NumPy, scikit-learn, statsmodels, XGBoost, SARIMAX, HMM/HSMM, MediaPipe, pytest, Vitest</dd></div>
+      </dl>
+    </div>
+  </div>
 </section>
+
+<section id="contact" class="section">
+  <div class="wrap">
+    <div class="contact reveal">
+      <h2>Get in touch</h2>
+      <p>For roles, collaborations or questions about any of this work, email is the fastest way to reach me.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="mailto:Surya.Thirukonda@tamu.edu"><svg class="i sm"><use href="#i-mail"/></svg>Surya.Thirukonda@tamu.edu</a>
+        <button class="btn btn-ghost" type="button" data-copy-email><svg class="i sm"><use href="#i-copy"/></svg>Copy email</button>
+        <a class="btn btn-ghost" href="https://www.linkedin.com/in/surya-thirukonda" target="_blank" rel="noopener"><svg class="i sm"><use href="#i-linkedin"/></svg>LinkedIn</a>
+        <a class="btn btn-ghost" href="https://github.com/SuryaThirukonda" target="_blank" rel="noopener"><svg class="i sm"><use href="#i-github"/></svg>GitHub</a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
 
 <footer>
-<div class="inner">
-<span>© 2026 SURYA THIRUKONDA</span>
-<a id="ghTicker" href="https://github.com/SuryaThirukonda" target="_blank" rel="noreferrer" hidden></a>
-<a href="mailto:Surya.Thirukonda@tamu.edu">SURYA.THIRUKONDA@TAMU.EDU</a>
-</div>
+  <div class="wrap foot">
+    <span>© 2026 Surya Thirukonda</span>
+    <a id="footPush" href="https://github.com/SuryaThirukonda" target="_blank" rel="noopener">GitHub activity</a>
+    <span>Plain HTML, CSS and JavaScript. Press <kbd>/</kbd> to search.</span>
+  </div>
 </footer>
 
-<div id="term" class="term-overlay" hidden role="dialog" aria-modal="true" aria-label="Terminal">
-<div class="term-panel">
-<div class="term-bar">
-<span>SURYA@PORTFOLIO</span>
-<button id="termClose" type="button" aria-label="Close terminal">ESC</button>
-</div>
-<div id="termOut" class="term-out" aria-live="polite"></div>
-<div class="term-line">
-<span class="term-prompt" aria-hidden="true">$</span>
-<input id="termIn" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Terminal input">
-</div>
-</div>
-</div>
+<noscript><p style="text-align:center;padding:24px">Projects and live GitHub activity need JavaScript. Everything is also on <a href="https://github.com/SuryaThirukonda">GitHub</a> and in the <a href="assets/Surya_Thirukonda_Resume.pdf">résumé</a>.</p></noscript>
+
+<dialog class="sheet" id="detail" aria-labelledby="dTitle">
+  <button class="icon-btn sheet-close" type="button" data-close aria-label="Close"><svg class="i"><use href="#i-x"/></svg></button>
+  <div class="sheet-scroll" id="detailBody"></div>
+</dialog>
+
+<dialog class="palette" id="palette" aria-label="Search">
+  <div class="pal-in">
+    <svg class="i"><use href="#i-search"/></svg>
+    <input id="palInput" type="text" placeholder="Search projects, sections and actions" autocomplete="off" spellcheck="false" role="combobox" aria-expanded="true" aria-controls="palList" aria-autocomplete="list">
+    <kbd>esc</kbd>
+  </div>
+  <ul class="pal-list" id="palList" role="listbox"></ul>
+  <div class="pal-foot"><span><kbd>↑</kbd> <kbd>↓</kbd> move</span><span><kbd>↵</kbd> open</span></div>
+</dialog>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script>
-/* Theme: AUTO follows the system; LIGHT and DARK pin it. Persisted locally. */
 (() => {
 'use strict';
-const KEY = 'surya-theme';
-const btn = document.getElementById('themeBtn');
-const apply = (mode) => {
-  if (mode === 'light' || mode === 'dark') document.documentElement.dataset.theme = mode;
-  else delete document.documentElement.dataset.theme;
-  btn.textContent = (mode || 'auto').toUpperCase();
+
+/* =====================================================================
+   Content. Everything on the page renders from these lists, so adding a
+   project means adding one object (and its screenshots under
+   assets/projects/<id>/ as 01.webp, 02.webp, … plus cover.webp).
+   images: [width, height, caption] per screenshot, in file order.
+   ===================================================================== */
+
+const EMAIL = 'Surya.Thirukonda@tamu.edu';
+
+const WORK = [
+  {
+    id: 'revio', title: 'Revio', role: 'Founding Software Engineer',
+    where: 'Part-time · Remote', date: 'Feb 2026 – Present',
+    tagline: 'A manuscript-formatting platform that never rewrites the author.',
+    summary: 'Revio takes an unformatted DOCX manuscript and returns it formatted to a journal\'s rules, editing the document in place so images, tables, footnotes and styles survive. I took it from a product idea through architecture, UX and production.',
+    highlights: [
+      'Launched a manuscript-formatting beta that has processed 200+ end-to-end conversions across 40+ journal profiles, architecting a Dockerized FastAPI and React/Vite platform through production.',
+      'Prevented unauthorized edits to author wording with a constrained editing agent: a deterministic orchestrator, a JSON-only LLM decision layer, a fix-policy registry, and content-fidelity checks.',
+      'Built async, schema-validated document processing on Gotenberg DOCX/PDF pipelines with Supabase and OAuth, containerized across Railway and Vercel.'
+    ],
+    stack: ['FastAPI', 'React', 'Vite', 'Docker', 'Supabase', 'Gotenberg', 'OAuth', 'Railway', 'Vercel'],
+    links: { site: 'https://www.ashvish.com' },
+    images: [[1600, 1000, 'The product site: intelligent manuscript formatting, launched as Ashvish before the Revio rename.']]
+  },
+  {
+    id: 'rathinam', title: 'Rathinam Group', role: 'Undergraduate Research Assistant',
+    org: 'Texas A&M Department of Mechanical Engineering',
+    where: 'College Station, TX', date: 'Sep 2026 – Present',
+    tagline: 'Building Orbit Lab, a 3D orbit-visualization and mission-planning platform for trajectory-optimization research.',
+    highlights: [
+      'Building a full-stack 3D orbit visualization and mission-planning web platform for trajectory-optimization research.',
+      'Built the frontend in React and Three.js and the backend as a FastAPI REST API with Pydantic validation, deployed together on Vercel as a static site and a serverless Python function.',
+      'Set up CI/CD with GitHub Actions and Vercel, running linting, type checks, a production build, and 130+ Vitest and pytest tests on each pull request and push to main.'
+    ],
+    stack: ['React', 'Three.js', 'FastAPI', 'Pydantic', 'Vercel', 'GitHub Actions', 'Vitest', 'pytest'],
+    links: { live: 'https://openspacepath.vercel.app' },
+    related: 'orbit-lab', imgDir: 'orbit-lab',
+    images: [[1600, 1000, 'Orbit Lab: satellites from classical elements or a TLE, live orbital elements, and time scrubbing.']]
+  },
+  {
+    id: 'dekalb', title: 'DeKalb Capital Management', role: 'Software Engineering Intern, Quantitative Systems',
+    where: 'Remote', date: 'Jun – Aug 2026',
+    tagline: 'Backend and data infrastructure for a quant-finance portfolio dashboard.',
+    coverLine: 'portfolio sync · 100+ equities',
+    highlights: [
+      'Built portfolio analytics and stock screening on a Dockerized FastAPI dashboard serving 100+ equities, integrating yfinance and the Interactive Brokers API for position sync and time-weighted returns.',
+      'Made brokerage sync idempotent and retry-safe, preventing duplicate position writes and stale reads; added validation, structured logging, rate limiting, and health checks.',
+      'Added QuestDB time-series storage and application-level caching to cut repeated queries; deployed via Railway and Cloudflare.'
+    ],
+    stack: ['FastAPI', 'Docker', 'Interactive Brokers API', 'yfinance', 'QuestDB', 'Railway', 'Cloudflare'],
+    links: {}, note: 'The codebase is private.'
+  },
+  {
+    id: 'psu', title: 'Portland State University', role: 'Undergraduate Researcher (REU)',
+    where: 'Remote', date: 'Jun – Aug 2026',
+    tagline: 'Does regime-aware modeling improve short-horizon Treasury yield forecasts?',
+    highlights: [
+      'Investigated whether regime-aware modeling improves short-horizon Treasury yield forecasts, cutting 20-day curve RMSE 3.4% versus a random walk (28.03 to 27.06 bp over 1,149 rolling origins).',
+      'Prevented future-state leakage with a causal forward filter over hidden semi-Markov regime and duration states, exposing only forecast-time probabilities.',
+      'Generated 119,000+ out-of-sample forecasts with per-origin retraining, under an evaluation design excluding unrealized targets from every training window.'
+    ],
+    stack: ['Python', 'statsmodels', 'HMM / HSMM', 'Dynamic Nelson-Siegel', 'VAR', 'XGBoost'],
+    links: { github: 'https://github.com/raghavken/altREU' },
+    related: 'gaussian-hsmm', imgDir: 'psu-reu',
+    images: [
+      [1390, 790, 'HSMM-decoded yield-curve regimes with explicit state durations.'],
+      [1600, 1067, 'Dynamic Nelson-Siegel level, slope and curvature factors over time.'],
+      [1350, 825, 'Holdout RMSE by model.'],
+      [1600, 667, 'Forward test: predicted versus actual 10-year yield.']
+    ]
+  },
+  {
+    id: 'maishanyun', title: 'Mai Shan Yun', role: 'Contract Software Engineer',
+    org: 'WaiterDock', where: 'College Station, TX', date: 'Feb – Jun 2026',
+    tagline: 'Turned a hackathon prize into a four-month paid contract, shipped to the restaurant.',
+    highlights: [
+      'Won the Mai Shan Yun sponsor challenge at TAMUhack (40+ teams) and converted the 24-hour prototype into a four-month paid development contract.',
+      'Synchronized order state across admin, waiter, kitchen, and customer roles on a Node.js and Express backend with RBAC, Stripe payments, REST APIs, and WebSocket updates.',
+      'Built a workforce module covering employee auth, clock-in/out tracking, live task assignment, SMTP alerts, and automated payroll.'
+    ],
+    stack: ['React', 'Node.js', 'Express', 'WebSockets', 'Stripe', 'RBAC', 'SMTP'],
+    links: { devpost: 'https://devpost.com/software/waiterdock' },
+    related: 'waiterdock', imgDir: 'waiterdock',
+    images: [
+      [1390, 813, 'Landing page: pick the waiter, customer or management view.'],
+      [1390, 813, 'Waiter table dashboard.'],
+      [1390, 813, 'Business analytics.']
+    ],
+    imgPick: [0, 2, 4]
+  },
+  {
+    id: 'vest', title: 'Turtle Robotics', role: 'Software Development Engineer, VEST',
+    org: 'Texas A&M', where: 'College Station, TX', date: 'Jan – May 2026',
+    tagline: 'Telemetry for a wearable canine health-monitoring vest.',
+    coverLine: 'ESP32 → Supabase → React Native',
+    highlights: [
+      'Streamed 4 biometric channels at 12 samples/second for a wearable canine health vest via an ESP32-to-Supabase-to-React Native pipeline.',
+      'Designed the Supabase schema and REST endpoints serving live readings and historical trends to the React Native interface.'
+    ],
+    stack: ['ESP32', 'Supabase', 'REST', 'React Native'],
+    links: { github: 'https://github.com/EthanJG2814-Creator/VEST-Project' }
+  },
+  {
+    id: 'southwest', title: 'Southwest Airlines', role: 'Data Analyst, Baggage Revenue Challenge',
+    org: 'Aggie Data Science Club', where: 'College Station, TX', date: 'Oct – Dec 2025',
+    award: '1st place', coverLine: 'baggage revenue · 24 months out · MAPE < 12%',
+    tagline: 'A 24-month baggage-revenue forecast at under 12% MAPE, presented to Southwest Airlines stakeholders.',
+    highlights: [
+      'Won 1st place in the Aggie Data Science Club × Southwest Airlines challenge with a SARIMAX pipeline forecasting 24 months at under 12% MAPE.',
+      'Cleaned 10+ years of monthly data and ran backtesting, residual diagnostics, and confidence intervals on a model with exogenous regressors.',
+      'Presented revenue-risk scenarios to Southwest Airlines stakeholders through a Streamlit dashboard.'
+    ],
+    stack: ['Python', 'SARIMAX', 'statsmodels', 'pandas', 'Streamlit'],
+    links: { github: 'https://github.com/ajari17/SouthwestAirlinesBaggageRevenuePredictionTeam4UPDATED' }
+  }
+];
+
+const PROJECTS = [
+  {
+    id: 'eye-in-the-sky', title: 'Eye in the Sky', kind: 'hackathon', event: 'HackTX 2026', date: 'Oct 2026',
+    tagline: 'An autonomous aerial copilot for first responders. It finds people in a drone feed, beacons them, plans the crew\'s safe way in, and shows every decision with its evidence.',
+    summary: 'When someone is lost in the woods, stranded by a flood or running from police, the crew on the ground has a drone and no time to watch it. Overwatch does the watching: one DJI Mini 2, or its simulated twin, searches, tracks and calls out what it sees, and a human confirms before anyone moves.',
+    highlights: [
+      'Six launchable situations from one page: police pursuit, city chase, search and rescue, flood rescue, wildfire and firefighter routing.',
+      'Perception with YOLO person detection, multi-object tracking, clothing-colour matching and ArUco ground calibration, with measured, predicted and last-seen positions kept clearly separate.',
+      'A beacon on every person seen, an A* planner that routes the crew around deep water and fire, and human confirmation before any crew is dispatched.',
+      'A responder phone app with spoken callouts relative to the responder ("46 metres north-east, your 2 o\'clock"), acknowledgments and replay on reconnect.',
+      'Every detection, decision and callout logged with provenance in SQLite, and replayable.'
+    ],
+    stack: ['Python', 'FastAPI', 'TypeScript', 'YOLO', 'CUDA', 'SQLite', 'OpenAI', 'DJI SDK'],
+    links: { live: 'https://hacktx-liart.vercel.app', site: 'https://www.eyesinthesky.tech', github: 'https://github.com/SuryaThirukonda/hacktx', devpost: 'https://devpost.com/software/bub-45wxdf' },
+    video: 'Pgno-H_TtPg', repo: 'hacktx',
+    images: [
+      [1600, 1000, 'The live demo: pick a situation and replay a recorded run from the Overwatch simulator.'],
+      [1600, 1050, 'Flood refuge: launch, locate, review and beacon. The blue grid is camera coverage, never proof an area is clear.'],
+      [1600, 900, '3D decision view: the drone chases a target while the decision model streams its reasoning and confidence.'],
+      [1600, 900, 'Operator console: drone, responder phone and fixed local scene side by side, with subject tracking and the event log.'],
+      [1600, 1050, 'City chase on the isolated engine, with responder callouts on the right.'],
+      [1600, 1100, 'Search and rescue: a pending assistance candidate waits for a human to confirm before any crew moves.']
+    ]
+  },
+  {
+    id: 'poise', title: 'Poise', kind: 'app', event: 'AI interview coach', date: 'Oct 2026',
+    coverLine: 'mock interviews, out loud',
+    tagline: 'Voice-first mock interviews with live posture coaching, verbatim delivery analysis and think-aloud grading for coding and SQL rounds.',
+    highlights: [
+      'Behavioral rounds with a voice interviewer over WebRTC (ElevenLabs Agents), and technical rounds in Python and SQL where the interviewer watches your code live and asks what you are doing.',
+      'Verbatim transcripts from ElevenLabs Scribe, with fillers, stutters and hesitation pauses highlighted against audio playback.',
+      'Posture and eye contact measured in the browser with MediaPipe Pose and Face Landmarker against a calibrated baseline.',
+      'Written feedback from Claude on Amazon Bedrock, with a metrics-only report when Bedrock is unavailable.',
+      'A voice guide that drives the app itself: "start a SQL interview", "review Two Sum with me".'
+    ],
+    stack: ['Next.js', 'TypeScript', 'FastAPI', 'ElevenLabs', 'MediaPipe', 'Amazon Bedrock'],
+    links: { github: 'https://github.com/SuryaThirukonda/awshack' }, repo: 'awshack'
+  },
+  {
+    id: 'memheal', title: 'MemHeal', kind: 'research', event: 'Agent security', date: 'Oct 2026',
+    coverLine: 'where did this memory come from?',
+    tagline: 'Understanding, detecting and recovering from memory poisoning in agentic AI.',
+    summary: 'Agents with persistent memory can be poisoned by a page or document they read, and carry that influence into later tasks long after the source is gone. MemHeal treats poisoning as an evolving-state problem: record where every memory came from, measure whether poisoned memories actually change security-sensitive actions, and recover selectively instead of wiping memory.',
+    highlights: [
+      'An instrumented SQLite memory store recording provenance, derivation edges, retrievals and actions.',
+      'Two directly comparable memory designs: flat store-and-retrieve, and an evolving memory that consolidates and reflects while recording parent-to-child lineage.',
+      'Scenarios as data, each with matched clean and poisoned timelines, and an experiment runner that scores the security-sensitive tool argument exactly.',
+      'Database snapshots after every session, so clean, poisoned and recovered runs start from identical states.'
+    ],
+    stack: ['Python', 'SQLite', 'OpenAI API', 'sentence-transformers', 'pytest'],
+    links: { github: 'https://github.com/SuryaThirukonda/memheal' }, repo: 'memheal'
+  },
+  {
+    id: 'orbit-lab', title: 'Orbit Lab', kind: 'research', event: 'Rathinam Group, Texas A&M', date: 'Sep 2026 – Present',
+    tagline: 'An open-source 3D orbit visualizer and mission planner for trajectory-optimization research.',
+    highlights: [
+      'Any central body, satellites from classical orbital elements or a TLE, orbit paths, time scrubbing and a free camera.',
+      'A mission tab that flies a spacecraft between satellites, backed by a Python planner for Lambert rendezvous and multi-burn strategies.',
+      'React and Three.js on the front, FastAPI and Pydantic behind it, deployed together on Vercel as a static site plus a serverless Python function.',
+      'CI on every pull request and push: linting, type checks, a production build and 130+ Vitest and pytest tests.'
+    ],
+    stack: ['React', 'Three.js', 'FastAPI', 'Pydantic', 'Vercel', 'GitHub Actions'],
+    links: { live: 'https://openspacepath.vercel.app' }, related: 'rathinam',
+    images: [[1600, 1000, 'Orbit Lab: satellites from classical elements or a TLE, live orbital elements, and time scrubbing.']]
+  },
+  {
+    id: 'tempo', title: 'Tempo', kind: 'hackathon', event: 'HackRice 16', date: 'Sep 2026',
+    award: 'Winner · MLH Best Use of Presage',
+    tagline: 'Wii Sports for any phone: scan a QR code and your phone becomes a motion controller for boxing, bowling and golf in the browser.',
+    summary: 'Motion gaming shouldn\'t need a console or a headset. Tempo runs in a browser, turns the phone you already carry into the controller, and adapts each session to how you are actually moving.',
+    highlights: [
+      'Won MLH Best Use of Presage at HackRice 16 as a team of three.',
+      'Phones join over WebSockets through a Cloudflare quick tunnel, so motion sensors work on a secure origin with nothing to install.',
+      'Each sport runs a deterministic 120 Hz simulation that the PlayCanvas renderer can only read from, covered by 300+ Vitest tests.',
+      'My part: the Presage camera-vitals integration in the Node.js agent service, and SQLite persistence for movement history and bets, with fallbacks when the camera or SDK fails.',
+      'Fight Night: two LLM-driven boxers trade plans and trash talk while the room bets play chips at odds from a live logistic model.'
+    ],
+    stack: ['TypeScript', 'Node.js', 'WebSockets', 'PlayCanvas', 'Phaser', 'SQLite', 'OpenAI', 'Presage'],
+    links: { github: 'https://github.com/SuryaThirukonda/hackrice_winner', devpost: 'https://devpost.com/software/tempo-a7g32p' },
+    video: 'd4fRdqULdlI', repo: 'hackrice_winner',
+    images: [
+      [960, 989, 'Tempo: an adaptive wellness arcade with three sports, a phone for a controller, and an opponent called the House.'],
+      [960, 989, 'First-person boxing: real frame data, stamina, guard breaks and knockdowns, driven by keyboard, phone swings or a webcam head snap.'],
+      [960, 989, 'Fight Night: two LLM-driven boxers, their plans and trash talk streaming across the top, and the room betting play chips on the result.'],
+      [960, 989, 'Golf on the Neon Night course: wind, clubs, lies and hazards, with a three-stage swing meter and a ball-tracking camera.'],
+      [960, 989, 'Bowling: ten frames, a sweeping aim line, hook after the oil pattern, and a pin deck solved by contact physics at 120 Hz.'],
+      [960, 989, 'Connect a phone: one QR code per controller slot, served over a Cloudflare quick tunnel so the motion sensors can fire.'],
+      [1600, 910, 'The wellness dashboard: active time, movement, activity load and adaptation, with anything Tempo did not measure labelled as such.'],
+      [1600, 1261, 'How it fits together: the phone tunnel, MediaPipe head tracking, Presage vitals, the agent loop, and Phaser over PlayCanvas.']
+    ]
+  },
+  {
+    id: 'gaussian-hsmm', title: 'gaussian-hsmm', kind: 'research', event: 'Open source · PyPI', date: 'Jul 2026',
+    coverLine: 'pip install gaussian-hsmm',
+    tagline: 'A scikit-learn-style Gaussian hidden semi-Markov model with explicit state durations, for regime segmentation an HMM can\'t express.',
+    summary: 'An HMM\'s state durations are geometric, so it is exactly as likely to leave a regime after 100 days as after one. A hidden semi-Markov model describes how long each segment lasts directly.',
+    highlights: [
+      'Multivariate Gaussian emissions with diagonal or full covariance, and shifted-Poisson explicit state durations.',
+      'Log-space explicit-duration forward-backward, smoothed posteriors, explicit-duration Viterbi decoding and EM parameter updates.',
+      'HMM-based initialization through hmmlearn, multiple sequences through a lengths argument, and AIC/BIC model selection.',
+      'Typed, MIT-licensed, tested in CI and published on PyPI.'
+    ],
+    stack: ['Python', 'NumPy', 'SciPy', 'hmmlearn'],
+    links: { pypi: 'https://pypi.org/project/gaussian-hsmm/', github: 'https://github.com/SuryaThirukonda/gaussian-hsmm' },
+    repo: 'gaussian-hsmm', related: 'psu'
+  },
+  {
+    id: 'ratesignal', title: 'RateSignal', kind: 'app', event: 'Full-stack platform', date: 'Jun – Jul 2026',
+    tagline: 'Treasury-yield forecasting, end to end: 1,000+ forecasts across 11 maturities, 7 models and 3 horizons, served behind authenticated REST APIs.',
+    highlights: [
+      'Built and deployed a forecasting platform exposing 1,000+ forecast records across 11 maturities, 7 models, and 1-, 5- and 20-day horizons.',
+      'JWT auth with Argon2 hashing, role-based access, and Redis-backed per-route rate limits.',
+      'Prisma models with composite unique constraints for duplicate-safe ingestion; batched seeding cut a 50-minute load to about 5 seconds.',
+      'Docker Compose for the full stack, with OpenAPI docs and GitHub Actions.'
+    ],
+    stack: ['Node.js', 'Express', 'TypeScript', 'PostgreSQL', 'Prisma', 'Redis', 'Docker'],
+    links: { github: 'https://github.com/SuryaThirukonda/Ratesignal' }, repo: 'Ratesignal',
+    images: [
+      [1600, 873, 'Historical Treasury yield curves across 11 maturities.'],
+      [1600, 878, 'Model forecasts compared against realized yields.'],
+      [1600, 808, 'Forecast archive and model comparison.']
+    ]
+  },
+  {
+    id: 'stook', title: 'Stook', kind: 'app', event: 'Startup · CTO', date: '2026',
+    tagline: 'Grain-marketing decision support: one clear action, sell, hold or watch, with the reason behind it. The deterministic model owns the numbers; AI only explains them.',
+    highlights: [
+      'Recommendations built from cash bids, basis, futures, seasonality and storage costs, using public USDA, NOAA and FRED data.',
+      'Interviews with wheat farmers and a Texas A&M agricultural economist invalidated our original thesis, so we rebuilt the backtest around harvest parity.',
+      'Pivoted from selling to farmers directly to white-labeling for grain elevators and cooperatives.',
+      'Selected for and completed Stage 1 of the AI Venture Velocity Challenge 2026.'
+    ],
+    stack: ['Next.js', 'TypeScript', 'Python'],
+    links: { live: 'https://cropsignal.vercel.app' },
+    images: [[1600, 1000, 'Stook: pick a crop and a state, get one clear action (sell, hold or watch) and the reason behind it.']]
+  },
+  {
+    id: 'physio', title: 'Physio', kind: 'hackathon', event: 'HackHCC 2026', date: 'May 2026',
+    award: '2nd overall · 40+ teams',
+    tagline: 'A voice-first AI rehab agent that turns at-home physical therapy into structured motion data and spoken feedback.',
+    highlights: [
+      'Placed 2nd overall at HackHCC 2026 out of 40+ teams.',
+      'My part: the MediaPipe pose-estimation and motion-analysis pipeline, scoring reps, range of motion and compensation over a 20 Hz WebSocket stream.',
+      'Rolling-median and EMA smoothing, hysteresis thresholds and exercise-specific state machines for rep counting and hold time.',
+      'Spoken coaching through ElevenLabs, and Gemini session summaries written like therapist notes.',
+      'Raspberry Pi distance telemetry alongside browser webcam tracking.'
+    ],
+    stack: ['MediaPipe', 'FastAPI', 'WebSockets', 'Raspberry Pi', 'ElevenLabs', 'Gemini', 'SQLite'],
+    links: { github: 'https://github.com/SuryaThirukonda/hackHCC', devpost: 'https://devpost.com/software/physio-csim7w' },
+    video: 'FLljA9dZEEk', repo: 'hackHCC',
+    images: [
+      [1600, 796, 'Live tracking: reps, range of motion and form, scored as you move.'],
+      [1600, 882, 'Home page.'],
+      [1600, 887, 'An AI coach that goes in depth on each session and gives feedback.'],
+      [1600, 881, 'Chest-press analysis after an exercise.'],
+      [1600, 880, 'Elbow-extension stability analysis, with simulated motor-tremor patterns for accessibility research.']
+    ]
+  },
+  {
+    id: 'eyeq', title: 'EyeQ', kind: 'hackathon', event: 'Build4Good 2026', date: 'Mar 2026',
+    tagline: 'A free, browser-based eye-screening flow, with separate experiences for adults and children.',
+    highlights: [
+      'An 11-step screening flow in the browser: calibration, photo scan, eye tracking, cover test, Amsler grid, colour vision, distance and near acuity, contrast sensitivity and convergence.',
+      'Camera capture and MediaPipe landmarks run client-side, with per-eye capture-quality checks before any result is shown.',
+      'A results dashboard with recommendations, and a children\'s mode for younger patients.'
+    ],
+    stack: ['JavaScript', 'Vite', 'MediaPipe', 'FastAPI', 'Python', 'Figma'],
+    links: { devpost: 'https://devpost.com/software/eyeq-ai-cngzhq', figma: 'https://person-test-57787596.figma.site' },
+    video: 'x_JWnjZfH4E',
+    images: [
+      [1211, 1000, 'Home page.'],
+      [1600, 880, 'The children\'s home page.'],
+      [1600, 882, 'The model correctly flagging a patient with uveitis.'],
+      [661, 730, 'Results and recommendations, part 1.'],
+      [658, 685, 'Results and recommendations, part 2.'],
+      [1600, 465, 'The screening workflow.']
+    ]
+  },
+  {
+    id: 'lineage', title: 'Lineage', kind: 'hackathon', event: 'TIDALHACK 2026', date: 'Feb 2026',
+    tagline: 'Pipeline-integrity intelligence: aligns inline-inspection runs across years, matches anomalies, and estimates corrosion growth.',
+    summary: 'Midstream operators re-inspect pipelines every few years, and lining those runs up by hand is slow and error-prone. Lineage automates the alignment so engineers can see how each anomaly evolves and where to dig first.',
+    highlights: [
+      'Aligns inspection runs on reference points such as girth welds and valves, correcting positional drift between years.',
+      'Matches anomalies across runs with XGBoost similarity scoring and confidence estimates, then computes corrosion growth rates.',
+      'Ranks maintenance priorities in an interactive Next.js dashboard backed by FastAPI and MongoDB Atlas.',
+      'Gemini-generated visual summaries of processed inspection data.'
+    ],
+    stack: ['Python', 'FastAPI', 'MongoDB Atlas', 'Next.js', 'scikit-learn', 'XGBoost', 'Gemini'],
+    links: { github: 'https://github.com/SuryaThirukonda/tidalhack26/tree/master', devpost: 'https://devpost.com/software/lineage-tfiopy' },
+    video: 'IKSVQHYVH10', repo: 'tidalhack26',
+    images: [
+      [1433, 813, 'Home page: ILI growth intelligence across three inspection runs.'],
+      [1600, 907, 'Pipeline visualization.'],
+      [1600, 909, 'Pipeline segments with quick access to each data chunk.'],
+      [1600, 908, 'The complete aligned dataset.'],
+      [1600, 1200, 'The initial workflow and tech stack.']
+    ]
+  },
+  {
+    id: 'waiterdock', title: 'WaiterDock', kind: 'hackathon', event: 'TAMUhack 2026', date: 'Jan 2026',
+    award: 'Winner · Mai Shan Yun Challenge',
+    tagline: 'Real-time restaurant operations for Mai Shan Yun, built in about 24 hours on the restaurant\'s real menu, then shipped to the restaurant.',
+    highlights: [
+      'Won the Mai Shan Yun sponsor challenge at TAMUhack 2026 over 40+ teams, at an event of 500+ participants.',
+      'Seating, ordering and order changes, customer ordering with waiter alerts, kitchen ticket queues, inventory and analytics, all synced in real time.',
+      'Converted the win into a four-month paid contract to run it in the restaurant.'
+    ],
+    stack: ['React', 'Vite', 'Tailwind', 'Node.js', 'Express', 'WebSockets', 'Firebase'],
+    links: { devpost: 'https://devpost.com/software/waiterdock', figma: 'https://clap-ignite-29891828.figma.site' },
+    video: 'VJ7AGQ4WlFQ', related: 'maishanyun',
+    images: [
+      [1390, 813, 'Landing page: pick the waiter, customer or management view.'],
+      [1390, 813, 'The customer menu.'],
+      [1390, 813, 'Waiter table dashboard.'],
+      [1390, 813, 'Ingredient inventory.'],
+      [1390, 813, 'Business analytics.']
+    ]
+  },
+  {
+    id: 'aggie-course-insights', title: 'Aggie Course Insights', kind: 'hackathon', event: 'HowdyHack 2025', date: 'Oct 2025',
+    tagline: 'Upload your transcript and see how hard next semester will be: grade distributions and professor comparisons for Texas A&M courses.',
+    highlights: [
+      'Upload a transcript and pick courses to get a difficulty read from historical grade distributions.',
+      'Compare professors side by side before registration.'
+    ],
+    stack: ['Next.js', 'JavaScript', 'Tailwind'],
+    links: { github: 'https://github.com/festiveelephantseal/Aggie-Course-Insights', devpost: 'https://devpost.com/software/aggie-course-insights' },
+    video: '98BmMhQtgxE',
+    images: [
+      [1600, 935, 'Predict course difficulty from an uploaded transcript.'],
+      [1600, 935, 'Analysis of the chosen courses, with an overall evaluation.'],
+      [1600, 935, 'Compare professors to make an informed choice at registration.']
+    ]
+  }
+];
+
+const AWARDS = [
+  { date: 'Sep 2026', title: 'Winner, MLH Best Use of Presage', sub: 'HackRice 16 · Tempo', id: 'tempo' },
+  { date: 'May 2026', title: '2nd Overall', sub: 'HackHCC 2026, 40+ teams · Physio', id: 'physio' },
+  { date: 'Spring 2026', title: '2nd Overall', sub: 'TAMU Datathon · cleared nearly all CTF-style data challenges' },
+  { date: 'Jan 2026', title: 'Winner, Mai Shan Yun Challenge', sub: 'TAMUhack 2026, 40+ teams · WaiterDock', id: 'waiterdock' },
+  { date: 'Dec 2025', title: '1st Place', sub: 'Aggie Data Science Club × Southwest Airlines', id: 'southwest' }
+];
+
+const KINDS = { hackathon: 'Hackathon', research: 'Research', app: 'App' };
+const LINKS = {
+  live: ['Live demo', 'i-globe'],
+  site: ['Website', 'i-globe'],
+  github: ['GitHub', 'i-github'],
+  devpost: ['Devpost', 'i-hex'],
+  pypi: ['PyPI', 'i-box'],
+  figma: ['Prototype', 'i-screen']
+};
+
+/* ---------- helpers ---------- */
+const $ = (s, el = document) => el.querySelector(s);
+const $$ = (s, el = document) => Array.from(el.querySelectorAll(s));
+const root = document.documentElement;
+const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const icon = (id, cls = '') => `<svg class="i ${cls}" aria-hidden="true"><use href="#${id}"/></svg>`;
+const ext = 'target="_blank" rel="noopener"';
+const reduced = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+const ITEMS = new Map();
+WORK.forEach((w) => ITEMS.set(w.id, { ...w, group: 'work' }));
+PROJECTS.forEach((p) => ITEMS.set(p.id, { ...p, group: 'project' }));
+
+const imgDir = (it) => it.imgDir || it.id;
+const imgSrc = (it, i) => `assets/projects/${imgDir(it)}/${String(i + 1).padStart(2, '0')}.webp`;
+/* Work entries may borrow a subset of a project's screenshots (imgPick holds file indexes). */
+const slidesOf = (it) => {
+  const imgs = (it.images || []).map((m, i) => {
+    const file = it.imgPick ? it.imgPick[i] : i;
+    return { type: 'img', src: imgSrc(it, file), w: m[0], h: m[1], cap: m[2] };
+  });
+  const vid = it.video ? [{ type: 'video', id: it.video, cap: 'Demo video' }] : [];
+  return imgs.length ? imgs.concat(vid) : vid;
+};
+const genCover = (it) => `<div class="gen"><span class="gen-t">${esc(it.title)}</span><span class="gen-l">${esc(it.coverLine || it.event || '')}</span></div>`;
+const coverHTML = (it) => it.images && it.images.length
+  ? `<img src="assets/projects/${imgDir(it)}/cover.webp" alt="" width="800" height="500" loading="lazy" decoding="async">`
+  : genCover(it);
+
+function toast(msg) {
+  const t = $('#toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toast.timer);
+  toast.timer = setTimeout(() => t.classList.remove('show'), 2200);
+}
+async function copyEmail() {
+  try { await navigator.clipboard.writeText(EMAIL); toast('Email copied to clipboard'); }
+  catch (e) { location.href = 'mailto:' + EMAIL; }
+}
+$$('[data-copy-email]').forEach((b) => b.addEventListener('click', copyEmail));
+
+/* ---------- theme ---------- */
+const themeBtn = $('#themeBtn');
+const themeMeta = document.querySelector('meta[name="theme-color"]');
+function setTheme(mode, save) {
+  if (mode === 'dark') root.dataset.theme = 'dark'; else delete root.dataset.theme;
+  themeBtn.setAttribute('aria-label', mode === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+  themeMeta.setAttribute('content', mode === 'dark' ? '#000000' : '#fbfbfd');
+  if (save) { try { localStorage.setItem('surya-theme', mode); } catch (e) {} }
   document.dispatchEvent(new CustomEvent('theme-change'));
+}
+const isDark = () => root.dataset.theme === 'dark';
+setTheme(isDark() ? 'dark' : 'light', false);
+const toggleTheme = () => setTheme(isDark() ? 'light' : 'dark', true);
+themeBtn.addEventListener('click', toggleTheme);
+
+/* ---------- work ---------- */
+$('#workList').innerHTML = WORK.map((w) => `
+  <li><a class="wrow" href="#/${w.id}">
+    <span>
+      <span class="w-role">${esc(w.role)}</span>
+      <span class="w-org">${esc(w.title)}${w.org ? ' · ' + esc(w.org) : ''}</span>
+      <span class="w-sum">${esc(w.tagline)}</span>
+    </span>
+    <span class="w-side">${esc(w.date)}${w.award ? `<br><span class="w-award">${icon('i-trophy', 'sm')}${esc(w.award)}</span>` : ''}</span>
+    ${icon('i-right', 'chev')}
+  </a></li>`).join('');
+
+/* ---------- projects ---------- */
+const grid = $('#projectGrid');
+grid.innerHTML = PROJECTS.map((p) => {
+  const lk = Object.entries(p.links || {}).filter(([k]) => k !== 'site').slice(0, 3)
+    .map(([k, u]) => `<a href="${esc(u)}" ${ext} aria-label="${esc(p.title)} on ${LINKS[k][0]}" title="${LINKS[k][0]}">${icon(LINKS[k][1])}</a>`).join('');
+  return `
+  <article class="card reveal" data-id="${p.id}" data-kind="${p.kind}" style="view-transition-name: card-${p.id}">
+    <div class="media">
+      ${coverHTML(p)}
+      ${p.award ? `<span class="badge">${icon('i-trophy', 'sm')}${esc(p.award)}</span>` : ''}
+      ${p.video ? `<span class="vid-flag">${icon('i-play')}Demo</span>` : ''}
+    </div>
+    <div class="card-body">
+      <p class="card-meta"><span class="kind">${KINDS[p.kind]}</span><span>·</span><span>${esc(p.event)}</span><span>·</span><span>${esc(p.date)}</span></p>
+      <h3><a class="card-link" href="#/${p.id}">${esc(p.title)}</a></h3>
+      <p class="card-tag">${esc(p.tagline)}</p>
+      <ul class="chips">${p.stack.slice(0, 4).map((s) => `<li>${esc(s)}</li>`).join('')}</ul>
+      <div class="card-foot">
+        <span class="upd" ${p.repo ? `data-repo="${esc(p.repo)}"` : ''}></span>
+        <span class="card-links">${lk}</span>
+      </div>
+    </div>
+  </article>`;
+}).join('');
+
+const filterState = { kind: 'all', q: '' };
+const counts = PROJECTS.reduce((m, p) => (m[p.kind] = (m[p.kind] || 0) + 1, m), {});
+const FILTERS = [['all', 'All', PROJECTS.length], ['hackathon', 'Hackathons', counts.hackathon], ['research', 'Research', counts.research], ['app', 'Apps', counts.app]];
+const filtersEl = $('#filters');
+filtersEl.innerHTML = FILTERS.map(([k, label, n]) => `<button type="button" data-kind="${k}" aria-pressed="${k === 'all'}">${label}<span>${n}</span></button>`).join('');
+
+function applyFilter() {
+  const q = filterState.q.trim().toLowerCase();
+  let shown = 0;
+  $$('.card', grid).forEach((card) => {
+    const p = ITEMS.get(card.dataset.id);
+    const hay = [p.title, p.event, p.tagline, p.date, KINDS[p.kind], ...p.stack].join(' ').toLowerCase();
+    const ok = (filterState.kind === 'all' || p.kind === filterState.kind) && (!q || q.split(/\s+/).every((t) => hay.includes(t)));
+    card.hidden = !ok;
+    if (ok) { shown++; card.classList.add('in'); }
+  });
+  $('#projEmpty').hidden = shown > 0;
+}
+const runFilter = () => {
+  if (document.startViewTransition && !reduced()) document.startViewTransition(applyFilter);
+  else applyFilter();
 };
-let mode = localStorage.getItem(KEY) || '';
-apply(mode);
-btn.addEventListener('click', () => {
-  mode = mode === '' ? 'light' : mode === 'light' ? 'dark' : '';
-  if (mode) localStorage.setItem(KEY, mode); else localStorage.removeItem(KEY);
-  apply(mode);
+filtersEl.addEventListener('click', (e) => {
+  const b = e.target.closest('button');
+  if (!b) return;
+  filterState.kind = b.dataset.kind;
+  $$('button', filtersEl).forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+  runFilter();
 });
-window.suryaIsDark = () => {
-  const t = document.documentElement.dataset.theme;
-  if (t === 'dark') return true;
-  if (t === 'light') return false;
-  return window.matchMedia('(prefers-color-scheme: dark)').matches;
+$('#projSearch').addEventListener('input', (e) => { filterState.q = e.target.value; applyFilter(); });
+$('#clearFilter').addEventListener('click', () => {
+  filterState.kind = 'all'; filterState.q = ''; $('#projSearch').value = '';
+  $$('button', filtersEl).forEach((x) => x.setAttribute('aria-pressed', String(x.dataset.kind === 'all')));
+  runFilter();
+});
+
+/* ---------- awards ---------- */
+$('#awardList').innerHTML = AWARDS.map((a) => {
+  const inner = `<time>${esc(a.date)}</time>
+    <span><span class="a-title">${icon('i-trophy', 'sm')}${esc(a.title)}</span><span class="a-sub">${esc(a.sub)}</span></span>
+    ${a.id ? `<span class="a-go">Details ${icon('i-arrow', 'sm')}</span>` : '<span></span>'}`;
+  return `<li>${a.id ? `<a class="arow" href="#/${a.id}">${inner}</a>` : `<div class="arow">${inner}</div>`}</li>`;
+}).join('');
+
+/* ---------- detail sheet ---------- */
+const detail = $('#detail');
+const body = $('#detailBody');
+let cameFromPage = false;
+let lastFocus = null;
+const gal = { slides: [], i: 0 };
+
+function linkButtons(it) {
+  const out = [];
+  Object.entries(it.links || {}).forEach(([k, u], n) => {
+    const cls = n === 0 ? 'btn btn-primary btn-sm' : 'btn btn-ghost btn-sm';
+    out.push(`<a class="${cls}" href="${esc(u)}" ${ext}>${icon(LINKS[k][1], 'sm')}${LINKS[k][0]}${icon('i-ext', 'sm')}</a>`);
+  });
+  if (it.video) out.push(`<button class="btn btn-ghost btn-sm" type="button" data-watch>${icon('i-play', 'sm')}Watch demo</button>`);
+  return out.join('');
+}
+
+function renderDetail(it) {
+  const list = it.group === 'work' ? WORK : PROJECTS;
+  const idx = list.findIndex((x) => x.id === it.id);
+  const prev = list[(idx - 1 + list.length) % list.length];
+  const next = list[(idx + 1) % list.length];
+  const rel = it.related && ITEMS.get(it.related);
+  const eyebrow = it.group === 'work'
+    ? `<span>${esc(it.date)}</span><span>·</span><span>${esc(it.where)}</span>`
+    : `<span class="kind">${KINDS[it.kind]}</span><span>·</span><span>${esc(it.event)}</span><span>·</span><span>${esc(it.date)}</span>`;
+  gal.slides = slidesOf(it);
+  gal.i = 0;
+
+  const media = gal.slides.length ? `
+    <section class="gallery" aria-label="Screenshots">
+      <div class="viewer">
+        <div class="stage" id="gStage"></div>
+        ${gal.slides.length > 1 ? `
+          <button class="nav-btn prev" type="button" data-step="-1" aria-label="Previous screenshot">${icon('i-left')}</button>
+          <button class="nav-btn next" type="button" data-step="1" aria-label="Next screenshot">${icon('i-right')}</button>
+          <span class="count" id="gCount"></span>` : ''}
+      </div>
+      <p class="cap" id="gCap"></p>
+      ${gal.slides.length > 1 ? `<div class="thumbs" id="gThumbs">${gal.slides.map((s, n) => `
+        <button class="thumb" type="button" data-go="${n}" aria-label="${s.type === 'video' ? 'Demo video' : 'Screenshot ' + (n + 1)}">
+          <img src="${s.type === 'video' ? `https://i.ytimg.com/vi/${s.id}/mqdefault.jpg` : s.src}" alt="" loading="lazy">
+          ${s.type === 'video' ? icon('i-play') : ''}
+        </button>`).join('')}</div>` : ''}
+    </section>` : `<div class="banner">${genCover(it)}</div>`;
+
+  const linkList = Object.entries(it.links || {}).map(([k, u]) => `<a href="${esc(u)}" ${ext}>${icon(LINKS[k][1], 'sm')}${LINKS[k][0]}</a>`).join('');
+
+  body.innerHTML = `
+    <header class="d-head">
+      <p class="d-eyebrow">${eyebrow}</p>
+      <h2 id="dTitle">${esc(it.title)}</h2>
+      ${it.role ? `<p class="d-role">${esc(it.role)}${it.org ? ' · ' + esc(it.org) : ''}</p>` : ''}
+      <p class="d-tag">${esc(it.tagline)}</p>
+      ${(it.award || it.repo) ? `<div class="d-badges">
+        ${it.award ? `<span class="badge">${icon('i-trophy', 'sm')}${esc(it.award)}</span>` : ''}
+        ${it.repo ? `<span class="upd" data-repo="${esc(it.repo)}"></span>` : ''}
+      </div>` : ''}
+      <div class="d-links">${linkButtons(it)}</div>
+    </header>
+    ${media}
+    <div class="d-body">
+      <div>
+        ${it.summary ? `<p class="d-summary">${esc(it.summary)}</p>` : ''}
+        <h3>${it.group === 'work' ? 'What I did' : 'Highlights'}</h3>
+        <ul class="d-list">${it.highlights.map((h) => `<li>${esc(h)}</li>`).join('')}</ul>
+      </div>
+      <aside class="d-side">
+        <dl>
+          <div><dt>When</dt><dd>${esc(it.date)}</dd></div>
+          <div><dt>Stack</dt><dd><ul class="chips">${it.stack.map((s) => `<li>${esc(s)}</li>`).join('')}</ul></dd></div>
+          <div><dt>Links</dt><dd class="lnk">${linkList || `<span>${esc(it.note || 'No public links yet.')}</span>`}</dd></div>
+          ${rel ? `<div><dt>Related</dt><dd class="lnk"><a href="#/${rel.id}" data-swap>${icon('i-arrow', 'sm')}${esc(rel.group === 'work' ? rel.role + ', ' + rel.title : rel.title)}</a></dd></div>` : ''}
+        </dl>
+      </aside>
+    </div>
+    <footer class="d-nav">
+      <a class="prev" href="#/${prev.id}" data-swap><small>Previous</small>${esc(prev.title)}</a>
+      <a class="next" href="#/${next.id}" data-swap><small>Next</small>${esc(next.title)}</a>
+    </footer>`;
+
+  if (gal.slides.length) showSlide(0);
+  paintRepoLabels(body);
+}
+
+function showSlide(n, autoplay) {
+  const stage = $('#gStage');
+  if (!stage) return;
+  const len = gal.slides.length;
+  gal.i = (n + len) % len;
+  const s = gal.slides[gal.i];
+  if (s.type === 'img') {
+    stage.innerHTML = `<a href="${s.src}" ${ext} aria-label="Open full-size screenshot"><img src="${s.src}" alt="${esc(s.cap)}" width="${s.w}" height="${s.h}"></a>`;
+    const img = $('img', stage);
+    if (img.complete) img.classList.add('loaded'); else img.addEventListener('load', () => img.classList.add('loaded'));
+  } else if (autoplay) {
+    stage.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${s.id}?autoplay=1&rel=0&modestbranding=1" title="Demo video" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>`;
+  } else {
+    stage.innerHTML = `<button class="poster" type="button" data-play><img src="https://i.ytimg.com/vi/${s.id}/hqdefault.jpg" alt=""><span class="play">${icon('i-play')}Play demo video</span></button>`;
+  }
+  const cap = $('#gCap'); if (cap) cap.textContent = s.cap;
+  const count = $('#gCount'); if (count) count.textContent = `${gal.i + 1} / ${len}`;
+  $$('#gThumbs .thumb').forEach((t, k) => t.setAttribute('aria-current', String(k === gal.i)));
+  /* Keep the active thumbnail in view by scrolling the strip only, never the sheet. */
+  const strip = $('#gThumbs');
+  const active = $(`#gThumbs .thumb[data-go="${gal.i}"]`);
+  if (strip && active) {
+    const left = active.offsetLeft - strip.offsetLeft - (strip.clientWidth - active.offsetWidth) / 2;
+    strip.scrollTo({ left, behavior: reduced() ? 'auto' : 'smooth' });
+  }
+  /* Warm the next screenshot so stepping through feels instant. */
+  const nx = gal.slides[(gal.i + 1) % len];
+  if (nx && nx.type === 'img') { const pre = new Image(); pre.src = nx.src; }
+}
+
+body.addEventListener('click', (e) => {
+  const step = e.target.closest('[data-step]');
+  if (step) return showSlide(gal.i + Number(step.dataset.step));
+  const go = e.target.closest('[data-go]');
+  if (go) return showSlide(Number(go.dataset.go));
+  if (e.target.closest('[data-play]')) return showSlide(gal.i, true);
+  if (e.target.closest('[data-watch]')) {
+    const v = gal.slides.findIndex((s) => s.type === 'video');
+    $('.gallery', body)?.scrollIntoView({ behavior: reduced() ? 'auto' : 'smooth', block: 'start' });
+    return showSlide(v, true);
+  }
+  /* Moving between items replaces the history entry, so one Back (or close) always returns to the page. */
+  const swap = e.target.closest('a[data-swap]');
+  if (swap) { e.preventDefault(); location.replace(swap.getAttribute('href')); }
+});
+
+/* Swipe between screenshots on touch screens. */
+let swipeX = null;
+body.addEventListener('pointerdown', (e) => { if (e.target.closest('#gStage') && e.pointerType !== 'mouse') swipeX = e.clientX; });
+body.addEventListener('pointerup', (e) => {
+  if (swipeX === null) return;
+  const dx = e.clientX - swipeX; swipeX = null;
+  if (Math.abs(dx) > 45) showSlide(gal.i + (dx < 0 ? 1 : -1));
+});
+
+detail.addEventListener('keydown', (e) => {
+  if (!gal.slides.length || /input|textarea/i.test(e.target.tagName)) return;
+  if (e.key === 'ArrowRight') { e.preventDefault(); showSlide(gal.i + 1); }
+  if (e.key === 'ArrowLeft') { e.preventDefault(); showSlide(gal.i - 1); }
+});
+detail.addEventListener('click', (e) => {
+  if (e.target === detail || e.target.closest('[data-close]')) detail.close();
+});
+detail.addEventListener('close', () => {
+  root.classList.remove('lock');
+  body.innerHTML = '';
+  document.title = BASE_TITLE;
+  if (/^#\//.test(location.hash)) {
+    if (cameFromPage) history.back();
+    else history.replaceState(null, '', location.pathname + location.search);
+  }
+  cameFromPage = false;
+  if (lastFocus && document.contains(lastFocus)) lastFocus.focus({ preventScroll: true });
+});
+
+const BASE_TITLE = document.title;
+function openDetail(id) {
+  const it = ITEMS.get(id);
+  if (!it) return;
+  if (!detail.open) lastFocus = document.activeElement;
+  renderDetail(it);
+  if (!detail.open) { detail.showModal(); root.classList.add('lock'); }
+  $('.sheet-scroll', detail).scrollTop = 0;
+  $('.sheet-close', detail).focus({ preventScroll: true });
+  document.title = `${it.title} · Surya Thirukonda`;
+}
+function route(e) {
+  const m = location.hash.match(/^#\/([\w-]+)$/);
+  if (m && ITEMS.has(m[1])) {
+    if (e && !/#\//.test(e.oldURL || '')) cameFromPage = true;
+    openDetail(m[1]);
+  } else if (detail.open) {
+    cameFromPage = false;
+    detail.close();
+  }
+}
+window.addEventListener('hashchange', route);
+
+/* ---------- live GitHub activity ---------- */
+const GH_USER = 'SuryaThirukonda';
+/* Repos that never appear in "latest push" or the activity feed. */
+const GH_HIDE = new Set(['autoapply', 'autobot']);
+const GH_TTL = 10 * 60 * 1000;
+const LANG = { Python: '#3572A5', TypeScript: '#3178c6', JavaScript: '#f1e05a', HTML: '#e34c26', CSS: '#563d7c', 'Jupyter Notebook': '#DA5B0B', 'C++': '#f34b7d', Java: '#b07219' };
+const REPO_ITEM = {};
+PROJECTS.forEach((p) => { if (p.repo) REPO_ITEM[p.repo] = p; });
+const REPO_NAME = { 'neetcode-submissions-x7c8x8wq': 'NeetCode practice', portfolio: 'This portfolio', 'suryathirukonda.github.io': 'This portfolio' };
+const repoTitle = (name) => (REPO_ITEM[name] && REPO_ITEM[name].title) || REPO_NAME[name] || name;
+
+/* Last-known state, baked in so the page still has something true to say if
+   GitHub is unreachable or the visitor's IP is rate-limited (60 requests/hour). */
+const SNAPSHOT = {
+  t: Date.parse('2026-10-26T05:30:00Z'),
+  count: 14,
+  repos: [
+    { name: 'hacktx', url: 'https://github.com/SuryaThirukonda/hacktx', pushed: '2026-10-25T16:09:44Z', lang: 'Python' },
+    { name: 'neetcode-submissions-x7c8x8wq', url: 'https://github.com/SuryaThirukonda/neetcode-submissions-x7c8x8wq', pushed: '2026-10-23T00:48:41Z', lang: 'Python' },
+    { name: 'memheal', url: 'https://github.com/SuryaThirukonda/memheal', pushed: '2026-10-19T15:44:24Z', lang: 'Python' },
+    { name: 'awshack', url: 'https://github.com/SuryaThirukonda/awshack', pushed: '2026-10-16T21:23:52Z', lang: 'TypeScript' },
+    { name: 'gaussian-hsmm', url: 'https://github.com/SuryaThirukonda/gaussian-hsmm', pushed: '2026-10-01T16:39:23Z', lang: 'Python' },
+    { name: 'hackrice_winner', url: 'https://github.com/SuryaThirukonda/hackrice_winner', pushed: '2026-09-13T10:44:20Z', lang: 'TypeScript' }
+  ],
+  commits: {
+    hacktx: { sha: 'b2f1b68f35a8b834c5f8ffefba24d5a01a0ba187', msg: 'Rescue sweeps tag everyone: a beacon on every person seen, the crew\'s A* route to each assessed and drawn at once, the drone keeps sweeping; SR6 rescue sweep on the forest; confirm/reject per beacon', date: '2026-10-25T15:19:51Z', url: 'https://github.com/SuryaThirukonda/hacktx/commit/b2f1b68f35a8b834c5f8ffefba24d5a01a0ba187' },
+    'neetcode-submissions-x7c8x8wq': { sha: '055954aa85d710f37ea0887e9e3128db1647c0cb', msg: 'Add: longest-common-prefix - submission-5', date: '2026-10-23T00:48:41Z', url: 'https://github.com/SuryaThirukonda/neetcode-submissions-x7c8x8wq/commit/055954aa85d710f37ea0887e9e3128db1647c0cb' },
+    memheal: { sha: 'e61ef6610a9a620101b09576b2139814fa39e12e', msg: 'meet 2', date: '2026-10-19T15:44:21Z', url: 'https://github.com/SuryaThirukonda/memheal/commit/e61ef6610a9a620101b09576b2139814fa39e12e' }
+  }
 };
-})();
-</script>
-<script>
-/* 5x7 glyphs for S U R Y A, extruded and rotated as a character-rendered 3D solid. */
+
+async function gh(path, force, pick) {
+  const key = 'gh:' + path;
+  let cached = null;
+  try { cached = JSON.parse(localStorage.getItem(key)); } catch (e) {}
+  if (cached && !force && Date.now() - cached.t < GH_TTL) return { d: cached.d, t: cached.t, from: 'cache' };
+  try {
+    const r = await fetch('https://api.github.com' + path, { headers: { Accept: 'application/vnd.github+json' } });
+    if (!r.ok) throw new Error(r.status === 403 || r.status === 429 ? 'rate-limited' : 'HTTP ' + r.status);
+    const d = pick(await r.json());
+    try { localStorage.setItem(key, JSON.stringify({ t: Date.now(), d })); } catch (e) {}
+    return { d, t: Date.now(), from: 'live' };
+  } catch (err) {
+    if (cached) return { d: cached.d, t: cached.t, from: 'stale', err };
+    throw err;
+  }
+}
+
+const safeUrl = (u) => (typeof u === 'string' && u.startsWith('https://github.com/') ? u : 'https://github.com/' + GH_USER);
+const state = { repos: [], commits: {}, t: 0, source: 'loading' };
+
+async function loadActivity(force) {
+  const refreshBtn = $('#ghRefresh');
+  refreshBtn.disabled = true;
+  $('svg', refreshBtn).classList.add('spin');
+  try {
+    const res = await gh(`/users/${GH_USER}/repos?sort=pushed&per_page=100`, force, (list) => list
+      .filter((r) => !r.fork && !r.private && !GH_HIDE.has(r.name))
+      .map((r) => ({ name: r.name, url: r.html_url, pushed: r.pushed_at, lang: r.language, stars: r.stargazers_count })));
+    const repos = res.d.slice().sort((a, b) => String(b.pushed).localeCompare(String(a.pushed)));
+    const commits = {};
+    const got = await Promise.all(repos.slice(0, 3).map((r) =>
+      gh(`/repos/${GH_USER}/${r.name}/commits?per_page=1`, force, (cs) => cs.slice(0, 1).map((c) => ({
+        sha: c.sha, msg: String(c.commit.message || '').split('\n')[0],
+        date: (c.commit.author && c.commit.author.date) || (c.commit.committer && c.commit.committer.date), url: c.html_url
+      }))).then((x) => [r.name, x.d[0], x.from]).catch(() => [r.name, null, 'none'])));
+    got.forEach(([name, c]) => { if (c) commits[name] = c; });
+    Object.assign(state, { repos, commits, t: res.t, source: res.from, count: repos.length, err: res.err });
+  } catch (err) {
+    Object.assign(state, { repos: SNAPSHOT.repos, commits: SNAPSHOT.commits, t: SNAPSHOT.t, source: 'snapshot', count: SNAPSHOT.count, err });
+  }
+  refreshBtn.disabled = false;
+  $('svg', refreshBtn).classList.remove('spin');
+  paintActivity();
+  if (force) toast(state.source === 'live' ? 'Fetched the latest from GitHub' : 'GitHub is rate-limiting this network; showing saved data');
+}
+
+const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+function ago(iso) {
+  const ms = Date.now() - new Date(iso).getTime();
+  if (!isFinite(ms)) return '';
+  const m = ms / 60000, h = m / 60, d = h / 24;
+  if (m < 1) return 'just now';
+  if (m < 60) return Math.round(m) + 'm ago';
+  if (h < 24) return Math.round(h) + 'h ago';
+  if (d < 7) return Math.round(d) + 'd ago';
+  if (d < 35) return Math.round(d / 7) + 'w ago';
+  const dt = new Date(iso);
+  return MONTHS[dt.getMonth()] + ' ' + dt.getDate() + (dt.getFullYear() !== new Date().getFullYear() ? ', ' + dt.getFullYear() : '');
+}
+const stamp = (iso) => new Date(iso).toLocaleString(undefined, { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' });
+const langDot = (l) => `<span class="lang" style="background:${LANG[l] || 'var(--dim)'}" title="${esc(l || 'Unknown')}"></span>`;
+
+function paintRepoLabels(scope = document) {
+  if (!state.repos.length) return;
+  $$('.upd[data-repo]', scope).forEach((el) => {
+    const r = state.repos.find((x) => x.name === el.dataset.repo);
+    el.innerHTML = r ? `${langDot(r.lang)}Updated ${esc(ago(r.pushed))}` : '';
+    if (r) el.title = 'Last push ' + stamp(r.pushed);
+  });
+}
+
+function paintActivity() {
+  const top = state.repos[0];
+  const c = top && state.commits[top.name];
+  const pill = $('#pushPillBody');
+  const dot = $('#pushDot');
+  if (top) {
+    pill.textContent = `${repoTitle(top.name)} · ${ago(top.pushed)}`;
+    dot.classList.toggle('idle', state.source === 'snapshot');
+  } else {
+    pill.textContent = 'See it on GitHub';
+  }
+
+  const label = { live: 'Live', cache: 'Live', stale: 'Saved', snapshot: 'Saved' }[state.source] || 'Live';
+  const fetched = `${label} · fetched ${ago(new Date(state.t).toISOString())}`;
+  const project = top && REPO_ITEM[top.name];
+
+  $('#pushPop').innerHTML = top ? `
+    <div class="pop-head"><b>Latest push</b><span>${esc(fetched)}</span></div>
+    <a class="pop-commit" href="${esc(safeUrl(c ? c.url : top.url))}" ${ext}>
+      <span class="pc-repo">${esc(GH_USER + '/' + top.name)}</span>
+      <span class="pc-msg">${esc(c ? c.msg : repoTitle(top.name))}</span>
+      <span class="pc-meta">${c ? esc(c.sha.slice(0, 7)) + ' · ' : ''}${esc(stamp(top.pushed))} · ${esc(ago(top.pushed))}</span>
+      <span class="pc-cta">${c ? 'View commit on GitHub' : 'Open repository'}${icon('i-ext', 'sm')}</span>
+    </a>
+    ${project ? `<div style="padding:8px 8px 0"><a class="btn btn-ghost btn-sm" style="width:100%" href="#/${project.id}" data-pop-close>Project details: ${esc(project.title)}</a></div>` : ''}
+    <div class="pop-sub">Recently active</div>
+    <ul class="pop-list">${state.repos.slice(1, 5).map((r) => `
+      <li><a href="${esc(safeUrl(r.url))}" ${ext}>${langDot(r.lang)}<span class="pl-name">${esc(repoTitle(r.name))}</span><time datetime="${esc(r.pushed)}">${esc(ago(r.pushed))}</time></a></li>`).join('')}
+    </ul>
+    <div class="pop-foot"><a href="#activity" data-pop-close>All activity</a><a href="https://github.com/${GH_USER}" ${ext}>GitHub profile ↗</a></div>` : `
+    <div class="pop-head"><b>Latest push</b></div>
+    <p style="padding:0 16px 16px;font-size:14px;color:var(--mut)">GitHub didn't answer just now. <a href="https://github.com/${GH_USER}" ${ext}>Open my profile ↗</a></p>`;
+
+  const latest = $('#actLatest');
+  latest.innerHTML = top ? `
+    <span class="l-top"><span class="dot${state.source === 'snapshot' ? ' idle' : ''}"></span>Latest push · ${esc(ago(top.pushed))}</span>
+    <span class="l-title">${esc(repoTitle(top.name))}</span>
+    ${c ? `<p class="l-msg">“${esc(c.msg)}”</p>` : ''}
+    <span class="l-meta">${esc(GH_USER + '/' + top.name)}${c ? ' · ' + esc(c.sha.slice(0, 7)) : ''} · ${esc(stamp(top.pushed))}</span>
+    <div class="l-actions">
+      <a class="btn btn-primary btn-sm" href="${esc(safeUrl(c ? c.url : top.url))}" ${ext}>${icon('i-commit', 'sm')}${c ? 'View commit' : 'Open repository'}</a>
+      ${project ? `<a class="btn btn-ghost btn-sm" href="#/${project.id}">Project details</a>` : ''}
+    </div>` : `<p class="l-msg">GitHub didn't answer just now.</p><div class="l-actions"><a class="btn btn-primary btn-sm" href="https://github.com/${GH_USER}" ${ext}>Open GitHub</a></div>`;
+
+  $('#actList').innerHTML = state.repos.slice(0, 6).map((r) => {
+    const rc = state.commits[r.name];
+    return `<li><a href="${esc(safeUrl(rc ? rc.url : r.url))}" ${ext}>
+      ${langDot(r.lang)}
+      <span style="min-width:0"><span class="r-name">${esc(repoTitle(r.name))}<code>${esc(r.name)}</code></span>${rc ? `<span class="r-msg">${esc(rc.msg)}</span>` : ''}</span>
+      <time datetime="${esc(r.pushed)}" title="${esc(stamp(r.pushed))}">${esc(ago(r.pushed))}</time>
+    </a></li>`;
+  }).join('');
+
+  const status = $('#actStatus');
+  if (state.source === 'snapshot') status.textContent = `GitHub isn't reachable from this network right now (${state.err ? state.err.message : 'offline'}), so this is the last saved snapshot.`;
+  else if (state.source === 'stale') status.textContent = `GitHub is rate-limiting this network, so this is from ${ago(new Date(state.t).toISOString())}. It refreshes on its own.`;
+  else status.innerHTML = `<span class="dot"></span>Live from the GitHub API · fetched ${esc(ago(new Date(state.t).toISOString()))}`;
+
+  const foot = $('#footPush');
+  if (top) { foot.textContent = `Last push: ${repoTitle(top.name)}, ${ago(top.pushed)}`; foot.href = safeUrl(c ? c.url : top.url); }
+
+  paintRepoLabels();
+}
+
+const pill = $('#pushPill');
+const pop = $('#pushPop');
+function setPop(open) {
+  pop.hidden = !open;
+  pill.setAttribute('aria-expanded', String(open));
+}
+pill.addEventListener('click', (e) => { e.stopPropagation(); setPop(pop.hidden); });
+pop.addEventListener('click', (e) => { if (e.target.closest('[data-pop-close]')) setPop(false); });
+document.addEventListener('click', (e) => { if (!pop.hidden && !e.target.closest('.live-wrap')) setPop(false); });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !pop.hidden) { setPop(false); pill.focus(); } });
+$('#ghRefresh').addEventListener('click', () => loadActivity(true));
+/* Relative times drift; repaint them every minute and refetch when the cache expires. */
+setInterval(() => { if (state.repos.length) paintActivity(); }, 60000);
+setInterval(() => { if (!document.hidden) loadActivity(false); }, GH_TTL + 5000);
+
+/* ---------- command palette ---------- */
+const palette = $('#palette');
+const palInput = $('#palInput');
+const palList = $('#palList');
+const isMac = /Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent);
+$('#kbdHint').textContent = isMac ? '⌘K' : 'Ctrl K';
+const go = (hash) => { location.hash = hash; };
+const CMDS = [
+  ...[['Work', '#work'], ['Projects', '#projects'], ['Awards', '#awards'], ['Activity', '#activity'], ['About', '#about'], ['Contact', '#contact']]
+    .map(([l, h]) => ({ group: 'Sections', label: l, hint: 'Jump to section', ico: 'i-hash', run: () => go(h) })),
+  ...PROJECTS.map((p) => ({ group: 'Projects', label: p.title, hint: `${p.event} · ${p.date}`, keys: p.stack.join(' ') + ' ' + p.tagline, ico: p.award ? 'i-trophy' : 'i-box', run: () => go('#/' + p.id) })),
+  ...WORK.map((w) => ({ group: 'Experience', label: w.title, hint: w.role, keys: w.stack.join(' '), ico: 'i-cap', run: () => go('#/' + w.id) })),
+  { group: 'Actions', label: 'Open résumé', hint: 'PDF', ico: 'i-doc', run: () => window.open('assets/Surya_Thirukonda_Resume.pdf', '_blank', 'noopener') },
+  { group: 'Actions', label: 'Latest commit on GitHub', hint: 'Live', ico: 'i-commit', run: () => { const t = state.repos[0]; const c = t && state.commits[t.name]; window.open(safeUrl(c ? c.url : t ? t.url : ''), '_blank', 'noopener'); } },
+  { group: 'Actions', label: 'Toggle light / dark', hint: 'Theme', keys: 'theme dark light mode', ico: 'i-moon', run: toggleTheme },
+  { group: 'Actions', label: 'Copy email address', hint: EMAIL, ico: 'i-copy', run: copyEmail },
+  { group: 'Actions', label: 'GitHub', hint: 'github.com/' + GH_USER, ico: 'i-github', run: () => window.open('https://github.com/' + GH_USER, '_blank', 'noopener') },
+  { group: 'Actions', label: 'LinkedIn', hint: 'in/surya-thirukonda', ico: 'i-linkedin', run: () => window.open('https://www.linkedin.com/in/surya-thirukonda', '_blank', 'noopener') }
+];
+let palItems = [];
+let palSel = 0;
+function renderPalette() {
+  const q = palInput.value.trim().toLowerCase();
+  palItems = CMDS.filter((c) => !q || q.split(/\s+/).every((t) => `${c.label} ${c.hint} ${c.group} ${c.keys || ''}`.toLowerCase().includes(t)));
+  palSel = Math.min(palSel, Math.max(0, palItems.length - 1));
+  let html = '', group = '';
+  palItems.forEach((c, n) => {
+    if (c.group !== group) { group = c.group; html += `<li class="pal-group" role="presentation">${group}</li>`; }
+    html += `<li class="pal-item" role="option" id="pal-${n}" data-n="${n}" aria-selected="${n === palSel}"><span class="ico">${icon(c.ico, 'sm')}</span><span class="lbl">${esc(c.label)}</span><span class="hint">${esc(c.hint || '')}</span></li>`;
+  });
+  palList.innerHTML = html || '<li class="pal-empty">Nothing matches. Try a project name or a technology.</li>';
+  palInput.setAttribute('aria-activedescendant', palItems.length ? 'pal-' + palSel : '');
+  const sel = $(`#pal-${palSel}`);
+  if (sel) sel.scrollIntoView({ block: 'nearest' });
+}
+function openPalette() {
+  if (detail.open) detail.close();
+  setPop(false);
+  palInput.value = ''; palSel = 0; renderPalette();
+  palette.showModal();
+  palInput.focus();
+}
+function runPalette(n) {
+  const c = palItems[n];
+  if (!c) return;
+  palette.close();
+  c.run();
+}
+$('#searchBtn').addEventListener('click', openPalette);
+palInput.addEventListener('input', () => { palSel = 0; renderPalette(); });
+palInput.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowDown') { e.preventDefault(); palSel = (palSel + 1) % Math.max(1, palItems.length); renderPalette(); }
+  else if (e.key === 'ArrowUp') { e.preventDefault(); palSel = (palSel - 1 + palItems.length) % Math.max(1, palItems.length); renderPalette(); }
+  else if (e.key === 'Enter') { e.preventDefault(); runPalette(palSel); }
+});
+palList.addEventListener('mousemove', (e) => {
+  const it = e.target.closest('.pal-item');
+  if (it && Number(it.dataset.n) !== palSel) { palSel = Number(it.dataset.n); $$('.pal-item', palList).forEach((x) => x.setAttribute('aria-selected', String(x === it))); }
+});
+palList.addEventListener('click', (e) => { const it = e.target.closest('.pal-item'); if (it) runPalette(Number(it.dataset.n)); });
+palette.addEventListener('click', (e) => { if (e.target === palette) palette.close(); });
+document.addEventListener('keydown', (e) => {
+  const typing = /input|textarea|select/i.test((document.activeElement || {}).tagName || '');
+  if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+    e.preventDefault();
+    palette.open ? palette.close() : openPalette();
+  } else if (e.key === '/' && !typing && !palette.open && !detail.open) {
+    e.preventDefault();
+    openPalette();
+  }
+});
+
+/* ---------- motion: reveal, active nav ---------- */
+const io = new IntersectionObserver((entries) => {
+  entries.forEach((en) => {
+    if (!en.isIntersecting) return;
+    en.target.classList.add('in');
+    io.unobserve(en.target);
+  });
+}, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+$$('.reveal').forEach((el) => io.observe(el));
+
+const navLinks = $$('.nav-links a');
+const spy = new IntersectionObserver((entries) => {
+  entries.forEach((en) => {
+    if (en.isIntersecting) navLinks.forEach((a) => a.classList.toggle('on', a.getAttribute('href') === '#' + en.target.id));
+  });
+}, { rootMargin: '-45% 0px -50% 0px' });
+['work', 'projects', 'awards', 'activity', 'about'].forEach((id) => spy.observe(document.getElementById(id)));
+
+/* ---------- hero: 5x7 glyphs for S U R Y A, extruded and rotated as a character-rendered 3D solid ---------- */
 (() => {
-'use strict';
-
-const GLYPHS = {
-  S: ['01110','10001','10000','01110','00001','10001','01110'],
-  U: ['10001','10001','10001','10001','10001','10001','01110'],
-  R: ['11110','10001','10001','11110','10100','10010','10001'],
-  Y: ['10001','10001','01010','00100','00100','00100','00100'],
-  A: ['01110','10001','10001','11111','10001','10001','10001']
-};
-const WORD = 'SURYA';
-const SHADE = ' .:-=+*#%@';
-const RAMP_LIGHT = ['#fafafa','#e0e0e0','#cfcfcf','#bdbdbd','#a8a8a8','#8f8f8f','#6f6f6f','#4a4a4a','#2a2a2a','#111111'];
-const RAMP_DARK = ['#101010','#2b2b2b','#3d3d3d','#4f4f4f','#646464','#7b7b7b','#939393','#adadad','#c9c9c9','#ececec'];
-const DIST = 38, DEPTH = 1.6, STEP = 1 / 6;
-const SPAN = WORD.length * 6 - 1;
-const CX = (SPAN - 1) / 2;
-const LIGHT = [-0.40, -0.50, -0.77];
-const FONT_PX = 9, CELL_RATIO = 1.735, FILL = 0.72;
-const BASE_TILT = 0.13, MAX_YAW = 0.62, MAX_PITCH = 0.42;
-const IDLE_YAW = 0.50, REACH_YAW = 0.56, REACH_PITCH = 0.44;
-
-let RAMP = window.suryaIsDark() ? RAMP_DARK : RAMP_LIGHT;
-
-window.suryaAscii = { GLYPHS, WORD, SHADE, RAMP_LIGHT, RAMP_DARK };
-
-/* Is the glyph plane lit at (u, v)? u runs across the word in glyph columns, v down 0..6. */
-function lit(u, v) {
-  const gi = Math.floor(u / 6);
-  const gc = u - gi * 6;
-  if (gi < 0 || gi >= WORD.length || gc > 4.999) return false;
-  const r = Math.floor(v);
-  if (r < 0 || r > 6) return false;
-  return GLYPHS[WORD[gi]][r][Math.floor(gc)] === '1';
-}
-
-/* Build the solid once: two caps plus the extrusion walls along the glyph
-   silhouette. Interior volume is never visible, so only these are sampled. */
-function buildSurface() {
-  const caps = [], walls = [];
-  for (let u = 0; u < SPAN; u += STEP) {
-    for (let v = 0; v < 7; v += STEP) {
-      if (!lit(u, v)) continue;
-      const x = u - CX, y = v - 3;
-      caps.push(x, y);
-      const l = !lit(u - STEP, v), r = !lit(u + STEP, v);
-      const t = !lit(u, v - STEP), b = !lit(u, v + STEP);
-      if (!(l || r || t || b)) continue;
-      let nx = (r ? 1 : 0) - (l ? 1 : 0);
-      let ny = (b ? 1 : 0) - (t ? 1 : 0);
-      const m = Math.hypot(nx, ny) || 1;
-      nx /= m; ny /= m;
-      for (let z = 0; z <= DEPTH; z += 0.12) walls.push(x, y, z, nx, ny);
-    }
-  }
-  return { caps: Float32Array.from(caps), walls: Float32Array.from(walls) };
-}
-
-const state = {};
-
-function measure(stage, cv) {
-  const w = stage.clientWidth || 900;
-  const hh = stage.clientHeight || 360;
-  const dpr = Math.min(2, window.devicePixelRatio || 1);
-  cv.width = Math.round(w * dpr);
-  cv.height = Math.round(hh * dpr);
-  const ctx = cv.getContext('2d');
-  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-  ctx.font = FONT_PX + 'px "IBM Plex Mono", ui-monospace, monospace';
-  ctx.textBaseline = 'top';
-  state.ctx = ctx;
-  /* Derive the cell from the font actually in use, so runs sit on the grid
-     instead of drifting against a guessed advance width. */
-  const cw = ctx.measureText('M').width || 5.42;
-  const ch = cw * CELL_RATIO;
-  state.cw = cw; state.ch = ch;
-  state.w = w; state.h = hh;
-  state.cols = Math.max(40, Math.floor(w / cw));
-  state.rows = Math.max(20, Math.floor(hh / ch));
-  state.ox = (w - state.cols * cw) / 2;
-  state.oy = (hh - state.rows * ch) / 2;
-  state.SX = (state.cols * FILL / SPAN) * DIST;
-  state.SY = state.SX * (cw / ch);
-  state.zbuf = new Float32Array(state.cols * state.rows);
-  state.sbuf = new Uint8Array(state.cols * state.rows);
-}
-
-function renderFrame(surface, yaw, pitch) {
-  const { caps, walls } = surface;
-  const LX = LIGHT[0], LY = LIGHT[1], LZ = LIGHT[2];
-  const cols = state.cols, rows = state.rows, SX = state.SX, SY = state.SY;
-  const zbuf = state.zbuf, sbuf = state.sbuf;
-  zbuf.fill(1e9); sbuf.fill(0);
-  const ca = Math.cos(yaw), sa = Math.sin(yaw);
-  const ct = Math.cos(pitch), st = Math.sin(pitch);
-  const hx = cols / 2, hy = rows / 2;
-
-  const put = (x, y, z, nx, ny, nz) => {
-    const rx = x * ca + z * sa;
-    const rz0 = z * ca - x * sa;
-    const ry = y * ct - rz0 * st;
-    const rz = y * st + rz0 * ct;
-    const depth = rz + DIST;
-    const k = 1 / depth;
-    const px = (hx + rx * k * SX) | 0;
-    const py = (hy + ry * k * SY) | 0;
-    if (px < 0 || px >= cols || py < 0 || py >= rows) return;
-    const o = py * cols + px;
-    if (depth >= zbuf[o]) return;
-    zbuf[o] = depth;
-    const mx = nx * ca + nz * sa;
-    const mz0 = nz * ca - nx * sa;
-    const my = ny * ct - mz0 * st;
-    const mz = ny * st + mz0 * ct;
-    let d = mx * LX + my * LY + mz * LZ;
-    if (d < 0) d = 0;
-    sbuf[o] = 1 + Math.min(8, Math.round((0.16 + 0.84 * d) * 8));
+  const GLYPHS = {
+    S: ['01110', '10001', '10000', '01110', '00001', '10001', '01110'],
+    U: ['10001', '10001', '10001', '10001', '10001', '10001', '01110'],
+    R: ['11110', '10001', '10001', '11110', '10100', '10010', '10001'],
+    Y: ['10001', '10001', '01010', '00100', '00100', '00100', '00100'],
+    A: ['01110', '10001', '10001', '11111', '10001', '10001', '10001']
   };
+  const WORD = 'SURYA';
+  const SHADE = ' .:-=+*#%@';
+  const RAMP_LIGHT = ['#fbfbfd', '#e3e3e6', '#d1d1d6', '#bfbfc4', '#a9a9ae', '#8e8e93', '#6e6e73', '#4a4a4e', '#2c2c2e', '#1d1d1f'];
+  const RAMP_DARK = ['#000000', '#2c2c2e', '#3a3a3c', '#48484a', '#636366', '#7c7c80', '#98989d', '#aeaeb2', '#d1d1d6', '#f5f5f7'];
+  const FONT = '"SF Mono", SFMono-Regular, ui-monospace, Menlo, Monaco, Consolas, monospace';
+  const DIST = 38, DEPTH = 1.6, STEP = 1 / 6;
+  const SPAN = WORD.length * 6 - 1;
+  const CX = (SPAN - 1) / 2;
+  const LIGHT = [-0.40, -0.50, -0.77];
+  const FONT_PX = 9, CELL_RATIO = 1.735, FILL = 0.72;
+  const BASE_TILT = 0.13, MAX_YAW = 0.62, MAX_PITCH = 0.42;
+  const IDLE_YAW = 0.50, REACH_YAW = 0.56, REACH_PITCH = 0.44;
 
-  for (let i = 0; i < caps.length; i += 2) {
-    put(caps[i], caps[i + 1], 0, 0, 0, -1);
-    put(caps[i], caps[i + 1], DEPTH, 0, 0, 1);
-  }
-  for (let i = 0; i < walls.length; i += 5) {
-    put(walls[i], walls[i + 1], walls[i + 2], walls[i + 3], walls[i + 4], 0);
+  const stage = $('#ascStage');
+  const cv = $('#ascName');
+  let ramp = isDark() ? RAMP_DARK : RAMP_LIGHT;
+  const st = {};
+
+  /* Is the glyph plane lit at (u, v)? u runs across the word in glyph columns, v down 0..6. */
+  function lit(u, v) {
+    const gi = Math.floor(u / 6);
+    const gc = u - gi * 6;
+    if (gi < 0 || gi >= WORD.length || gc > 4.999) return false;
+    const r = Math.floor(v);
+    if (r < 0 || r > 6) return false;
+    return GLYPHS[WORD[gi]][r][Math.floor(gc)] === '1';
   }
 
-  /* Paint: one fillStyle change per run of equal shade, not per cell.
-     Each character is placed on its own cell so runs cannot drift. */
-  const ctx = state.ctx;
-  const cw = state.cw, ch = state.ch;
-  ctx.clearRect(0, 0, state.w, state.h);
-  for (let y = 0; y < rows; y++) {
-    const ty = state.oy + y * ch;
-    let g0 = 0, startX = 0;
-    for (let x = 0; x <= cols; x++) {
-      const g = x < cols ? sbuf[y * cols + x] : -1;
-      if (g === g0) continue;
-      if (g0 > 0) {
-        ctx.fillStyle = RAMP[g0];
-        const glyph = SHADE[g0];
-        for (let i = startX; i < x; i++) ctx.fillText(glyph, state.ox + i * cw, ty);
+  /* Build the solid once: two caps plus the extrusion walls along the glyph
+     silhouette. Interior volume is never visible, so only these are sampled. */
+  function buildSurface() {
+    const caps = [], walls = [];
+    for (let u = 0; u < SPAN; u += STEP) {
+      for (let v = 0; v < 7; v += STEP) {
+        if (!lit(u, v)) continue;
+        const x = u - CX, y = v - 3;
+        caps.push(x, y);
+        const l = !lit(u - STEP, v), r = !lit(u + STEP, v);
+        const t = !lit(u, v - STEP), b = !lit(u, v + STEP);
+        if (!(l || r || t || b)) continue;
+        let nx = (r ? 1 : 0) - (l ? 1 : 0);
+        let ny = (b ? 1 : 0) - (t ? 1 : 0);
+        const m = Math.hypot(nx, ny) || 1;
+        nx /= m; ny /= m;
+        for (let z = 0; z <= DEPTH; z += 0.12) walls.push(x, y, z, nx, ny);
       }
-      g0 = g; startX = x;
+    }
+    return { caps: Float32Array.from(caps), walls: Float32Array.from(walls) };
+  }
+
+  function measure() {
+    const w = stage.clientWidth || 900;
+    const hh = stage.clientHeight || 300;
+    const dpr = Math.min(2, window.devicePixelRatio || 1);
+    cv.width = Math.round(w * dpr);
+    cv.height = Math.round(hh * dpr);
+    const ctx = cv.getContext('2d');
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.font = FONT_PX + 'px ' + FONT;
+    ctx.textBaseline = 'top';
+    st.ctx = ctx;
+    /* Derive the cell from the font actually in use, so runs sit on the grid
+       instead of drifting against a guessed advance width. */
+    const cw = ctx.measureText('M').width || 5.42;
+    const ch = cw * CELL_RATIO;
+    st.cw = cw; st.ch = ch; st.w = w; st.h = hh;
+    st.cols = Math.max(40, Math.floor(w / cw));
+    st.rows = Math.max(14, Math.floor(hh / ch));
+    st.ox = (w - st.cols * cw) / 2;
+    st.oy = (hh - st.rows * ch) / 2;
+    st.SX = (st.cols * FILL / SPAN) * DIST;
+    st.SY = st.SX * (cw / ch);
+    st.zbuf = new Float32Array(st.cols * st.rows);
+    st.sbuf = new Uint8Array(st.cols * st.rows);
+  }
+
+  function render(surface, yaw, pitch) {
+    const { caps, walls } = surface;
+    const [LX, LY, LZ] = LIGHT;
+    const { cols, rows, SX, SY, zbuf, sbuf } = st;
+    zbuf.fill(1e9); sbuf.fill(0);
+    const ca = Math.cos(yaw), sa = Math.sin(yaw);
+    const ct = Math.cos(pitch), sp = Math.sin(pitch);
+    const hx = cols / 2, hy = rows / 2;
+
+    const put = (x, y, z, nx, ny, nz) => {
+      const rx = x * ca + z * sa;
+      const rz0 = z * ca - x * sa;
+      const ry = y * ct - rz0 * sp;
+      const rz = y * sp + rz0 * ct;
+      const depth = rz + DIST;
+      const k = 1 / depth;
+      const px = (hx + rx * k * SX) | 0;
+      const py = (hy + ry * k * SY) | 0;
+      if (px < 0 || px >= cols || py < 0 || py >= rows) return;
+      const o = py * cols + px;
+      if (depth >= zbuf[o]) return;
+      zbuf[o] = depth;
+      const mx = nx * ca + nz * sa;
+      const mz0 = nz * ca - nx * sa;
+      const my = ny * ct - mz0 * sp;
+      const mz = ny * sp + mz0 * ct;
+      let d = mx * LX + my * LY + mz * LZ;
+      if (d < 0) d = 0;
+      sbuf[o] = 1 + Math.min(8, Math.round((0.16 + 0.84 * d) * 8));
+    };
+
+    for (let i = 0; i < caps.length; i += 2) {
+      put(caps[i], caps[i + 1], 0, 0, 0, -1);
+      put(caps[i], caps[i + 1], DEPTH, 0, 0, 1);
+    }
+    for (let i = 0; i < walls.length; i += 5) put(walls[i], walls[i + 1], walls[i + 2], walls[i + 3], walls[i + 4], 0);
+
+    /* Paint: one fillStyle change per run of equal shade, not per cell.
+       Each character is placed on its own cell so runs cannot drift. */
+    const { ctx, cw, ch } = st;
+    ctx.clearRect(0, 0, st.w, st.h);
+    for (let y = 0; y < rows; y++) {
+      const ty = st.oy + y * ch;
+      let g0 = 0, startX = 0;
+      for (let x = 0; x <= cols; x++) {
+        const g = x < cols ? sbuf[y * cols + x] : -1;
+        if (g === g0) continue;
+        if (g0 > 0) {
+          ctx.fillStyle = ramp[g0];
+          const glyph = SHADE[g0];
+          for (let i = startX; i < x; i++) ctx.fillText(glyph, st.ox + i * cw, ty);
+        }
+        g0 = g; startX = x;
+      }
     }
   }
-}
 
-function boot() {
-  const cv = document.getElementById('ascName');
-  const stage = document.getElementById('ascStage');
-  if (!cv || !stage || !stage.clientWidth) return false;
+  function boot() {
+    if (!stage.clientWidth) return false;
+    const surface = buildSurface();
+    measure();
+    const drawStatic = () => render(surface, -0.35, BASE_TILT);
 
-  const surface = buildSurface();
-  measure(stage, cv);
+    /* Canvas 2D does not wait on webfonts: remeasure once fonts settle. */
+    const remeasure = () => { measure(); if (reduced() || !st.running) drawStatic(); };
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(remeasure).catch(() => {});
+    new ResizeObserver(remeasure).observe(stage);
+    document.addEventListener('theme-change', () => {
+      ramp = isDark() ? RAMP_DARK : RAMP_LIGHT;
+      if (reduced() || !st.running) drawStatic();
+    });
 
-  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
-  const drawStatic = () => renderFrame(surface, -0.35, BASE_TILT);
-
-  /* Canvas 2D does not wait on webfonts: remeasure once the real face lands,
-     otherwise the grid stays pinned to the fallback monospace metric. */
-  const remeasure = () => {
-    measure(stage, cv);
-    if (reduced.matches || !state.running) drawStatic();
-  };
-  if (document.fonts && document.fonts.load) {
-    document.fonts.load(FONT_PX + 'px "IBM Plex Mono"').then(remeasure).catch(() => {});
-    document.fonts.ready.then(remeasure).catch(() => {});
-  }
-
-  new ResizeObserver(remeasure).observe(stage);
-  const recolor = () => {
-    RAMP = window.suryaIsDark() ? RAMP_DARK : RAMP_LIGHT;
-    if (reduced.matches || !state.running) drawStatic();
-  };
-  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', recolor);
-  document.addEventListener('theme-change', recolor);
-
-  if (reduced.matches) {
-    drawStatic();
-    reduced.addEventListener('change', (e) => { if (!e.matches) run(); });
-    return true;
-  }
-  run();
-  return true;
-
-  function run() {
-    if (state.running) return;
-    state.running = true;
+    if (reduced()) { drawStatic(); return true; }
+    st.running = true;
 
     let clock = 0, last = performance.now();
     let ptrX = 0, ptrY = 0, hover = 0, wantHover = 0;
     let yaw = 0, pitch = BASE_TILT;
-
     document.addEventListener('pointermove', (e) => {
       const r = stage.getBoundingClientRect();
-      /* Reactive band: the full width of the hero, from the top of the page down
-         to the stage's bottom edge, which sits just above the headline. */
-      const inside = e.clientY < r.bottom && e.clientY > r.top - 400;
-      wantHover = inside ? 1 : 0;
+      /* Reactive band: the full width of the page, from the top down to the stage's bottom edge. */
+      wantHover = e.clientY < r.bottom && e.clientY > r.top - 400 ? 1 : 0;
       ptrX = Math.max(-1, Math.min(1, (e.clientX - (r.left + r.width / 2)) / (r.width / 2)));
       ptrY = Math.max(-1, Math.min(1, (e.clientY - (r.top + r.height / 2)) / (r.height / 2)));
     });
@@ -940,357 +1942,37 @@ function boot() {
       const dt = Math.min(0.05, (now - last) / 1000);
       last = now;
       clock += dt;
-
       hover += (wantHover - hover) * Math.min(1, dt * 3.5);
-      /* Idle: a slow left-to-right pan, with a second harmonic so it never
-         feels like a metronome. Damped, not killed, while the cursor leads. */
+      /* Idle: a slow left-to-right pan with a second harmonic, damped while the cursor leads. */
       const idleYaw = IDLE_YAW * Math.sin(clock * 0.40) + 0.055 * Math.sin(clock * 0.93 + 1.3);
       const idlePitch = 0.05 * Math.sin(clock * 0.31 + 0.4);
       let tYaw = idleYaw * (1 - hover * 0.72) + ptrX * REACH_YAW * hover;
       let tPitch = BASE_TILT + idlePitch * (1 - hover * 0.6) - ptrY * REACH_PITCH * hover;
-      tYaw = tYaw < -MAX_YAW ? -MAX_YAW : tYaw > MAX_YAW ? MAX_YAW : tYaw;
-      tPitch = tPitch < -MAX_PITCH ? -MAX_PITCH : tPitch > MAX_PITCH ? MAX_PITCH : tPitch;
+      tYaw = Math.max(-MAX_YAW, Math.min(MAX_YAW, tYaw));
+      tPitch = Math.max(-MAX_PITCH, Math.min(MAX_PITCH, tPitch));
       const ease = Math.min(1, dt * 4.5);
       yaw += (tYaw - yaw) * ease;
       pitch += (tPitch - pitch) * ease;
-
-      renderFrame(surface, yaw, pitch);
+      render(surface, yaw, pitch);
     };
-
     const loop = () => {
-      if (live && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) frame();
+      if (live && !document.hidden && !reduced()) frame();
       else last = performance.now();
       requestAnimationFrame(loop);
     };
     requestAnimationFrame(loop);
+    return true;
   }
-}
 
-/* Layout may not be settled on the first tick; retry briefly rather than
-   giving up on the first miss. setTimeout, not rAF, so booting still happens
-   in a background or hidden tab. */
-let tries = 0;
-const attempt = () => {
-  if (boot()) return;
-  if (tries++ > 600) return;
-  setTimeout(attempt, 33);
-};
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', attempt);
-} else {
+  /* Layout may not be settled on the first tick; retry briefly. */
+  let tries = 0;
+  const attempt = () => { if (!boot() && tries++ < 300) setTimeout(attempt, 33); };
   attempt();
-}
 })();
-</script>
-<script>
-/* Ambient background: a sparse field of faint characters that twinkle and
-   drift very slowly upward. Decoration only; it must never compete with text. */
-(() => {
-'use strict';
-const cv = document.getElementById('bgField');
-const ctx = cv.getContext('2d');
-const CHARS = '.:-=+*';
-const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
-let glyphs = [], W = 0, H = 0;
 
-const color = () => (window.suryaIsDark() ? '#7b7b7b' : '#8f8f8f');
-
-function init() {
-  const dpr = Math.min(2, window.devicePixelRatio || 1);
-  W = window.innerWidth; H = window.innerHeight;
-  cv.width = Math.round(W * dpr);
-  cv.height = Math.round(H * dpr);
-  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-  ctx.font = '11px "IBM Plex Mono", ui-monospace, monospace';
-  ctx.textBaseline = 'top';
-  const count = Math.min(110, Math.round((W * H) / 16000));
-  glyphs = Array.from({ length: count }, () => ({
-    x: Math.random() * W,
-    y: Math.random() * H,
-    c: CHARS[(Math.random() * CHARS.length) | 0],
-    phase: Math.random() * Math.PI * 2,
-    speed: 0.25 + Math.random() * 0.5,
-    drift: 2 + Math.random() * 5
-  }));
-}
-
-function draw(t) {
-  ctx.clearRect(0, 0, W, H);
-  ctx.fillStyle = color();
-  for (const g of glyphs) {
-    const tw = 0.5 + 0.5 * Math.sin(t * 0.001 * g.speed + g.phase);
-    ctx.globalAlpha = 0.02 + tw * 0.07;
-    const y = ((g.y - t * 0.001 * g.drift) % H + H) % H;
-    ctx.fillText(g.c, g.x, y);
-  }
-  ctx.globalAlpha = 1;
-}
-
-let lastDraw = 0;
-function loop(t) {
-  /* ~12 fps is plenty for a twinkle; anything faster is wasted battery. */
-  if (t - lastDraw > 80) { draw(t); lastDraw = t; }
-  requestAnimationFrame(loop);
-}
-
-init();
-window.addEventListener('resize', init);
-document.addEventListener('theme-change', () => draw(performance.now()));
-if (reduced.matches) {
-  draw(0);
-  reduced.addEventListener('change', (e) => { if (!e.matches) requestAnimationFrame(loop); });
-} else {
-  requestAnimationFrame(loop);
-}
-})();
-</script>
-<script>
-/* ASCII portrait: the headshot re-rendered as characters, shown on hover. */
-(() => {
-'use strict';
-const wrap = document.getElementById('portrait');
-const img = wrap.querySelector('img');
-const cv = document.getElementById('portraitAscii');
-const SHADE = ' .:-=+*#%@';
-
-function render() {
-  if (!img.complete || !img.naturalWidth || !wrap.clientWidth) return;
-  const w = wrap.clientWidth, h = wrap.clientHeight;
-  const dpr = Math.min(2, window.devicePixelRatio || 1);
-  cv.width = Math.round(w * dpr);
-  cv.height = Math.round(h * dpr);
-  const ctx = cv.getContext('2d');
-  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-
-  const fontPx = 7;
-  ctx.font = fontPx + 'px "IBM Plex Mono", ui-monospace, monospace';
-  ctx.textBaseline = 'top';
-  const cw = ctx.measureText('M').width || 4.2;
-  const ch = cw * 1.735;
-  const cols = Math.max(20, Math.floor(w / cw));
-  const rows = Math.max(20, Math.floor(h / ch));
-
-  const off = document.createElement('canvas');
-  off.width = cols; off.height = rows;
-  const octx = off.getContext('2d', { willReadFrequently: true });
-  octx.drawImage(img, 0, 0, cols, rows);
-  const data = octx.getImageData(0, 0, cols, rows).data;
-
-  const dark = window.suryaIsDark();
-  const styles = getComputedStyle(document.documentElement);
-  const bg = styles.getPropertyValue('--bg').trim();
-  const ink = styles.getPropertyValue('--ink').trim();
-  ctx.fillStyle = bg;
-  ctx.fillRect(0, 0, w, h);
-  ctx.fillStyle = ink;
-  for (let y = 0; y < rows; y++) {
-    for (let x = 0; x < cols; x++) {
-      const i = (y * cols + x) * 4;
-      const lum = (0.2126 * data[i] + 0.7152 * data[i + 1] + 0.0722 * data[i + 2]) / 255;
-      /* Ink density follows the subject: dark areas on paper, bright areas on night. */
-      const density = dark ? lum : 1 - lum;
-      const s = Math.round(density * (SHADE.length - 1));
-      if (s > 0) ctx.fillText(SHADE[s], x * cw, y * ch);
-    }
-  }
-}
-
-if (img.complete) render(); else img.addEventListener('load', render);
-if (document.fonts && document.fonts.ready) document.fonts.ready.then(render).catch(() => {});
-new ResizeObserver(render).observe(wrap);
-document.addEventListener('theme-change', render);
-window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', render);
-/* Touch screens have no hover: tap toggles instead. */
-wrap.addEventListener('click', () => wrap.classList.toggle('ascii'));
-})();
-</script>
-<script>
-/* Terminal palette + footer commit ticker. */
-(() => {
-'use strict';
-
-const overlay = document.getElementById('term');
-const out = document.getElementById('termOut');
-const input = document.getElementById('termIn');
-const openBtn = document.getElementById('termOpen');
-const closeBtn = document.getElementById('termClose');
-let opened = false;
-const history = [];
-let histIdx = -1;
-
-const print = (text, cls) => {
-  const d = document.createElement('div');
-  if (cls) d.className = cls;
-  d.textContent = text;
-  out.appendChild(d);
-  out.scrollTop = out.scrollHeight;
-};
-const blank = () => print(' ');
-
-const goto = (id) => {
-  close();
-  document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
-};
-const openUrl = (u) => window.open(u, '_blank', 'noopener');
-
-const COMMANDS = {
-  help:       { desc: 'every command', fn: () => {
-    print('commands', 't-ink');
-    Object.keys(COMMANDS).forEach(k => print('  ' + k.padEnd(12) + COMMANDS[k].desc));
-  }},
-  summary:    { desc: 'the short version', fn: () => {
-    print('surya thirukonda, college station tx', 't-ink');
-    print('  b.s. computer science, texas a&m, class of 2028, gpa 4.0');
-    print('  founding engineer at revio (ashvish.com)');
-    print('  cto at stook');
-    print('  swe intern, quantitative systems at dekalb capital management');
-    print('  ml + time-series forecasting reu at portland state');
-    print('  aws certified cloud practitioner (clf-c02)');
-  }},
-  skills:     { desc: 'languages and stack', fn: () => {
-    print('  advanced      python, postgresql');
-    print('  intermediate  aws, sql, c++, javascript, node.js, docker,');
-    print('                machine learning, llms');
-    print('  daily tools   fastapi, supabase, prisma, pandas');
-  }},
-  now:        { desc: 'what i am doing today', fn: () => {
-    print('  revio, founding engineer (since feb 2026)');
-    print('  stook, cto (since apr 2026)');
-    print('  dekalb capital management, quant systems (since jun 2026)');
-    print('  portland state reu, time-series forecasting (since jun 2026)');
-  }},
-  about:      { desc: 'jump to about', fn: () => goto('about') },
-  experience: { desc: 'jump to experience', fn: () => goto('experience') },
-  research:   { desc: 'jump to research', fn: () => goto('research') },
-  hacks:      { desc: 'jump to hackathons', fn: () => goto('competitions') },
-  projects:   { desc: 'jump to also built', fn: () => goto('projects') },
-  resume:     { desc: 'open the pdf', fn: () => openUrl('assets/Surya_Thirukonda_Resume.pdf') },
-  github:     { desc: 'github.com/SuryaThirukonda', fn: () => openUrl('https://github.com/SuryaThirukonda') },
-  linkedin:   { desc: 'linkedin.com/in/surya-thirukonda', fn: () => openUrl('https://linkedin.com/in/surya-thirukonda') },
-  pypi:       { desc: 'gaussian-hsmm on pypi', fn: () => openUrl('https://pypi.org/project/gaussian-hsmm/') },
-  email:      { desc: 'surya.thirukonda@tamu.edu', fn: () => { location.href = 'mailto:Surya.Thirukonda@tamu.edu'; } },
-  theme:      { desc: 'cycle light / dark / auto', fn: () => document.getElementById('themeBtn').click() },
-  clear:      { desc: 'clear the screen', fn: () => { out.textContent = ''; } },
-  exit:       { desc: 'close (or press esc)', fn: () => close() }
-};
-
-const banner = () => {
-  /* The name, set from the same 5x7 glyphs the hero uses. */
-  const A = window.suryaAscii;
-  if (A) {
-    for (let r = 0; r < 7; r++) {
-      print(A.WORD.split('').map(L => A.GLYPHS[L][r].replace(/1/g, '#').replace(/0/g, ' ')).join(' '), 't-art');
-    }
-    blank();
-  }
-  print('type a command and press enter');
-  blank();
-  ['help', 'summary', 'resume', 'github', 'exit'].forEach(k =>
-    print('  ' + k.padEnd(12) + COMMANDS[k].desc));
-  blank();
-};
-
-const open = () => {
-  overlay.hidden = false;
-  requestAnimationFrame(() => overlay.classList.add('open'));
-  if (!opened) { banner(); opened = true; }
-  input.focus();
-};
-function close() {
-  overlay.classList.remove('open');
-  overlay.hidden = true;
-  input.blur();
-}
-
-const run = (raw) => {
-  const cmd = raw.trim().toLowerCase();
-  if (!cmd) return;
-  print('$ ' + cmd, 't-cmd');
-  history.push(cmd);
-  histIdx = history.length;
-  const c = COMMANDS[cmd];
-  if (c) c.fn();
-  else print('command not found: ' + cmd + ' (try help)');
-};
-
-openBtn.addEventListener('click', open);
-closeBtn.addEventListener('click', close);
-overlay.addEventListener('mousedown', (e) => { if (e.target === overlay) close(); });
-
-/* Real-terminal focus: clicking anywhere inside refocuses the prompt, unless
-   the click was selecting output text. */
-overlay.querySelector('.term-panel').addEventListener('click', (e) => {
-  if (e.target.closest('button, a')) return;
-  if (String(window.getSelection())) return;
-  input.focus();
-});
-
-document.addEventListener('keydown', (e) => {
-  const typing = /^(input|textarea)$/i.test(document.activeElement?.tagName || '');
-  if (overlay.hidden) {
-    if ((e.key === '/' && !typing) || ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k')) {
-      e.preventDefault();
-      open();
-    }
-    return;
-  }
-  if (e.key === 'Escape') { close(); return; }
-  /* Typing anywhere in the open terminal lands at the prompt, like a real tty. */
-  if (document.activeElement !== input && e.key.length === 1 && !e.ctrlKey && !e.metaKey && !e.altKey) {
-    input.focus();
-  }
-});
-
-input.addEventListener('keydown', (e) => {
-  if (e.key === 'Enter') {
-    run(input.value);
-    input.value = '';
-  } else if (e.key === 'ArrowUp') {
-    e.preventDefault();
-    if (histIdx > 0) input.value = history[--histIdx] || '';
-  } else if (e.key === 'ArrowDown') {
-    e.preventDefault();
-    if (histIdx < history.length) input.value = history[++histIdx] || '';
-  } else if (e.key === 'Tab') {
-    e.preventDefault();
-    const v = input.value.trim().toLowerCase();
-    if (!v) return;
-    const hit = Object.keys(COMMANDS).find(k => k.startsWith(v));
-    if (hit) input.value = hit;
-  }
-});
-
-/* Footer ticker: latest public push, straight from the GitHub API. Stays
-   hidden if the request fails, so the footer never shows an error state. */
-const MONTHS = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
-const showTicker = (full, msg, when) => {
-  const t = document.getElementById('ghTicker');
-  const d = new Date(when);
-  const stamp = MONTHS[d.getMonth()] + ' ' + d.getDate();
-  const repo = full.split('/')[1];
-  t.textContent = msg
-    ? 'LAST PUSH: "' + (msg.length > 44 ? msg.slice(0, 43) + '…' : msg) + '" (' + repo + ', ' + stamp + ')'
-    : 'LAST PUSH: ' + repo + ' (' + stamp + ')';
-  t.href = 'https://github.com/' + full;
-  t.hidden = false;
-};
-fetch('https://api.github.com/users/SuryaThirukonda/events/public')
-  .then(r => (r.ok ? r.json() : Promise.reject()))
-  .then(events => {
-    const push = events.find(e => e.type === 'PushEvent' && e.payload?.head);
-    if (!push) return Promise.reject();
-    /* The events payload no longer carries commit messages, only the head SHA. */
-    return fetch('https://api.github.com/repos/' + push.repo.name + '/commits/' + push.payload.head)
-      .then(r => (r.ok ? r.json() : null))
-      .then(c => showTicker(push.repo.name, c?.commit?.message?.split('\n')[0] || null, push.created_at))
-      .catch(() => showTicker(push.repo.name, null, push.created_at));
-  })
-  .catch(() =>
-    fetch('https://api.github.com/users/SuryaThirukonda/repos?sort=pushed&per_page=1')
-      .then(r => (r.ok ? r.json() : Promise.reject()))
-      .then(rs => rs[0] && showTicker(rs[0].full_name, null, rs[0].pushed_at))
-      .catch(() => {})
-  );
+/* ---------- boot ---------- */
+route();
+loadActivity(false);
 })();
 </script>
 </body>
