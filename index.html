@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Surya Thirukonda · Software Engineer</title>
-<meta name="description" content="Surya Thirukonda, computer science at Texas A&M. Founding engineer at Revio, undergraduate researcher in the Rathinam Group, and hackathon builder: HackTX, HackRice, HackHCC, TIDALHACK and TAMUhack.">
+<meta name="description" content="Surya Thirukonda, computer science at Texas A&M. Founding engineer at Revio, undergraduate researcher in the SUCCESS Lab (agent security) and the Rathinam Group, and hackathon builder: HackTX, HackRice, HackHCC, TIDALHACK and TAMUhack.">
 <meta property="og:title" content="Surya Thirukonda · Software Engineer">
 <meta property="og:description" content="Founding engineer at Revio, orbit-planning research in the Rathinam Group at Texas A&M, and a run of hackathon builds from TAMUhack to HackTX.">
 <meta name="theme-color" content="#fbfbfd">
@@ -604,6 +604,7 @@ dialog { color: var(--ink); }
     <a class="brand" href="#top">Surya Thirukonda</a>
     <nav class="nav-links" aria-label="Sections">
       <a href="#work">Work</a>
+      <a href="#research">Research</a>
       <a href="#projects">Projects</a>
       <a href="#awards">Awards</a>
       <a href="#activity">Activity</a>
@@ -636,7 +637,7 @@ dialog { color: var(--ink); }
     </div>
     <h1>Surya Thirukonda</h1>
     <p class="hero-tag">Software engineer · Computer Science at Texas A&amp;M, class of 2028</p>
-    <p class="hero-lede">Founding engineer at Revio and undergraduate researcher in the Rathinam Group. I build backend systems, data pipelines and research tools, from manuscript formatting to Treasury-yield forecasting to orbit planning, and I compete in hackathons, with five awards in the past year.</p>
+    <p class="hero-lede">Founding engineer at Revio and undergraduate researcher at Texas A&amp;M, working on LLM-agent security in Prof. Guofei Gu's SUCCESS Lab and orbit-planning tools in the Rathinam Group. I build backend systems, data pipelines and research tools, and I compete in hackathons, with five awards in the past year.</p>
     <div class="hero-cta">
       <a class="btn btn-primary" href="#projects">View projects</a>
       <a class="btn btn-ghost" href="assets/Surya_Thirukonda_Resume.pdf" target="_blank" rel="noopener"><svg class="i sm"><use href="#i-doc"/></svg>Résumé</a>
@@ -664,6 +665,18 @@ dialog { color: var(--ink); }
       </div>
     </header>
     <ol class="list surface reveal" id="workList"></ol>
+  </div>
+</section>
+
+<section id="research" class="section">
+  <div class="wrap">
+    <header class="sec-head reveal">
+      <div>
+        <h2>Research</h2>
+        <p class="sec-sub">Undergraduate research in agent security, trajectory optimization and time-series forecasting.</p>
+      </div>
+    </header>
+    <ol class="list surface reveal" id="researchList"></ol>
   </div>
 </section>
 
@@ -822,7 +835,22 @@ const WORK = [
     images: [[1600, 1000, 'The product site: intelligent manuscript formatting, launched as Ashvish before the Revio rename.']]
   },
   {
-    id: 'rathinam', title: 'Rathinam Group', role: 'Undergraduate Research Assistant',
+    id: 'success-lab', title: 'SUCCESS Lab', role: 'Undergraduate Researcher', research: true,
+    org: 'Prof. Guofei Gu · Texas A&M Department of Computer Science',
+    where: 'College Station, TX', date: 'Aug 2026 – Present',
+    tagline: 'Defending LLM agents against memory poisoning: tracing a harmful action back to the memories behind it, and repairing them claim by claim.',
+    coverLine: 'attack success 61% → 7%',
+    highlights: [
+      'Developed MemHeal, a defense that traces an LLM agent\'s harmful action to the memories behind it and repairs them claim by claim, cutting attack success from 61% to 7% while keeping 2x more benign facts than quarantine.',
+      'Built counterfactual replay that re-runs tool-using agents without suspect memories to find the cause (0.88 vs. 0.19 precision), evaluated on 300 poisoning scenarios across 3 memory backends (including Mem0) and 4 LLMs.',
+      'Shipped GitHub Actions CI/CD running 6,800+ offline tests and 8 pre-push checks with the LLM client disabled.'
+    ],
+    stack: ['Python', 'Mem0', 'OpenAI API', 'SQLite', 'GitHub Actions', 'pytest'],
+    links: { github: 'https://github.com/SuryaThirukonda/memheal' },
+    related: 'memheal'
+  },
+  {
+    id: 'rathinam', title: 'Rathinam Group', role: 'Undergraduate Research Assistant', research: true,
     org: 'Texas A&M Department of Mechanical Engineering',
     where: 'College Station, TX', date: 'Sep 2026 – Present',
     tagline: 'Building Orbit Lab, a 3D orbit-visualization and mission-planning platform for trajectory-optimization research.',
@@ -850,7 +878,7 @@ const WORK = [
     links: {}, note: 'The codebase is private.'
   },
   {
-    id: 'psu', title: 'Portland State University', role: 'Undergraduate Researcher (REU)',
+    id: 'psu', title: 'Portland State University', role: 'Undergraduate Researcher (REU)', research: true,
     where: 'Remote', date: 'Jun – Aug 2026',
     tagline: 'Does regime-aware modeling improve short-horizon Treasury yield forecasts?',
     highlights: [
@@ -953,18 +981,19 @@ const PROJECTS = [
     links: { github: 'https://github.com/SuryaThirukonda/awshack' }, repo: 'awshack'
   },
   {
-    id: 'memheal', title: 'MemHeal', kind: 'research', event: 'Agent security', date: 'Oct 2026',
-    coverLine: 'where did this memory come from?',
-    tagline: 'Understanding, detecting and recovering from memory poisoning in agentic AI.',
-    summary: 'Agents with persistent memory can be poisoned by a page or document they read, and carry that influence into later tasks long after the source is gone. MemHeal treats poisoning as an evolving-state problem: record where every memory came from, measure whether poisoned memories actually change security-sensitive actions, and recover selectively instead of wiping memory.',
+    id: 'memheal', title: 'MemHeal', kind: 'research', event: 'SUCCESS Lab, Texas A&M', date: 'Aug 2026 – Present',
+    coverLine: 'attack success 61% → 7%',
+    tagline: 'A defense for LLM agents with persistent memory: trace a harmful action back to the poisoned memories behind it, then repair them claim by claim instead of wiping memory.',
+    summary: 'Agents with persistent memory can be poisoned by a page or document they read, and carry that influence into later tasks long after the source is gone. MemHeal records where every memory came from, finds which memories actually caused a harmful action, and repairs those selectively.',
     highlights: [
-      'An instrumented SQLite memory store recording provenance, derivation edges, retrievals and actions.',
-      'Two directly comparable memory designs: flat store-and-retrieve, and an evolving memory that consolidates and reflects while recording parent-to-child lineage.',
-      'Scenarios as data, each with matched clean and poisoned timelines, and an experiment runner that scores the security-sensitive tool argument exactly.',
-      'Database snapshots after every session, so clean, poisoned and recovered runs start from identical states.'
+      'Cut attack success from 61% to 7% while keeping 2x more benign facts than quarantining suspect memories.',
+      'Counterfactual replay re-runs a tool-using agent without suspect memories to find the cause, at 0.88 precision versus 0.19.',
+      'Evaluated on 300 poisoning scenarios across 3 memory backends, including Mem0, and 4 LLMs.',
+      'A provenance-tracked memory store recording where each memory came from and how it was derived, with matched clean and poisoned timelines.',
+      'GitHub Actions CI/CD running 6,800+ offline tests and 8 pre-push checks with the LLM client disabled.'
     ],
-    stack: ['Python', 'SQLite', 'OpenAI API', 'sentence-transformers', 'pytest'],
-    links: { github: 'https://github.com/SuryaThirukonda/memheal' }, repo: 'memheal'
+    stack: ['Python', 'Mem0', 'OpenAI API', 'SQLite', 'GitHub Actions', 'pytest'],
+    links: { github: 'https://github.com/SuryaThirukonda/memheal' }, repo: 'memheal', related: 'success-lab'
   },
   {
     id: 'orbit-lab', title: 'Orbit Lab', kind: 'research', event: 'Rathinam Group, Texas A&M', date: 'Sep 2026 – Present',
@@ -1226,8 +1255,10 @@ setTheme(isDark() ? 'dark' : 'light', false);
 const toggleTheme = () => setTheme(isDark() ? 'light' : 'dark', true);
 themeBtn.addEventListener('click', toggleTheme);
 
-/* ---------- work ---------- */
-$('#workList').innerHTML = WORK.map((w) => `
+/* ---------- work and research ---------- */
+/* Roles flagged research: true render in the Research section; everything else in Experience. */
+const peersOf = (w) => WORK.filter((x) => !!x.research === !!w.research);
+const roleRow = (w) => `
   <li><a class="wrow" href="#/${w.id}">
     <span>
       <span class="w-role">${esc(w.role)}</span>
@@ -1236,7 +1267,9 @@ $('#workList').innerHTML = WORK.map((w) => `
     </span>
     <span class="w-side">${esc(w.date)}${w.award ? `<br><span class="w-award">${icon('i-trophy', 'sm')}${esc(w.award)}</span>` : ''}</span>
     ${icon('i-right', 'chev')}
-  </a></li>`).join('');
+  </a></li>`;
+$('#workList').innerHTML = WORK.filter((w) => !w.research).map(roleRow).join('');
+$('#researchList').innerHTML = WORK.filter((w) => w.research).map(roleRow).join('');
 
 /* ---------- projects ---------- */
 const grid = $('#projectGrid');
@@ -1325,7 +1358,7 @@ function linkButtons(it) {
 }
 
 function renderDetail(it) {
-  const list = it.group === 'work' ? WORK : PROJECTS;
+  const list = it.group === 'work' ? peersOf(it) : PROJECTS;
   const idx = list.findIndex((x) => x.id === it.id);
   const prev = list[(idx - 1 + list.length) % list.length];
   const next = list[(idx + 1) % list.length];
@@ -1679,10 +1712,10 @@ const isMac = /Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent);
 $('#kbdHint').textContent = isMac ? '⌘K' : 'Ctrl K';
 const go = (hash) => { location.hash = hash; };
 const CMDS = [
-  ...[['Work', '#work'], ['Projects', '#projects'], ['Awards', '#awards'], ['Activity', '#activity'], ['About', '#about'], ['Contact', '#contact']]
+  ...[['Work', '#work'], ['Research', '#research'], ['Projects', '#projects'], ['Awards', '#awards'], ['Activity', '#activity'], ['About', '#about'], ['Contact', '#contact']]
     .map(([l, h]) => ({ group: 'Sections', label: l, hint: 'Jump to section', ico: 'i-hash', run: () => go(h) })),
   ...PROJECTS.map((p) => ({ group: 'Projects', label: p.title, hint: `${p.event} · ${p.date}`, keys: p.stack.join(' ') + ' ' + p.tagline, ico: p.award ? 'i-trophy' : 'i-box', run: () => go('#/' + p.id) })),
-  ...WORK.map((w) => ({ group: 'Experience', label: w.title, hint: w.role, keys: w.stack.join(' '), ico: 'i-cap', run: () => go('#/' + w.id) })),
+  ...WORK.map((w) => ({ group: w.research ? 'Research' : 'Experience', label: w.title, hint: w.role, keys: `${w.org || ''} ${w.stack.join(' ')}`, ico: 'i-cap', run: () => go('#/' + w.id) })),
   { group: 'Actions', label: 'Open résumé', hint: 'PDF', ico: 'i-doc', run: () => window.open('assets/Surya_Thirukonda_Resume.pdf', '_blank', 'noopener') },
   { group: 'Actions', label: 'Latest commit on GitHub', hint: 'Live', ico: 'i-commit', run: () => { const t = state.repos[0]; const c = t && state.commits[t.name]; window.open(safeUrl(c ? c.url : t ? t.url : ''), '_blank', 'noopener'); } },
   { group: 'Actions', label: 'Toggle light / dark', hint: 'Theme', keys: 'theme dark light mode', ico: 'i-moon', run: toggleTheme },
@@ -1759,7 +1792,7 @@ const spy = new IntersectionObserver((entries) => {
     if (en.isIntersecting) navLinks.forEach((a) => a.classList.toggle('on', a.getAttribute('href') === '#' + en.target.id));
   });
 }, { rootMargin: '-45% 0px -50% 0px' });
-['work', 'projects', 'awards', 'activity', 'about'].forEach((id) => spy.observe(document.getElementById(id)));
+['work', 'research', 'projects', 'awards', 'activity', 'about'].forEach((id) => spy.observe(document.getElementById(id)));
 
 /* ---------- hero: 5x7 glyphs for S U R Y A, extruded and rotated as a character-rendered 3D solid ---------- */
 (() => {

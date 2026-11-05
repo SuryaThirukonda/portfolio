@@ -8,13 +8,13 @@ Personal portfolio, plain static HTML/CSS/JS with no build step. Deploys anywher
 
 ## Editing content
 
-Every card, role, award and detail sheet renders from the `WORK`, `PROJECTS` and `AWARDS` lists at the top of the script in `index.html`. To add a project, add one object there and drop its screenshots in `assets/projects/<id>/`. Each `images` entry is `[width, height, caption]` in file order. Projects without screenshots get a generated cover.
+Every card, role, award and detail sheet renders from the `WORK`, `PROJECTS` and `AWARDS` lists at the top of the script in `index.html`. Roles marked `research: true` in `WORK` appear under Research instead of Experience. To add a project, add one object there and drop its screenshots in `assets/projects/<id>/`. Each `images` entry is `[width, height, caption]` in file order. Projects without screenshots get a generated cover.
 
 Detail sheets are deep-linkable: `/#/tempo` opens Tempo directly.
 
 ## Live data
 
-The "Latest push" button, the Activity section, the "Updated" labels on cards and the public-repo count come from the public GitHub API at page load (4 requests, cached in `localStorage` for 10 minutes). Repos listed in `GH_HIDE` (`autoapply`, `autobot`) never appear. If GitHub rate-limits a visitor, the page shows its cached copy; with no cache it falls back to the `SNAPSHOT` baked into `index.html`.
+The "Latest push" button, the Activity section, and the "Updated" labels on cards come from the public GitHub API at page load (4 requests, cached in `localStorage` for 10 minutes). Repos listed in `GH_HIDE` (`autoapply`, `autobot`) never appear. If GitHub rate-limits a visitor, the page shows its cached copy; with no cache it falls back to the `SNAPSHOT` baked into `index.html`.
 
 ## Look
 
